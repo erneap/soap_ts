@@ -1,0 +1,9 @@
+{
+  "name": "soap-models",
+  "version": "1.0.8",
+  "description": "Packaged Modules for working with SOAP",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^5.8.3"
+  }
+}
