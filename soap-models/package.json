@@ -4,6 +4,7 @@
   "description": "Packaged Modules for working with SOAP",
   "main": "index.js",
   "dependencies": {
+    "mongodb": "^6.17.0",
     "typescript": "^5.8.3"
   }
 }
