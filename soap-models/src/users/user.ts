@@ -12,10 +12,11 @@ export default class User {
   private resetToken: string;
   private resetTokenExpires: Date;
   private administrator: boolean;
+  private planId?: ObjectId;
 
   constructor(id?: ObjectId, email?: string, password?: string, bad?: number, 
     firstName?: string, middleName?: string, lastName?: string,  resetToken?: string, 
-    resetExpires?: Date, administrator?: boolean) {
+    resetExpires?: Date, administrator?: boolean, planId?: ObjectId) {
       this.email = (email) ? email : '';
       this.password = (password) ? password : '';
       this.badAttempts = (bad) ? bad : 0;
@@ -26,6 +27,7 @@ export default class User {
       this.resetToken = (resetToken) ? resetToken : '';
       this.resetTokenExpires = (resetExpires) ? new Date(resetExpires) : new Date(0);
       this.administrator = (administrator) ? administrator : false;
+      this.planId = (planId) ? planId : undefined;
     }
   
     setPassword(newpwd: string): void {
