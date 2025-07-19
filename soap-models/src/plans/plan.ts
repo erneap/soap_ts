@@ -2,9 +2,9 @@ import { ObjectId } from "mongodb";
 import { PlanMonth } from "./month";
 
 export class Plan {
-    private id?: ObjectId;
-    private name: string;
-    private months: PlanMonth[];
+    public id?: ObjectId;
+    public name: string;
+    public months: PlanMonth[];
 
     constructor(name: string, months?: PlanMonth[], id?: ObjectId) {
         this.name = name;

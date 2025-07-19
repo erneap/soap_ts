@@ -10,6 +10,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "soap-models": "^1.0.8"
+    "@types/axios": "^0.9.36",
+    "@types/cheerio": "^0.22.35",
+    "axios": "^1.10.0",
+    "cheerio": "^1.1.0",
+    "soap-models": "^1.1.1"
   }
 }

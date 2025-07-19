@@ -1,28 +1,21 @@
-export class Reading {
-    public id: number;
-    public book: string;
-    public chapter: number;
-    public verseStart?: number;
-    public verseEnd?: number;
-
-    constructor(id: number, book: string, chapter: number, start?: number, 
-        end?: number) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Reading = void 0;
+class Reading {
+    constructor(id, book, chapter, start, end) {
         this.id = id;
         this.book = book;
         this.chapter = chapter;
         this.verseStart = (start) ? start : 0;
         this.verseEnd = (end) ? end : 0;
     }
-
-    setId(id: number) {
+    setId(id) {
         this.id = id;
     }
-
-    getId(): number {
+    getId() {
         return this.id;
     }
-
-    compareTo(other?: Reading) {
+    compareTo(other) {
         if (other) {
             if (this.book === other.getBook()) {
                 return (this.chapter < other.getChapter()) ? -1 : 1;
@@ -31,36 +24,30 @@ export class Reading {
         }
         return -1;
     }
-
-    setBook(book: string) {
+    setBook(book) {
         this.book = book;
     }
-
-    getBook(): string {
+    getBook() {
         return this.book;
     }
-
-    setChapter(chptr: number) {
+    setChapter(chptr) {
         this.chapter = chptr;
     }
-
-    getChapter(): number {
+    getChapter() {
         return this.chapter;
     }
-
-    setStartVerse(start: number) {
+    setStartVerse(start) {
         this.verseStart = start;
     }
-
-    getStartVerse(): number | undefined {
+    getStartVerse() {
         return this.verseStart;
     }
-
-    setEndVerse(end: number) {
+    setEndVerse(end) {
         this.verseEnd = end;
     }
-
-    getEndVerse(): number | undefined {
+    getEndVerse() {
         return this.verseEnd;
     }
 }
+exports.Reading = Reading;
+//# sourceMappingURL=readings.js.map

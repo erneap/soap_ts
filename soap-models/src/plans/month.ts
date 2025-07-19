@@ -2,8 +2,8 @@ import { PlanDay } from "./day";
 import { Reading } from "./readings";
 
 export class PlanMonth {
-    private month: number;
-    private days: PlanDay[];
+    public month: number;
+    public days: PlanDay[];
 
     constructor(month: number, days?: PlanDay[]) {
         this.month = month;

@@ -1,18 +1,18 @@
 import { ObjectId } from "mongodb";
 import { genSaltSync, hashSync, compareSync } from 'bcrypt-ts';
 
-export default class User {
-  private id?: ObjectId;
-  private email: string;
-  private password: string;
-  private badAttempts: number;
-  private firstName: string;
-  private middleName: string;
-  private lastName: string;
-  private resetToken: string;
-  private resetTokenExpires: Date;
-  private administrator: boolean;
-  private planId?: ObjectId;
+export class User {
+  public id?: ObjectId;
+  public email: string;
+  public password: string;
+  public badAttempts: number;
+  public firstName: string;
+  public middleName: string;
+  public lastName: string;
+  public resetToken: string;
+  public resetTokenExpires: Date;
+  public administrator: boolean;
+  public planId?: ObjectId;
 
   constructor(id?: ObjectId, email?: string, password?: string, bad?: number, 
     firstName?: string, middleName?: string, lastName?: string,  resetToken?: string, 
