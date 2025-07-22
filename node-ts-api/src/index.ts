@@ -1,6 +1,11 @@
 import express, { Request, Response } from "express";
+import dotenv from 'dotenv';
 import bookRoutes from "./routes/bookRoutes";
 import transRoutes from "./routes/translationRoutes";
+
+if (process.env.MONGO_USER === undefined) {
+  dotenv.config();
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;

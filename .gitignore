@@ -1,2 +1,4 @@
 /console-app/node_modules
 /soap-models/node_modules
+node-ts-api/node_modules
+node-ts-api/.env
