@@ -8,7 +8,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const bookRoutes_1 = __importDefault(require("./routes/bookRoutes"));
 const translationRoutes_1 = __importDefault(require("./routes/translationRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
-if (process.env.MONGO_USER === undefined) {
+if (process.env.MONGO_URI === undefined) {
     dotenv_1.default.config();
 }
 const app = (0, express_1.default)();

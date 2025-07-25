@@ -151,6 +151,9 @@ router.put('/user', async (req: Request, res: Response) => {
           user.lastName = data.value;
           break;
       }
+
+      const result = await collections.users?.updateOne(query, { $set: user });
+      res.status(200).json(user);
     }
 
   } catch (error) {
