@@ -15,7 +15,8 @@ export interface IUser {
   planId?: ObjectId;
 }
 
-export class User {
+export class User implements IUser{
+  public _id?: ObjectId;
   public id?: ObjectId;
   public email: string;
   public password: string;
@@ -36,6 +37,7 @@ export class User {
       this.middleName = (iuser && iuser.middleName) ? iuser.middleName : '';
       this.lastName = (iuser) ? iuser.lastName : '';
       this.id = (iuser && iuser._id) ? iuser._id : undefined;
+      this._id = (iuser && iuser._id) ? iuser._id : undefined;
       this.resetToken = (iuser && iuser.resetToken) ? iuser.resetToken : '';
       this.resetTokenExpires = (iuser && iuser.resetTokenExpires) 
         ? new Date(iuser.resetTokenExpires) : new Date(0);

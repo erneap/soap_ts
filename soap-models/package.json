@@ -1,6 +1,6 @@
 {
   "name": "soap-models",
-  "version": "1.2.2",
+  "version": "1.2.6",
   "description": "Packaged Modules for working with SOAP",
   "main": "index.js",
   "dependencies": {

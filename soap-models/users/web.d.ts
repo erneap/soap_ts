@@ -21,3 +21,8 @@ export interface AuthenticationRequest {
 export interface UserEmailRequest {
     email: string;
 }
+export interface UpdateUserRequest {
+    id: string;
+    field: string;
+    value: string;
+}

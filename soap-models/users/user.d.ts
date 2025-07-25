@@ -12,7 +12,8 @@ export interface IUser {
     administrator: boolean;
     planId?: ObjectId;
 }
-export declare class User {
+export declare class User implements IUser {
+    _id?: ObjectId;
     id?: ObjectId;
     email: string;
     password: string;

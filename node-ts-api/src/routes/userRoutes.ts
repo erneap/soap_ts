@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 import { Collection, ObjectId } from 'mongodb';
-import { AuthenticationRequest, IUser, User, UserEmailRequest } from 'soap-models/users';
+import { AuthenticationRequest, AuthenticationResponse, IUser, UpdateUserRequest, User, UserEmailRequest } from 'soap-models/users';
 import { collections } from '../config/mongoconnect';
 import { NewUserRequest, NewUserResponse } from 'soap-models/users';
-import node from 'bcrypt-ts';
+import { jwtSign } from 'soap-models/utils';
 
 const router = Router();
 
@@ -89,17 +89,72 @@ router.post('/user/authenticate', async (req: Request, res: Response) => {
 
     if (iuser) {
       try {
-        const user = new User(iuser)
+        const user = new User(iuser);
+        let bad = 0;
+        if (user.badAttempts < 0) {
+          bad = -1;
+        }
         user.checkPassword(request.password);
         const nquery = { _id: user.id };
         await collections.users?.updateOne(query, { $set: user });
-        res.status(200).json(user);
+        let token = '';
+        if (user.id) {
+          token = jwtSign(user.id);
+        }
+        user.badAttempts = bad;
+        const result: AuthenticationResponse = {
+          user: user,
+          token: token,
+          error: '',
+        };
+        res.status(200).json(result);
       } catch (error) {
-        res.status(401).send(error);
+        if (typeof error === 'string') {
+          console.log(error);
+          res.status(401).send(error);
+        } else if (error instanceof Error) {
+          console.log(error.message);
+          res.status(401).send(error.message);
+        }
       }
     }
   } catch (error) {
     res.status(404).send(`User Not Found: ${req.body.email}`)
+  }
+});
+
+router.put('/user', async (req: Request, res: Response) => {
+  try {
+    const data = req.body as UpdateUserRequest;
+    const query = { _id: new ObjectId(data.id)};
+    const iuser = (await collections.users?.findOne<User>(query)) as IUser;
+
+    if (iuser) {
+      const user = new User(iuser);
+      switch (data.field.toLowerCase()) {
+        case "password":
+          user.setPassword(data.value);
+          break;
+        case "unlock":
+          user.badAttempts = 0;
+          break;
+        case "first":
+        case "firstname":
+          user.firstName = data.value;
+          break;
+        case "middle":
+        case "middlename":
+          user.middleName = data.value;
+          break;
+        case "last":
+        case "lastname":
+          user.lastName = data.value;
+          break;
+      }
+    }
+
+  } catch (error) {
+    res.status(404).send(`User Not Found: ${req.body.id}`)
   }
 });
 
