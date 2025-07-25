@@ -1,5 +1,18 @@
 import { ObjectId } from "mongodb";
-export default class User {
+export interface IUser {
+    _id?: ObjectId;
+    email: string;
+    password: string;
+    badAttempts: number;
+    firstName: string;
+    middleName: string;
+    lastName: string;
+    resetToken: string;
+    resetTokenExpires: Date;
+    administrator: boolean;
+    planId?: ObjectId;
+}
+export declare class User {
     id?: ObjectId;
     email: string;
     password: string;
@@ -11,7 +24,8 @@ export default class User {
     resetTokenExpires: Date;
     administrator: boolean;
     planId?: ObjectId;
-    constructor(id?: ObjectId, email?: string, password?: string, bad?: number, firstName?: string, middleName?: string, lastName?: string, resetToken?: string, resetExpires?: Date, administrator?: boolean, planId?: ObjectId);
+    constructor(iuser?: IUser);
+    compareTo(other?: User): number;
     setPassword(newpwd: string): void;
     checkPassword(pwd: string): void;
     createRandomPassword(): string;

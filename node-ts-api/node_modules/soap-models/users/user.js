@@ -1,28 +1,53 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const bcrypt_ts_1 = require("bcrypt-ts");
+exports.User = void 0;
+const bcrypt_1 = require("bcrypt");
 class User {
-    constructor(id, email, password, bad, firstName, middleName, lastName, resetToken, resetExpires, administrator, planId) {
-        this.email = (email) ? email : '';
-        this.password = (password) ? password : '';
-        this.badAttempts = (bad) ? bad : 0;
-        this.firstName = (firstName) ? firstName : '';
-        this.middleName = (middleName) ? middleName : '';
-        this.lastName = (lastName) ? lastName : '';
-        this.id = (id) ? id : undefined;
-        this.resetToken = (resetToken) ? resetToken : '';
-        this.resetTokenExpires = (resetExpires) ? new Date(resetExpires) : new Date(0);
-        this.administrator = (administrator) ? administrator : false;
-        this.planId = (planId) ? planId : undefined;
+    id;
+    email;
+    password;
+    badAttempts;
+    firstName;
+    middleName;
+    lastName;
+    resetToken;
+    resetTokenExpires;
+    administrator;
+    planId;
+    constructor(iuser) {
+        this.email = (iuser) ? iuser.email : '';
+        this.password = (iuser) ? iuser.password : '';
+        this.badAttempts = (iuser) ? iuser.badAttempts : 0;
+        this.firstName = (iuser) ? iuser.firstName : '';
+        this.middleName = (iuser && iuser.middleName) ? iuser.middleName : '';
+        this.lastName = (iuser) ? iuser.lastName : '';
+        this.id = (iuser && iuser._id) ? iuser._id : undefined;
+        this.resetToken = (iuser && iuser.resetToken) ? iuser.resetToken : '';
+        this.resetTokenExpires = (iuser && iuser.resetTokenExpires)
+            ? new Date(iuser.resetTokenExpires) : new Date(0);
+        this.administrator = (iuser) ? iuser.administrator : false;
+        this.planId = (iuser && iuser.planId) ? iuser.planId : undefined;
+    }
+    compareTo(other) {
+        if (other) {
+            if (this.lastName === other.lastName) {
+                if (this.firstName === other.firstName) {
+                    return (this.middleName < other.middleName) ? -1 : 1;
+                }
+                return (this.firstName < other.firstName) ? -1 : 1;
+            }
+            return (this.lastName < other.lastName) ? -1 : 1;
+        }
+        return -1;
     }
     setPassword(newpwd) {
-        const salt = (0, bcrypt_ts_1.genSaltSync)(10);
-        const result = (0, bcrypt_ts_1.hashSync)(newpwd, salt);
+        const salt = (0, bcrypt_1.genSaltSync)(10);
+        const result = (0, bcrypt_1.hashSync)(newpwd, salt);
         this.password = result;
         this.badAttempts = 0;
     }
     checkPassword(pwd) {
-        if ((0, bcrypt_ts_1.compareSync)(pwd, this.password)) {
+        if ((0, bcrypt_1.compareSync)(pwd, this.password)) {
             if (this.badAttempts > 2) {
                 throw new Error("Account Locked");
             }
@@ -43,6 +68,7 @@ class User {
             result += characters.charAt(Math.floor(Math.random() * charLength));
         }
         this.setPassword(result);
+        this.badAttempts = -1;
         return result;
     }
     unlock() {
@@ -112,5 +138,5 @@ class User {
         }
     }
 }
-exports.default = User;
+exports.User = User;
 //# sourceMappingURL=user.js.map

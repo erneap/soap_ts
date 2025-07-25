@@ -2,6 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Reading = void 0;
 class Reading {
+    id;
+    book;
+    chapter;
+    verseStart;
+    verseEnd;
     constructor(id, book, chapter, start, end) {
         this.id = id;
         this.book = book;

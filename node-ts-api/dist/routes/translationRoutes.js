@@ -7,7 +7,7 @@ const express_1 = require("express");
 const translations_json_1 = __importDefault(require("../../dist/translations.json"));
 const router = (0, express_1.Router)();
 const trans = translations_json_1.default;
-router.get("translations", (req, res) => {
+router.get("/translations", (req, res) => {
     res.status(200).json(trans);
 });
 exports.default = router;

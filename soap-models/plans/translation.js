@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TranslationList = exports.Translation = void 0;
 class Translation {
+    id;
+    short;
+    long;
     constructor(id, short, long) {
         this.id = (id) ? id : 0;
         this.short = (short) ? short : '';
@@ -16,6 +19,7 @@ class Translation {
 }
 exports.Translation = Translation;
 class TranslationList {
+    list;
     constructor(list) {
         this.list = [];
         if (list) {

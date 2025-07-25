@@ -3,6 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Plan = void 0;
 const month_1 = require("./month");
 class Plan {
+    id;
+    name;
+    months;
     constructor(name, months, id) {
         this.name = name;
         this.id = (id) ? id : undefined;

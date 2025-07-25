@@ -2,6 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SoapEntry = void 0;
 class SoapEntry {
+    entryDate;
+    title;
+    scripture;
+    observations;
+    application;
+    prayer;
     constructor(entryDate, title, scripture, observations, application, prayer) {
         this.entryDate = new Date(entryDate);
         this.title = (title) ? title : '';

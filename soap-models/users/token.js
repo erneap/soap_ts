@@ -9,9 +9,8 @@ function createToken(id, email) {
     return token;
 }
 const auth = async (req, res, next) => {
-    var _a;
     try {
-        const token = (_a = req.header('Authorization')) === null || _a === void 0 ? void 0 : _a.replace('Bearer', '');
+        const token = req.header('Authorization')?.replace('Bearer', '');
         if (!token) {
             throw new Error();
         }

@@ -1,5 +1,19 @@
 import { ObjectId } from "mongodb";
-import { genSaltSync, hashSync, compareSync } from 'bcrypt-ts';
+import { genSaltSync, hashSync, compareSync } from 'bcrypt';
+
+export interface IUser {
+  _id?: ObjectId;
+  email: string;
+  password: string;
+  badAttempts: number;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  resetToken: string;
+  resetTokenExpires: Date;
+  administrator: boolean;
+  planId?: ObjectId;
+}
 
 export class User {
   public id?: ObjectId;
@@ -14,20 +28,32 @@ export class User {
   public administrator: boolean;
   public planId?: ObjectId;
 
-  constructor(id?: ObjectId, email?: string, password?: string, bad?: number, 
-    firstName?: string, middleName?: string, lastName?: string,  resetToken?: string, 
-    resetExpires?: Date, administrator?: boolean, planId?: ObjectId) {
-      this.email = (email) ? email : '';
-      this.password = (password) ? password : '';
-      this.badAttempts = (bad) ? bad : 0;
-      this.firstName = (firstName) ? firstName : '';
-      this.middleName = (middleName) ? middleName : '';
-      this.lastName = (lastName) ? lastName : '';
-      this.id = (id) ? id : undefined;
-      this.resetToken = (resetToken) ? resetToken : '';
-      this.resetTokenExpires = (resetExpires) ? new Date(resetExpires) : new Date(0);
-      this.administrator = (administrator) ? administrator : false;
-      this.planId = (planId) ? planId : undefined;
+  constructor(iuser?: IUser) {
+      this.email = (iuser) ? iuser.email : '';
+      this.password = (iuser) ? iuser.password : '';
+      this.badAttempts = (iuser) ? iuser.badAttempts : 0;
+      this.firstName = (iuser) ? iuser.firstName : '';
+      this.middleName = (iuser && iuser.middleName) ? iuser.middleName : '';
+      this.lastName = (iuser) ? iuser.lastName : '';
+      this.id = (iuser && iuser._id) ? iuser._id : undefined;
+      this.resetToken = (iuser && iuser.resetToken) ? iuser.resetToken : '';
+      this.resetTokenExpires = (iuser && iuser.resetTokenExpires) 
+        ? new Date(iuser.resetTokenExpires) : new Date(0);
+      this.administrator = (iuser) ? iuser.administrator : false;
+      this.planId = (iuser && iuser.planId) ? iuser.planId : undefined;
+    }
+
+    compareTo(other?: User): number {
+      if (other) {
+        if (this.lastName === other.lastName) {
+          if (this.firstName === other.firstName) {
+            return (this.middleName < other.middleName) ? -1 : 1;
+          }
+          return (this.firstName < other.firstName) ? -1 : 1;
+        }
+        return (this.lastName < other.lastName) ? -1 : 1;
+      }
+      return -1;
     }
   
     setPassword(newpwd: string): void {
@@ -59,6 +85,7 @@ export class User {
         result += characters.charAt(Math.floor(Math.random() * charLength))
       }
       this.setPassword(result);
+      this.badAttempts = -1;
       return result;
     }
 

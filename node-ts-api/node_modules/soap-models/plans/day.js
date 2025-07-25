@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlanDay = void 0;
 const readings_1 = require("./readings");
 class PlanDay {
+    dayOfMonth;
+    readings;
     constructor(dayOfMonth, readings) {
         this.dayOfMonth = dayOfMonth;
         this.readings = [];
