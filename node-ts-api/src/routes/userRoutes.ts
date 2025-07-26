@@ -3,14 +3,16 @@ import { Collection, ObjectId } from 'mongodb';
 import { AuthenticationRequest, AuthenticationResponse, IUser, UpdateUserRequest, User, UserEmailRequest } from 'soap-models/users';
 import { collections } from '../config/mongoconnect';
 import { NewUserRequest, NewUserResponse } from 'soap-models/users';
-import { jwtSign } from 'soap-models/utils';
+import { jwtSign, refreshSign, refreshVerify } from 'soap-models/utils';
+import * as jwt from 'jsonwebtoken';
+import { auth } from '../middleware/authorization.middleware';
 
 const router = Router();
 
 // CRUD Functions 
 
 // ******* Retrieve All Users ********
-router.get('/users', async (req: Request, res: Response) => {
+router.get('/users', auth, async (req: Request, res: Response) => {
   const tusers: Collection | undefined = collections.users;
   if (tusers) {
     const cursor = tusers.find<User>({})
@@ -20,7 +22,7 @@ router.get('/users', async (req: Request, res: Response) => {
 });
 
 // ******** Retrieve a single user from database *******
-router.get('/user/:id', async (req: Request, res: Response) => {
+router.get('/user/:id', auth, async (req: Request, res: Response) => {
   const id = req?.params?.id;
 
   try {
@@ -65,7 +67,7 @@ router.post('/user/new', async (req: Request, res: Response) => {
 });
 
 // ******* find User with email address ********
-router.post('/user/find', async (req: Request, res: Response) => {
+router.post('/user/find', auth, async (req: Request, res: Response) => {
   try {
     const request = req.body as UserEmailRequest;
     const query = { email: request.email };
@@ -97,17 +99,22 @@ router.post('/user/authenticate', async (req: Request, res: Response) => {
         user.checkPassword(request.password);
         const nquery = { _id: user.id };
         await collections.users?.updateOne(query, { $set: user });
-        let token = '';
         if (user.id) {
-          token = jwtSign(user.id);
+          console.log(process.env.JWT_SECRET);
+          console.log(process.env.JWT_REFRESH_SECRET);
+          const accessToken = jwtSign(user.id);
+          const refreshToken = refreshSign(user.id);
+          res.header('Authorization', accessToken)
+          res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 24 * 60 * 60 * 1000,
+            sameSite: "strict"
+          });
         }
         user.badAttempts = bad;
-        const result: AuthenticationResponse = {
-          user: user,
-          token: token,
-          error: '',
-        };
-        res.status(200).json(result);
+        
+        res.status(200).json(user);
       } catch (error) {
         if (typeof error === 'string') {
           console.log(error);
@@ -123,7 +130,7 @@ router.post('/user/authenticate', async (req: Request, res: Response) => {
   }
 });
 
-router.put('/user', async (req: Request, res: Response) => {
+router.put('/user', auth, async (req: Request, res: Response) => {
   try {
     const data = req.body as UpdateUserRequest;
     const query = { _id: new ObjectId(data.id)};
@@ -158,6 +165,38 @@ router.put('/user', async (req: Request, res: Response) => {
 
   } catch (error) {
     res.status(404).send(`User Not Found: ${req.body.id}`)
+  }
+});
+
+router.post('/refresh', auth, async (req: Request, res: Response) => {
+  const refreshToken = req.cookies['refreshToken'];
+  if (!refreshToken) {
+    return res.status(401).send('Access Denied. No refresh token provided.')
+  }
+
+  try {
+    const decoded = refreshVerify(refreshToken) as jwt.JwtPayload;
+    const accessToken = jwtSign(decoded._id)
+
+    return res
+      .header('Authorization', accessToken)
+      .send(decoded._id);
+  } catch (error) {
+    return res.status(400).send('Invalid refresh token.');
+  }
+});
+
+router.delete('/user/:id', auth, async (req: Request, res: Response) => {
+  const id = req?.params?.id;
+
+  try {
+    const query = { _id: new ObjectId(id) };
+    const result = await collections.users?.deleteOne(query);
+    if (result && result.deletedCount > 0) {
+      return res.status(200).send("User deleted");
+    }
+  } catch (error) {
+    res.status(404).send(`Unable to find User: ${id}`);
   }
 });
 
