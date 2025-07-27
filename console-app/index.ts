@@ -1,0 +1,70 @@
+import { IPlan, ITranslation, ITranslationList, Plan, Translation } from 'soap-models/plans';
+import { IUser, User } from 'soap-models/users';
+import all from './translations.json';
+import plans from './plan.json';
+import { connectToDB, collections } from './config/mongoconnect';
+import { Collection } from 'mongodb';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const main = async () => {
+  await connectToDB();
+
+  const userCol: Collection | undefined = collections.users;
+  try {
+    const query = { email: 'ernea5956@gmail.com'};
+    const result = await userCol?.findOne<IUser>(query);
+
+    if (!result) {
+      const user = new User();
+      user.email = 'ernea5956@gmail.com'
+      user.setPassword('mko09IJNbhu8');
+      user.firstName = 'Anton';
+      user.middleName = 'Peter';
+      user.lastName = 'Erne';
+      await userCol?.insertOne(user);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  const trans = (all as ITranslationList)
+  const transCol: Collection | undefined = collections.translations;
+
+  try {
+    for (let i=0; i < trans.list.length; i++) {
+      const t = trans.list[i];
+      const query = { short: t.short };
+      const result = await transCol?.findOne(query);
+      if (!result) {
+        await transCol?.insertOne(new Translation(t));
+        console.log(`Inserted: ${t.long}`);
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  const iPlan = (plans as IPlan);
+  const plansCol: Collection | undefined = collections.plans;
+  try {
+    const plan = new Plan(iPlan);
+    const query = { name: plan.name };
+    const result = (await plansCol?.findOne<IPlan>(query));
+    if (!result) {
+      await plansCol?.insertOne(plan);
+      console.log('Plan Inserted')
+    } else {
+      if (result._id) {
+        plan._id = result._id;
+      }
+      await plansCol?.replaceOne(query, plan);
+      console.log('Plan replaced')
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+main();

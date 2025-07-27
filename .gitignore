@@ -1,0 +1,6 @@
+/console-app/node_modules/
+/console-app/.env
+/node-ts-api/node_modules/
+/node-ts-api/.env
+/soap-models/node_modules/
+/.DS_Store
