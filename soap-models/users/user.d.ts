@@ -11,6 +11,8 @@ export interface IUser {
     resetTokenExpires: Date;
     administrator: boolean;
     planId?: ObjectId;
+    translationId?: string;
+    startDate?: Date;
 }
 export declare class User implements IUser {
     _id?: ObjectId;
@@ -25,6 +27,8 @@ export declare class User implements IUser {
     resetTokenExpires: Date;
     administrator: boolean;
     planId?: ObjectId;
+    translationId: string;
+    startDate: Date;
     constructor(iuser?: IUser);
     compareTo(other?: User): number;
     setPassword(newpwd: string): void;

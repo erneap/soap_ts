@@ -1,5 +1,6 @@
 {
   "name": "Daily Journaling",
+  "type": "journal",
   "months": [
     {
       "month": 1,

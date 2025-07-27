@@ -15,6 +15,8 @@ class User {
     resetTokenExpires;
     administrator;
     planId;
+    translationId;
+    startDate;
     constructor(iuser) {
         this.email = (iuser) ? iuser.email : '';
         this.password = (iuser) ? iuser.password : '';
@@ -29,6 +31,10 @@ class User {
             ? new Date(iuser.resetTokenExpires) : new Date(0);
         this.administrator = (iuser) ? iuser.administrator : false;
         this.planId = (iuser && iuser.planId) ? iuser.planId : undefined;
+        this.translationId = (iuser && iuser.translationId)
+            ? iuser.translationId : 'NKJV';
+        this.startDate = (iuser && iuser.startDate)
+            ? new Date(iuser.startDate) : new Date(Date.UTC(2025, 0, 1));
     }
     compareTo(other) {
         if (other) {
