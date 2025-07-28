@@ -48,6 +48,11 @@ function connectToDB() {
                     translations = yield db.createCollection("translations");
                 }
                 exports.collections.translations = translations;
+                let books = yield db.collection('biblebooks');
+                if (!books) {
+                    books = yield db.createCollection('biblebooks');
+                }
+                exports.collections.books = books;
                 console.log('Successfully connected to collections');
             }
             catch (error) {

@@ -1,7 +1,8 @@
-import { IPlan, ITranslation, ITranslationList, Plan, Translation } from 'soap-models/plans';
+import { IPlan, ITranslation, ITranslationList, Plan, Translation, IBibleBook, BibleBook } from 'soap-models/plans';
 import { IUser, User } from 'soap-models/users';
 import all from './translations.json';
 import plans from './plan.json';
+import books from './bible.json';
 import { connectToDB, collections } from './config/mongoconnect';
 import { Collection } from 'mongodb';
 import dotenv from 'dotenv';
@@ -65,6 +66,23 @@ const main = async () => {
   } catch (error) {
     console.log(error);
   }
+
+  const iBooks = (books as IBibleBook[]);
+  const bookCol: Collection | undefined = collections.books;
+  try {
+    const dbBooks: BibleBook[] = [];
+    const cursor = await bookCol?.find<IBibleBook>({});
+    let results = await cursor?.toArray();
+    if (results) {
+      results.forEach(bk => {
+        dbBooks.push(new BibleBook(bk));
+      });
+    }
+    dbBooks.sort((a,b) => a.compareTo(b));
+  } catch (error) {
+    console.log(error);
+  }
+  
 }
 
 main();

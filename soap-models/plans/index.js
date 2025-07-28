@@ -19,4 +19,5 @@ __exportStar(require("./month"), exports);
 __exportStar(require("./plan"), exports);
 __exportStar(require("./readings"), exports);
 __exportStar(require("./translation"), exports);
+__exportStar(require("./bible"), exports);
 //# sourceMappingURL=index.js.map
