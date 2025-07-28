@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 import { Collection, ObjectId } from 'mongodb';
-import { AuthenticationRequest, AuthenticationResponse, IUser, UpdateUserRequest, User, UserEmailRequest } from 'soap-models/users';
+import { AuthenticationRequest, AuthenticationResponse, IUser, 
+  UpdateUserRequest, User, UserEmailRequest } from 'soap-models/dist/users';
 import { collections } from '../config/mongoconnect';
-import { NewUserRequest, NewUserResponse } from 'soap-models/users';
-import { jwtSign, refreshSign, refreshVerify } from 'soap-models/utils';
+import { NewUserRequest, NewUserResponse } from 'soap-models/dist/users';
 import * as jwt from 'jsonwebtoken';
 import { auth } from '../middleware/authorization.middleware';
 
@@ -196,11 +196,16 @@ router.post('/refresh', auth, async (req: Request, res: Response) => {
     return res.status(401).send('Access Denied. No refresh token provided.')
   }
   const refreshToken = rToken as string;
+  const key = (process.env.JWT_SECRET) ? process.env.JWT_SECRET : 'SECRET';
+  const secret = (process.env.JWT_REFRESH_SECRET) 
+    ? process.env.JWT_REFRESH_SECRET : 'SECRET';
+  const expires = (process.env.JWT_EXPIRES)
+    ? process.env.JWT_REFRESH_EXPIRES : '1d';
 
   try {
-    const decoded = refreshVerify(refreshToken) as jwt.JwtPayload;
-    const accessToken = jwtSign(decoded._id)
-
+    const decoded = jwt.verify(refreshToken, secret) as jwt.JwtPayload;
+    const accessToken = jwt.sign({ _id: decoded.id.toString() }, key,
+              { expiresIn: expires as any});
     return res
       .cookie('Authorization', accessToken, {
           httpOnly: true,

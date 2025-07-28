@@ -1,0 +1,16 @@
+import { IReading, Reading } from "./readings";
+export interface IPlanDay {
+    dayOfMonth: number;
+    readings: IReading[];
+}
+export declare class PlanDay implements IPlanDay {
+    dayOfMonth: number;
+    readings: Reading[];
+    constructor(plan?: IPlanDay);
+    setDayOfMonth(day: number): void;
+    getDayOfMonth(): number;
+    compareTo(other?: PlanDay): number;
+    getReadings(): Reading[];
+    setReading(id: number, book: string, chapter: number, start?: number, end?: number): void;
+    getReading(id: number): Reading | undefined;
+}

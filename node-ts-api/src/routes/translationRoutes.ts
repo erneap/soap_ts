@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { ITranslation, NewTranslationRequest, Translation, TranslationList, UpdateTranslationRequest } from 'soap-models/plans';
+import { ITranslation, NewTranslationRequest, Translation, TranslationList, UpdateTranslationRequest } from 'soap-models/dist/plans';
 import all from '../../dist/translations.json';
 import { Collection, ObjectId } from 'mongodb';
 import { collections } from '../config/mongoconnect';

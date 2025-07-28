@@ -16,6 +16,7 @@ const plans_1 = require("soap-models/plans");
 const users_1 = require("soap-models/users");
 const translations_json_1 = __importDefault(require("./translations.json"));
 const plan_json_1 = __importDefault(require("./plan.json"));
+const bible_json_1 = __importDefault(require("./bible.json"));
 const mongoconnect_1 = require("./config/mongoconnect");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
@@ -71,6 +72,36 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
             yield (plansCol === null || plansCol === void 0 ? void 0 : plansCol.replaceOne(query, plan));
             console.log('Plan replaced');
         }
+    }
+    catch (error) {
+        console.log(error);
+    }
+    const iBooks = bible_json_1.default;
+    const bookCol = mongoconnect_1.collections.books;
+    try {
+        const dbBooks = [];
+        const cursor = yield (bookCol === null || bookCol === void 0 ? void 0 : bookCol.find({}));
+        let results = yield (cursor === null || cursor === void 0 ? void 0 : cursor.toArray());
+        if (results) {
+            results.forEach(bk => {
+                dbBooks.push(new plans_1.BibleBook(bk));
+            });
+        }
+        dbBooks.sort((a, b) => a.compareTo(b));
+        iBooks.forEach((b) => __awaiter(void 0, void 0, void 0, function* () {
+            const dBk = dbBooks.find(x => x.abbrev === b.abbrev);
+            if (dBk) {
+                b._id = dBk._id;
+                b.id = dBk.id;
+                const query = { _id: b._id };
+                yield (bookCol === null || bookCol === void 0 ? void 0 : bookCol.replaceOne(query, b));
+            }
+            else {
+                const result = yield (bookCol === null || bookCol === void 0 ? void 0 : bookCol.insertOne(b));
+                b._id = result === null || result === void 0 ? void 0 : result.insertedId;
+                dbBooks.push(new plans_1.BibleBook(b));
+            }
+        }));
     }
     catch (error) {
         console.log(error);

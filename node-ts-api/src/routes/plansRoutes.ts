@@ -2,7 +2,7 @@ import { Router, Request, Response } from "express";
 import { auth } from "../middleware/authorization.middleware";
 import { collections } from "../config/mongoconnect";
 import { Collection, ObjectId } from "mongodb";
-import { IPlan, Plan } from "soap-models/plans";
+import { IPlan, Plan } from "soap-models/dist/plans";
 
 const router = Router();
 

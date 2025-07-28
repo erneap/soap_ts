@@ -1,8 +1,11 @@
 {
   "name": "soap-models",
-  "version": "1.2.18",
+  "version": "1.3.0",
   "description": "Packaged Modules for working with SOAP",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.3",

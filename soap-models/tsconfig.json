@@ -7,8 +7,8 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "baseUrl": "./src",
-    "outDir": "."
+    "rootDir": "./src",
+    "outDir": "./dist"
   },
   "include": [
     "src/**/*"

@@ -1,10 +1,10 @@
-import { IPlan, ITranslation, ITranslationList, Plan, Translation, IBibleBook, BibleBook } from 'soap-models/plans';
-import { IUser, User } from 'soap-models/users';
+import { IPlan, ITranslation, ITranslationList, Plan, Translation, IBibleBook, BibleBook } from 'soap-models/dist/plans';
+import { IUser, User } from 'soap-models/dist/users';
 import all from './translations.json';
 import plans from './plan.json';
 import books from './bible.json';
 import { connectToDB, collections } from './config/mongoconnect';
-import { Collection } from 'mongodb';
+import { Collection, ObjectId } from 'mongodb';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -79,6 +79,19 @@ const main = async () => {
       });
     }
     dbBooks.sort((a,b) => a.compareTo(b));
+    iBooks.forEach(async(b) => {
+      const dBk = dbBooks.find(x => x.abbrev === b.abbrev);
+      if (dBk) {
+        b._id = dBk._id;
+        b.id = dBk.id;
+        const query = { _id: b._id};
+        await bookCol?.replaceOne(query, b);
+      } else {
+        const result = await bookCol?.insertOne(b);
+        b._id = result?.insertedId;
+        dbBooks.push(new BibleBook(b));
+      }
+    });
   } catch (error) {
     console.log(error);
   }
