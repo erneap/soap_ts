@@ -44,27 +44,6 @@ export interface NewPlanRequest {
     months: number;
 }
 
-export interface UpdatePlanRequest {
-    id: string;
-    field: string;
-    value: string;
-}
-
-export interface UpdatePlanMonthRequest {
-    id: string;
-    month: number;
-    field: string;
-    value: string;
-}
-
-export interface UpdatePlanDayRequest {
-    id: string;
-    month: number;
-    day: number;
-    field: string;
-    value: string;
-}
-
 export interface NewPlanDayReadingRequest {
     id: string;
     month: number;
@@ -75,11 +54,11 @@ export interface NewPlanDayReadingRequest {
     end?: number;
 }
 
-export interface UpdatePlanDayReadingRequest {
+export interface UpdatePlanRequest {
     id: string;
-    month: number;
-    day: number;
-    readingID: number;
+    month?: number;
+    day?: number;
+    readingID?: number;
     field: string;
     value: string;
 }

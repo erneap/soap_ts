@@ -12,8 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const plans_1 = require("soap-models/plans");
-const users_1 = require("soap-models/users");
+const plans_1 = require("soap-models/dist/plans");
+const users_1 = require("soap-models/dist/users");
 const translations_json_1 = __importDefault(require("./translations.json"));
 const plan_json_1 = __importDefault(require("./plan.json"));
 const bible_json_1 = __importDefault(require("./bible.json"));

@@ -2,7 +2,7 @@ import { Router, Request, Response } from "express";
 import { auth } from "../middleware/authorization.middleware";
 import { collections } from "../config/mongoconnect";
 import { Collection, ObjectId } from "mongodb";
-import { IPlan, Plan } from "soap-models/dist/plans";
+import { IPlan, Plan, UpdatePlanRequest } from "soap-models/dist/plans";
 
 const router = Router();
 
@@ -33,6 +33,45 @@ router.get('/plan/:id', async (req: Request, res: Response) => {
       return res.status(200).json(plan);
     } else {
       res.status(404).send('Plan Not Found');
+    }
+  } else {
+    return res.status(404).send('No Plans Collection');
+  }
+});
+
+router.post('/plan/newplan', async (req: Request, res: Response) => {
+  const plansCol: Collection | undefined = collections.plans;
+  if (plansCol) {
+
+  } else {
+    return res.status(404).send('No Plans Collection');
+  }
+});
+
+router.post('/plan/reading', async (req: Request, res: Response) => {
+  const plansCol: Collection | undefined = collections.plans;
+  if (plansCol) {
+
+  } else {
+    return res.status(404).send('No Plans Collection');
+  }
+});
+
+router.put('/plan', async (req: Request, res: Response) => {
+  const plansCol: Collection | undefined = collections.plans;
+  const data = req.body as UpdatePlanRequest;
+  if (plansCol) {
+    const query = { _id: new ObjectId(data.id)};
+    const result = await plansCol.findOne<IPlan>(query);
+    if (result) {
+      const plan = new Plan(result);
+      if (data.month) {
+
+      } else {
+        switch (data.field.toLowerCase()) {
+
+        }
+      }
     }
   } else {
     return res.status(404).send('No Plans Collection');
