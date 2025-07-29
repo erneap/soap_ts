@@ -81,12 +81,14 @@ router.post('/user/find', auth, async (req: Request, res: Response) => {
     const query = { email: request.email };
     const iuser = (await collections.users?.findOne<User>(query)) as IUser;
 
-    if (iuser) {
+    if (!iuser || iuser === null) {
+      throw new Error(`No User Found for address: ${request.email}`);
+    } else {
       const user = new User(iuser)
-      res.status(200).json(user);
+      return res.status(200).json(user);
     }
   } catch (error) {
-    res.status(404).send(`User Not Found: ${req.body.email}`)
+    return res.status(404).send(`User Not Found: ${req.body.email}`)
   }
 });
 
@@ -95,9 +97,10 @@ router.post('/user/authenticate', async (req: Request, res: Response) => {
   try {
     const request = req.body as AuthenticationRequest;
     const query = { email: request.email };
-    const iuser = (await collections.users?.findOne<User>(query)) as IUser;
-    console.log(JSON.stringify(iuser));
-    if (iuser) {
+    const iuser = await collections.users?.findOne<IUser>(query);
+    if (!iuser || iuser === null) {
+      throw new Error('No User');
+    } else {
       try {
         const user = new User(iuser);
         let bad = 0;
@@ -136,19 +139,20 @@ router.post('/user/authenticate', async (req: Request, res: Response) => {
         }
         user.badAttempts = bad;
         
-        res.status(200).json(user);
+        return res.status(200).json(user);
       } catch (error) {
         if (typeof error === 'string') {
           console.log(error);
-          res.status(401).send(error);
+          return res.status(401).send(error);
         } else if (error instanceof Error) {
           console.log(error.message);
-          res.status(401).send(error.message);
+          return res.status(401).send(error.message);
         }
       }
     }
   } catch (error) {
-    res.status(404).send(`User Not Found: ${req.body.email}`)
+    console.log(error);
+    return res.status(404).send(`User Not Found: ${req.body.email}`)
   }
 });
 
