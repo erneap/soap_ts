@@ -28,7 +28,7 @@ router.get('/plan/:id', async (req: Request, res: Response) => {
     const id = new ObjectId(req.params.id);
     const query = { _id: id };
     const result = await plansCol.findOne<IPlan>(query);
-    if (result) {
+    if (result && result !== null) {
       const plan = new Plan(result);
       return res.status(200).json(plan);
     } else {
@@ -46,7 +46,7 @@ router.post('/plan/newplan', async (req: Request, res: Response) => {
     // first check for plan with name already present and pass back.
     const query = { name: data.name };
     const result = await plansCol.findOne<IPlan>(query);
-    if (result) {
+    if (result && result !== null) {
       const plan = new Plan(result);
       return res.status(200).json(plan);
     } else {
@@ -74,7 +74,7 @@ router.post('/plan/reading', async (req: Request, res: Response) => {
   if (plansCol) {
     const query = { _id: new ObjectId(data.id)};
     const result = await plansCol.findOne<IPlan>(query);
-    if (result) {
+    if (result && result !== null) {
       const plan = new Plan(result);
       let mFound = false;
       let dFound = false;
@@ -118,7 +118,7 @@ router.put('/plan', async (req: Request, res: Response) => {
   if (plansCol) {
     const query = { _id: new ObjectId(data.id)};
     const result = await plansCol.findOne<IPlan>(query);
-    if (result) {
+    if (result && result !== null) {
       const plan = new Plan(result);
       if (data.month) {
         let mFound = false;
@@ -303,7 +303,11 @@ router.delete('/plan/:id', async(req: Request, res: Response) => {
     const id = new ObjectId(req.params.id);
     const query = { _id: id };
     const result = await plansCol.deleteOne(query);
-    return res.status(200).send('Plan Deleted');
+    if (result && result.deletedCount > 0) {
+      return res.status(200).send('Plan Deleted');
+    } else {
+      return res.status(404).send('Plan not found');
+    }
   } else {
     return res.status(404).send('No Plans Collection');
   }
