@@ -49,7 +49,7 @@ export interface NewPlanDayReadingRequest {
     month: number;
     day: number;
     book: string;
-    chapter: string;
+    chapter: number;
     start?: number;
     end?: number;
 }
