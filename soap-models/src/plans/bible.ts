@@ -30,3 +30,15 @@ export class BibleBook implements IBibleBook {
     return -1;
   }
 }
+
+export interface NewBibleBookRequest {
+  abbrev: string;
+  title: string;
+  chapters: number;
+}
+
+export interface UpdateBibleBookRequest {
+  id: string;
+  field: string;
+  value: string;
+}

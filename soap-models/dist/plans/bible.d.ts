@@ -15,3 +15,13 @@ export declare class BibleBook implements IBibleBook {
     constructor(book?: IBibleBook);
     compareTo(other?: BibleBook): number;
 }
+export interface NewBibleBookRequest {
+    abbrev: string;
+    title: string;
+    chapters: number;
+}
+export interface UpdateBibleBookRequest {
+    id: string;
+    field: string;
+    value: string;
+}

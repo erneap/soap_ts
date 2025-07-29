@@ -96,7 +96,7 @@ router.post('/user/authenticate', async (req: Request, res: Response) => {
     const request = req.body as AuthenticationRequest;
     const query = { email: request.email };
     const iuser = (await collections.users?.findOne<User>(query)) as IUser;
-
+    console.log(JSON.stringify(iuser));
     if (iuser) {
       try {
         const user = new User(iuser);
