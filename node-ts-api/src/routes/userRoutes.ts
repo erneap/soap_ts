@@ -25,7 +25,7 @@ router.get('/users', auth, async (req: Request, res: Response) => {
     return res.status(200).json(list);
   } else {
     console.log("No User Collection");
-    res.status(404).send("Unable to find collection");
+    return res.status(404).send("Unable to find collection");
   }
 });
 
@@ -37,11 +37,11 @@ router.get('/user/:id', auth, async (req: Request, res: Response) => {
     const query = { _id: new ObjectId(id) };
     const user = (await collections.users?.findOne<User>(query)) as User;
 
-    if (user) {
+    if (user && user !== null) {
       res.status(200).json(user);
     }
   } catch (error) {
-    res.status(404).send(`Unable to find User: ${id}`);
+    return res.status(404).send(`Unable to find User: ${id}`);
   }
 });
 
@@ -64,13 +64,13 @@ router.post('/user/new', async (req: Request, res: Response) => {
         user: user,
         password: tempPassword,
       };
-      res.status(201).json(newResponse);
+      return res.status(201).json(newResponse);
     } else {
-      res.status(500).send("Failed to create new user");
+      return res.status(500).send("Failed to create new user");
     }
   } catch (error) {
     console.log(error);
-    res.status(400).send(error)
+    return res.status(400).send(error)
   }
 });
 
@@ -88,7 +88,14 @@ router.post('/user/find', auth, async (req: Request, res: Response) => {
       return res.status(200).json(user);
     }
   } catch (error) {
-    return res.status(404).send(`User Not Found: ${req.body.email}`)
+    if (error instanceof Error) {
+      return res.status(404).send(error.message);
+    } else if (typeof error === "string") {
+      return res.status(404).send(error);
+    } else {
+      console.log(error);
+      return res.status(500).send(error);
+    }
   }
 });
 
@@ -99,7 +106,7 @@ router.post('/user/authenticate', async (req: Request, res: Response) => {
     const query = { email: request.email };
     const iuser = await collections.users?.findOne<IUser>(query);
     if (!iuser || iuser === null) {
-      throw new Error('No User');
+      throw new Error('No User Found');
     } else {
       try {
         const user = new User(iuser);
@@ -147,12 +154,21 @@ router.post('/user/authenticate', async (req: Request, res: Response) => {
         } else if (error instanceof Error) {
           console.log(error.message);
           return res.status(401).send(error.message);
+        } else {
+          return res.status(500).send(error);
         }
       }
     }
   } catch (error) {
-    console.log(error);
-    return res.status(404).send(`User Not Found: ${req.body.email}`)
+    if (typeof error === 'string') {
+      console.log(error);
+      return res.status(401).send(error);
+    } else if (error instanceof Error) {
+      console.log(error.message);
+      return res.status(401).send(error.message);
+    } else {
+      return res.status(500).send(error);
+    }
   }
 });
 
@@ -160,9 +176,11 @@ router.put('/user', auth, async (req: Request, res: Response) => {
   try {
     const data = req.body as UpdateUserRequest;
     const query = { _id: new ObjectId(data.id)};
-    const iuser = (await collections.users?.findOne<User>(query)) as IUser;
+    const iuser = await collections.users?.findOne<User>(query);
 
-    if (iuser) {
+    if (!iuser || iuser === null) {
+      throw new Error("User Not Found for Update");
+    } else {
       const user = new User(iuser);
       switch (data.field.toLowerCase()) {
         case "password":
@@ -190,7 +208,15 @@ router.put('/user', auth, async (req: Request, res: Response) => {
     }
 
   } catch (error) {
-    res.status(404).send(`User Not Found: ${req.body.id}`)
+    if (typeof error === 'string') {
+      console.log(error);
+      return res.status(401).send(error);
+    } else if (error instanceof Error) {
+      console.log(error.message);
+      return res.status(401).send(error.message);
+    } else {
+      return res.status(500).send(error);
+    }
   }
 });
 
@@ -229,9 +255,11 @@ router.delete('/user/:id', auth, async (req: Request, res: Response) => {
     const result = await collections.users?.deleteOne(query);
     if (result && result.deletedCount > 0) {
       return res.status(200).send("User deleted");
+    } else {
+      return res.status(404).send('User not deleted, Not Found');
     }
   } catch (error) {
-    res.status(404).send(`Unable to find User: ${id}`);
+    return res.status(404).send(`Unable to find User: ${id}`);
   }
 });
 

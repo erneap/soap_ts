@@ -19,8 +19,7 @@ router.get("/translations", async (req: Request, res: Response) => {
     list.sort((a,b) => a.compareTo(b));
     return res.status(200).json(list);
   } else {
-    console.log("No Translation Collection");
-    res.status(404).send("Unable to find collection");
+    return res.status(404).send("Unable to find collection");
   }
 });
 
@@ -35,14 +34,13 @@ router.get("/translation/:id", async (req: Request, res: Response) => {
       const numquery = { id: Number(id) };
       results = await transCol.findOne<ITranslation>(numquery);
     }
-    if (results) {
+    if (results && results !== null) {
       const trans = new Translation(results);
       return res.status(200).json(trans);
     } else {
       return res.status(404).send("Translation Not Found");
     }
   } else {
-    console.log("No Translation Collection");
     res.status(404).send("Unable to find collection");
   }
 });
@@ -53,7 +51,7 @@ router.post("/translation", async (req: Request, res: Response) => {
   if (transCol) {
     const query = { short: data.short };
     let results = await transCol.findOne<ITranslation>(query);
-    if (results) {
+    if (results && results !== null) {
       // already present, so update the long title
       results.long = data.long;
       await transCol.replaceOne(query, results);
@@ -77,8 +75,7 @@ router.post("/translation", async (req: Request, res: Response) => {
       return res.status(201).json(trans);
     }
   } else {
-    console.log("No Translation Collection");
-    res.status(404).send("Unable to find collection");
+    return res.status(404).send("Unable to find collection");
   }
 });
 
@@ -100,11 +97,10 @@ router.put("/translation", async (req: Request, res: Response) => {
       await transCol.replaceOne(query, results);
       return res.status(200).json(results);
     } else {
-      res.status(404).send("Translation Not Found");
+      return res.status(404).send("Translation Not Found");
     }
   } else {
-    console.log("No Translation Collection");
-    res.status(404).send("Unable to find collection");
+    return res.status(404).send("Unable to find collection");
   }
 });
 
@@ -129,8 +125,7 @@ router.delete("/translation/:id", async (req: Request, res: Response) => {
       return res.status(202).send('Translation Not Found');
     }
   } else {
-    console.log("No Translation Collection");
-    res.status(404).send("Unable to find collection");
+    return res.status(404).send("Unable to find collection");
   }
 
 });
