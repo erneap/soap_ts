@@ -23,7 +23,8 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
     try {
       const key = (process.env.JWT_REFRESH_SECRET)
         ? process.env.JWT_REFRESH_SECRET as string : 'secret';
-      const decoded = jwt.verify(refreshToken, key)
+      const decoded = jwt.verify(refreshToken, key);
+      console.log(JSON.stringify(decoded));
       const id = (decoded as jwt.JwtPayload)._id;
       const aKey: string = (process.env.JWT_SECRET) ? process.env.JWT_SECRET : 'secret';
       const expires: string = (process.env.JWT_EXPIRES) ? process.env.JWT_EXPIRES : '1h';
@@ -33,10 +34,14 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
         .status(401)
         .cookie('refreshToken', refreshToken, {
           httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          maxAge: 24 * 60 * 60 * 1000,
           sameSite: 'strict'
         })
         .cookie('Authorization', accessToken, {
           httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          maxAge: 60 * 60 * 1000,
           sameSite: 'strict'
         })
         .send('New Token Provided');
