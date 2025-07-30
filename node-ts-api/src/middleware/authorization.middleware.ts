@@ -27,7 +27,7 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
       const id = (decoded as jwt.JwtPayload)._id;
       const aKey: string = (process.env.JWT_SECRET) ? process.env.JWT_SECRET : 'secret';
       const expires: string = (process.env.JWT_EXPIRES) ? process.env.JWT_EXPIRES : '1h';
-      const accessToken = jwt.sign({ _id: id}, key, { expiresIn: (expires as any)});
+      const accessToken = jwt.sign({ _id: id}, aKey, { expiresIn: (expires as any)});
 
       return res
         .status(401)

@@ -40,10 +40,12 @@ export declare class SoapEntryList implements ISoapEntryList {
     compareTo(other?: SoapEntryList): number;
 }
 export interface NewEntryRequest {
-    entrydate: Date;
+    user: string;
+    entrydate: string;
 }
 export interface UpdateEntryRequest {
-    entrydate: Date;
+    user: string;
+    entrydate: string;
     field: string;
     value: string;
 }

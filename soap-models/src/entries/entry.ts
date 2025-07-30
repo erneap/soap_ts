@@ -161,11 +161,13 @@ export class SoapEntryList implements ISoapEntryList {
 }
 
 export interface NewEntryRequest {
-    entrydate: Date;
+    user: string;
+    entrydate: string;
 }
 
 export interface UpdateEntryRequest {
-    entrydate: Date;
+    user: string;
+    entrydate: string;
     field: string;
     value: string;
 }
