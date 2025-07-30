@@ -102,6 +102,9 @@ export class SoapEntryList implements ISoapEntryList {
                 && tDate.getDate() === entry.entryDate.getDate()) {
                 found = true;
                 switch (field.toLowerCase()) {
+                    case "date":
+                        entry.entryDate = new Date(Date.parse(value));
+                        break;
                     case "title":
                         entry.title = value;
                         break;
@@ -155,4 +158,14 @@ export class SoapEntryList implements ISoapEntryList {
         }
         return -1;
     }
+}
+
+export interface NewEntryRequest {
+    entrydate: Date;
+}
+
+export interface UpdateEntryRequest {
+    entrydate: Date;
+    field: string;
+    value: string;
 }

@@ -39,3 +39,11 @@ export declare class SoapEntryList implements ISoapEntryList {
     deleteEntry(date: Date): void;
     compareTo(other?: SoapEntryList): number;
 }
+export interface NewEntryRequest {
+    entrydate: Date;
+}
+export interface UpdateEntryRequest {
+    entrydate: Date;
+    field: string;
+    value: string;
+}

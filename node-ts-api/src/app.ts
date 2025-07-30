@@ -4,6 +4,7 @@ import transRoutes from "./routes/translationRoutes";
 import userRoutes from "./routes/userRoutes";
 import planRoutes from "./routes/plansRoutes";
 import bookRoutes from './routes/booksRoutes';
+import entriesRoutes from './routes/entriesRoutes';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -23,9 +24,10 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", userRoutes);
+app.use('/api', auth, bookRoutes);
 app.use("/api", auth, transRoutes);
 app.use('/api', auth, planRoutes);
-app.use('/api', auth, bookRoutes);
+app.use('/api', auth, entriesRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

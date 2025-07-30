@@ -1,8 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 
-const secretKey = process.env.JWT_SECRET;
-
 export const auth = (req: Request, res: Response, next: NextFunction) => {
   let aToken = req.headers['authorization'];
   const rToken = req.headers['refreshtoken'];
@@ -17,6 +15,7 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
     (req as any).user = (decoded as jwt.JwtPayload)._id;
     next();
   } catch (error) {
+    console.log(error);
     if (!refreshToken) {
       return res.status(401).send('Access Denied.  No refresh token provided.');
     }
@@ -30,7 +29,8 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
       const expires: string = (process.env.JWT_EXPIRES) ? process.env.JWT_EXPIRES : '1h';
       const accessToken = jwt.sign({ _id: id}, key, { expiresIn: (expires as any)});
 
-      res
+      return res
+        .status(401)
         .cookie('refreshToken', refreshToken, {
           httpOnly: true,
           sameSite: 'strict'
@@ -39,7 +39,7 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
           httpOnly: true,
           sameSite: 'strict'
         })
-        .send(id);
+        .send('New Token Provided');
     } catch (error) {
       return res.status(400).send('Invalid Token')
     }
