@@ -83,9 +83,9 @@ export class SoapEntryList implements ISoapEntryList {
         let entry: SoapEntry | undefined = undefined;
         const testDate = new Date(date);
         this.entries.forEach(e => {
-            if (testDate.getFullYear() === e.entryDate.getFullYear()
-                && testDate.getMonth() === e.entryDate.getMonth()
-                && testDate.getDate() === e.entryDate.getDate()) {
+            if (testDate.getUTCFullYear() === e.entryDate.getUTCFullYear()
+                && testDate.getUTCMonth() === e.entryDate.getUTCMonth()
+                && testDate.getUTCDate() === e.entryDate.getUTCDate()) {
                 entry = new SoapEntry(e);
             }
         });
@@ -97,9 +97,9 @@ export class SoapEntryList implements ISoapEntryList {
         let found = false;
         for (let i=0; i < this.entries.length && !found; i++) {
             const entry = this.entries[i];
-            if (tDate.getFullYear() === entry.entryDate.getFullYear()
-                && tDate.getMonth() === entry.entryDate.getMonth()
-                && tDate.getDate() === entry.entryDate.getDate()) {
+            if (tDate.getUTCFullYear() === entry.entryDate.getUTCFullYear()
+                && tDate.getUTCMonth() === entry.entryDate.getUTCMonth()
+                && tDate.getUTCDate() === entry.entryDate.getUTCDate()) {
                 found = true;
                 switch (field.toLowerCase()) {
                     case "date":
@@ -134,11 +134,11 @@ export class SoapEntryList implements ISoapEntryList {
     deleteEntry(date: Date) {
         const tDate = new Date(date);
         let found = -1;
-        for (let i = 0; i < this.entries.length && !found; i++) {
+        for (let i = 0; i < this.entries.length && found < 0; i++) {
             const entry = this.entries[i];
-            if (tDate.getFullYear() === entry.entryDate.getFullYear()
-                && tDate.getMonth() === entry.entryDate.getMonth()
-                && tDate.getDate() === entry.entryDate.getDate()) {
+            if (tDate.getUTCFullYear() === entry.entryDate.getUTCFullYear()
+                && tDate.getUTCMonth() === entry.entryDate.getUTCMonth()
+                && tDate.getUTCDate() === entry.entryDate.getUTCDate()) {
                 found = i;
             }
         }
@@ -147,6 +147,19 @@ export class SoapEntryList implements ISoapEntryList {
         } else {
             throw new Error('Entry not found');
         }
+    }
+
+    getEntries(start: Date, end: Date): SoapEntry[] {
+        start = new Date(start);
+        end = new Date(end);
+        const list: SoapEntry[] = [];
+        for (let i=0; i < this.entries.length; i++) {
+            if (this.entries[i].entryDate.getTime() >= start.getTime() 
+                && this.entries[i].entryDate.getTime() <= end.getTime()) {
+                list.push(new SoapEntry(this.entries[i]));
+            }
+        }
+        return list;
     }
 
     compareTo(other?: SoapEntryList): number {

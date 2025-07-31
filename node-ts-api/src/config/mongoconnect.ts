@@ -12,7 +12,6 @@ export const collections: {
 export async function connectToDB() {
   dotenv.config();
   const uri = process.env.MONGO_URI;
-  console.log(uri);
   if (uri) {
     try {
       const client = new MongoClient(uri);

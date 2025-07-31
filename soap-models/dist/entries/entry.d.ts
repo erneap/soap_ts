@@ -37,6 +37,7 @@ export declare class SoapEntryList implements ISoapEntryList {
     getEntry(date: Date): SoapEntry | undefined;
     updateEntry(date: Date, field: string, value: string): SoapEntry | undefined;
     deleteEntry(date: Date): void;
+    getEntries(start: Date, end: Date): SoapEntry[];
     compareTo(other?: SoapEntryList): number;
 }
 export interface NewEntryRequest {
