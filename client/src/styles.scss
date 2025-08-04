@@ -47,3 +47,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     container-text-color: var(--mat-tertiary),
   ));
 }
+
+mat-toolbar {
+  padding: 0 10px;
+}

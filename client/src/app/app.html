@@ -1,36 +1,24 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
 <main class="main">
-  <mat-toolbar color="primary">
-    <button matIconButton class="toolbar-icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span class="title">Soap Client</span>
-    <span class="flex-spacer"></span>
-    <button matIconButton class="toolbar-icon">
-      <mat-icon>login</mat-icon>
-    </button>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span class="title">Soap Client</span>
+      <span class="flex-spacer"></span>
+      <button mat-button>Entries</button>
+      <button mat-button>Plans</button>
+      <button mat-button>Bibles</button>
+      <button mat-icon-button class="toolbar-icon">
+        <mat-icon>login</mat-icon>
+      </button>
+    </mat-toolbar-row>
   </mat-toolbar>
   <div class="content">
-    <app-home></app-home>
+    <router-outlet />
   </div>
+  <footer>
+    <mat-toolbar class="footer-toolbar">
+      <mat-toolbar-row>
+        <span class="status">Status Message</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </footer>
 </main>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
-<router-outlet />
