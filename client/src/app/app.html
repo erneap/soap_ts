@@ -1,7 +1,7 @@
 <main class="main">
   <mat-toolbar>
     <mat-toolbar-row>
-      <span class="title">Soap Client</span>
+      <span class="title">{{ settings.title }}</span>
       <span class="flex-spacer"></span>
       <button mat-button>Entries</button>
       <button mat-button>Plans</button>
@@ -18,6 +18,8 @@
     <mat-toolbar class="footer-toolbar">
       <mat-toolbar-row>
         <span class="status">Status Message</span>
+        <span class="flex-spacer"></span>
+        <span class="status">v{{ settings.version }}</span>
       </mat-toolbar-row>
     </mat-toolbar>
   </footer>
