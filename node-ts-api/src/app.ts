@@ -20,7 +20,11 @@ const app = express();
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4200',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  exposedHeaders: ['Content-Type', 'Authorization', 'refreshToken', 'X-Custom-Header']
+}));
 app.use(express.json());
 
 app.use("/api", userRoutes);

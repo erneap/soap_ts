@@ -12,7 +12,7 @@ const router = Router();
 // CRUD Functions 
 
 // ******* Retrieve All Users ********
-router.get('/users', auth, async (req: Request, res: Response) => {
+router.get('/users', async (req: Request, res: Response) => {
   const tusers: Collection | undefined = collections.users;
   if (tusers) {
     const cursor = tusers.find<IUser>({});
@@ -123,12 +123,7 @@ router.post('/user/authenticate', async (req: Request, res: Response) => {
           if (key && expires) {
             const accessToken = jwt.sign({ _id: user.id.toString() }, key,
               { expiresIn: expires as any});
-            res.cookie('Authorization', accessToken, {
-              httpOnly: true,
-              secure: process.env.NODE_ENV === 'production',
-              maxAge: 60 * 60 * 1000,
-              sameSite: "strict"
-            });
+            res.setHeader('authorization', accessToken);
           }
           const rKey = process.env.JWT_REFRESH_SECRET;
           const rExpires = process.env.JWT_REFRESH_EXPIRES;
@@ -136,12 +131,7 @@ router.post('/user/authenticate', async (req: Request, res: Response) => {
             const refreshToken = jwt.sign({ _id: user.id.toString() }, rKey, {
               expiresIn: rExpires as any,
             });
-            res.cookie('refreshToken', refreshToken, {
-              httpOnly: true,
-              secure: process.env.NODE_ENV === 'production',
-              maxAge: 24 * 60 * 60 * 1000,
-              sameSite: "strict"
-            });
+            res.setHeader('refreshToken', refreshToken);
           }
         }
         user.badAttempts = bad;

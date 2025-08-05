@@ -3,4 +3,5 @@
 /node-ts-api/node_modules/
 /node-ts-api/.env
 /soap-models/node_modules/
+/soap-client/node_modules/
 /.DS_Store
