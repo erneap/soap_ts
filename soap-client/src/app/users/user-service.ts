@@ -14,6 +14,7 @@ export class UserService {
   usersUrl = `${this.apiUrl}/users`;
   private accessToken = signal('');
   private refreshToken = signal('');
+  private user = signal(new User())
   isLoggedIn = computed(() => this.accessToken() !== '');
 
   constructor(
@@ -31,7 +32,10 @@ export class UserService {
       email: email, password: password
     }, {
       observe: 'response'
-    });
+    }).pipe(map(res => {
+      this.user.set(new User(res.body as IUser));
+      return res;
+    }));
   }
 
   setAuthToken(token: string) {
@@ -50,8 +54,17 @@ export class UserService {
     return this.refreshToken();
   }
 
+  getUser(): User | undefined {
+    const user = this.user();
+    if (user.email !== '') {
+      return user;
+    }
+    return undefined;
+  }
+
   logout() {
     this.accessToken.set('');
     this.refreshToken.set('');
+    this.user.set(new User());
   }
 }
