@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user-service';
 import { IUser, User } from 'soap-models/dist/users';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
@@ -11,13 +12,16 @@ import { IUser, User } from 'soap-models/dist/users';
 export class UsersList implements OnInit {
   users: IUser[] = [];
   constructor(
-    private userService: UserService
+    public userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.userService.authenticate('ernea5956@gmail.com', 'mko09IJNbhu8')
-      .subscribe(res => {;
-        this.users.push(res.body as IUser);
-      });
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.userService.getUsers().subscribe(res => {
+      this.users = res.body as IUser[];
+    });
   }
 }

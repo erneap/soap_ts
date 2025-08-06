@@ -7,7 +7,7 @@ export interface AppSettings {
 }
 
 export const appSettings: AppSettings = {
-  title: 'SOAP Bible Journaling',
+  title: 'SOAP Journal Client',
   version: '1.0',
   apiUrl: 'http://localhost:4000/api'
 };

@@ -2,11 +2,11 @@
   <mat-card-header>
     <mat-card-title>Log In</mat-card-title>
   </mat-card-header>
-  <form class="home" [formGroup]="formGroup" (ngSubmit)="login()">
+  <form class="home" [formGroup]="loginForm" (ngSubmit)="login()">
     <mat-form-field>
       <mat-label>User's Email Address</mat-label>
       <input matInput id="email" formControlName="email" required="true" />
-      @if (formGroup.controls.email.hasError('required')) {
+      @if (loginForm.controls.email.hasError('required')) {
         <mat-error>Proposed user's email is required!</mat-error>
       }
     </mat-form-field>
@@ -14,7 +14,7 @@
       <mat-label>Account Password</mat-label>
       <input matInput id="password" formControlName="password"
         type="password" required="true" />
-      @if (formGroup.controls.password.hasError('required')) {
+      @if (loginForm.controls.password.hasError('required')) {
         <mat-error>Account password is required!</mat-error>
       }
     </mat-form-field>

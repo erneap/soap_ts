@@ -12,7 +12,7 @@ const router = Router();
 // CRUD Functions 
 
 // ******* Retrieve All Users ********
-router.get('/users', async (req: Request, res: Response) => {
+router.get('/users', auth, async (req: Request, res: Response) => {
   const tusers: Collection | undefined = collections.users;
   if (tusers) {
     const cursor = tusers.find<IUser>({});
