@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
-const bcrypt_1 = require("bcrypt");
+const bcrypt_ts_1 = require("bcrypt-ts");
 class User {
     _id;
     id;
@@ -49,13 +49,13 @@ class User {
         return -1;
     }
     setPassword(newpwd) {
-        const salt = (0, bcrypt_1.genSaltSync)(10);
-        const result = (0, bcrypt_1.hashSync)(newpwd, salt);
+        const salt = (0, bcrypt_ts_1.genSaltSync)(10);
+        const result = (0, bcrypt_ts_1.hashSync)(newpwd, salt);
         this.password = result;
         this.badAttempts = 0;
     }
     checkPassword(pwd) {
-        if ((0, bcrypt_1.compareSync)(pwd, this.password)) {
+        if ((0, bcrypt_ts_1.compareSync)(pwd, this.password)) {
             if (this.badAttempts > 2) {
                 throw new Error("Account Locked");
             }

@@ -15,8 +15,6 @@ export declare class SoapEntry implements ISoapEntry {
     application: string;
     prayer: string;
     constructor(entry?: ISoapEntry);
-    setEntryDate(date: Date): void;
-    getEntryDate(): Date;
     compareTo(other?: SoapEntry): number;
 }
 export interface ISoapEntryList {

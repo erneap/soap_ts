@@ -1,0 +1,28 @@
+<main class="main">
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span class="title">{{ settings.title }}</span>
+      <span class="flex-spacer"></span>
+      <button mat-button>Entries</button>
+      <button mat-button>Plans</button>
+      <button mat-button>Bibles</button>
+      @if (authService.isLoggedIn()) {
+        <button mat-icon-button class="toolbar-icon" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      }
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="content">
+    <router-outlet />
+  </div>
+  <footer>
+    <mat-toolbar class="footer-toolbar">
+      <mat-toolbar-row>
+        <span class="status">Status Message</span>
+        <span class="flex-spacer"></span>
+        <span class="status">v{{ settings.version }}</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </footer>
+</main>

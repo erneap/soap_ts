@@ -1,0 +1,9 @@
+@if (users.length > 0) {
+  <ul>
+    @for (user of users; track user._id) {
+      <li>{{user.firstName}} {{user.lastName}}</li>
+    }
+  </ul>
+} @else {
+  <p>No Users Listed</p>
+}

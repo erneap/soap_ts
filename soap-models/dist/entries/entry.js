@@ -17,15 +17,9 @@ class SoapEntry {
         this.application = (entry) ? entry.application : '';
         this.prayer = (entry) ? entry.prayer : '';
     }
-    setEntryDate(date) {
-        this.entryDate = new Date(date);
-    }
-    getEntryDate() {
-        return this.entryDate;
-    }
     compareTo(other) {
         if (other) {
-            return (this.entryDate.getTime() < other.getEntryDate().getTime()) ? -1 : 1;
+            return (this.entryDate.getTime() < other.entryDate.getTime()) ? -1 : 1;
         }
         return -1;
     }

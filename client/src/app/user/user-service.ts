@@ -1,0 +1,24 @@
+import { inject, Injectable } from '@angular/core';
+import { APP_SETTINGS } from '../app.settings';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { IUser } from 'soap-models/dist/users';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  private apiUrl = inject(APP_SETTINGS).apiUrl;
+  private userUrl = this.apiUrl + '/user';
+  private usersUrl = this.apiUrl + '/users';
+
+  constructor(
+    private http: HttpClient
+  ) {}
+
+  getUsers(): Observable<HttpResponse<IUser[]>> {
+    return this.http.get<IUser[]>(this.usersUrl, {
+      observe: 'response'
+    });
+  }
+}

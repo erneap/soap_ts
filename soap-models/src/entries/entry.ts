@@ -26,17 +26,9 @@ export class SoapEntry implements ISoapEntry {
         this.prayer = (entry) ? entry.prayer : '';
     }
 
-    setEntryDate(date: Date) {
-        this.entryDate = new Date(date);
-    }
-
-    getEntryDate(): Date {
-        return this.entryDate;
-    }
-
     compareTo(other?: SoapEntry): number {
         if (other) {
-            return (this.entryDate.getTime() < other.getEntryDate().getTime()) ? -1 : 1;
+            return (this.entryDate.getTime() < other.entryDate.getTime()) ? -1 : 1;
         }
         return -1;
     }

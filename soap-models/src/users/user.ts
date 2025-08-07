@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { genSaltSync, hashSync, compareSync } from 'bcrypt';
+import { genSaltSync, hashSync, compareSync } from 'bcrypt-ts';
 
 export interface IUser {
   _id?: ObjectId;
