@@ -45,6 +45,9 @@ export class UserEntries implements OnInit {
       this.entryService.getUserEntries(userid, startDate, endDate).subscribe(
         res => {
           this.entries = res.body as ISoapEntry[];
+          if (this.entries.length > 0) {
+            const entry = new SoapEntry();
+          }
         }
       );
     }

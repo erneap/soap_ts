@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from 'soap-models/dist/users';
+import { IUser, User } from 'soap-models/dist/users';
 import { UserService } from '../user-service';
 
 @Component({
@@ -21,6 +21,7 @@ export class UserList implements OnInit {
   private getUsers() {
     this.userService.getUsers().subscribe(res => {
       this.users = res.body as IUser[];
+      const user = new User();
     })
   }
 }
