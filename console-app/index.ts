@@ -58,7 +58,7 @@ const main = async () => {
       console.log('Plan Inserted')
     } else {
       if (result._id) {
-        plan._id = result._id;
+        plan.id = result._id.toString();
       }
       await plansCol?.replaceOne(query, plan);
       console.log('Plan replaced')
@@ -82,7 +82,6 @@ const main = async () => {
     iBooks.forEach(async(b) => {
       const dBk = dbBooks.find(x => x.abbrev === b.abbrev);
       if (dBk) {
-        b._id = dBk._id;
         b.id = dBk.id;
         const query = { _id: b._id};
         await bookCol?.replaceOne(query, b);

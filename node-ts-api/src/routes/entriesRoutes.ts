@@ -12,7 +12,7 @@ router.get('/entries/year/:user/:year', async (req: Request, res: Response) => {
     const list: SoapEntry[] = [];
     const sUser = req.params.user;
     const year = Number(req.params.year);
-    const query = { userID: new ObjectId(sUser), year: year };
+    const query = { userID: sUser, year: year };
     const iEntryList = await entryCol.findOne<ISoapEntryList>(query);
     if (iEntryList && iEntryList !== null) {
       const entryList = new SoapEntryList(iEntryList);
@@ -41,7 +41,7 @@ router.get('/entries/dates/:user/:start/:end', async (req: Request, res: Respons
     }
     let year = startDate.getUTCFullYear();
     while (year <= endDate.getUTCFullYear()) {
-      const query = { userID: new ObjectId(sUser), year: startDate.getUTCFullYear()};
+      const query = { userID: sUser, year: startDate.getUTCFullYear()};
       const iEntryList = await entryCol.findOne<ISoapEntryList>(query);
       if (iEntryList && iEntryList !== null) {
         const entryList = new SoapEntryList(iEntryList);
@@ -65,7 +65,7 @@ router.get('/entry/:user/:date', async (req: Request, res: Response) => {
     const sUser = req.params.user;    
     const sEntryDate = req.params.date;
     const entryDate = new Date(Date.parse(sEntryDate));
-    const query = { userID: new ObjectId(sUser), year: entryDate.getUTCFullYear()};
+    const query = { userID: sUser, year: entryDate.getUTCFullYear()};
     const iEntryList = await entryCol.findOne<ISoapEntryList>(query);
     if (iEntryList && iEntryList !== null) {
       const entryList = new SoapEntryList(iEntryList);
@@ -89,13 +89,13 @@ router.post('/entry', async (req: Request, res: Response) => {
   if (entryCol) {
     const data = req.body as NewEntryRequest;
     const entrydate = new Date(Date.parse(data.entrydate));
-    const query = { userID: new ObjectId(data.user), year: entrydate.getUTCFullYear()};
+    const query = { userID: data.user, year: entrydate.getUTCFullYear()};
     const iEntryList = await entryCol.findOne<ISoapEntryList>(query);
     let entryList = new SoapEntryList();
     if (iEntryList && iEntryList !== null) {
       entryList = new SoapEntryList(iEntryList);
     } else {
-      entryList.userID = new ObjectId(data.user);
+      entryList.userID = data.user;
       entryList.year = entrydate.getUTCFullYear();
       const uQuery = { _id: new ObjectId(data.user) };
       const iUser = await userCol?.findOne<IUser>(uQuery);
@@ -103,12 +103,12 @@ router.post('/entry', async (req: Request, res: Response) => {
         entryList.lastName = iUser.lastName;
       }
       const result = await entryCol.insertOne(entryList);
-      entryList._id = result.insertedId;
+      entryList.id = result.insertedId.toString();
     }
     let entry = entryList.getEntry(entrydate);
     if (!entry) {
       entry = entryList.addEntry(entrydate);
-      const lquery = { _id: entryList._id };
+      const lquery = { _id: new ObjectId(entryList.id) };
       await entryCol.replaceOne(lquery, entryList);
     }
     console.log(JSON.stringify(entry));
@@ -124,13 +124,13 @@ router.put('/entry', async (req: Request, res: Response) => {
     try {
       const data = req.body as UpdateEntryRequest;
       const entrydate = new Date(Date.parse(data.entrydate));
-      const query = { userID: new ObjectId(data.user), year: entrydate.getUTCFullYear()};
+      const query = { userID: data.user, year: entrydate.getUTCFullYear()};
       const iEntryList = await entryCol.findOne<ISoapEntryList>(query);
       if (iEntryList && iEntryList !== null) {
         const entryList = new SoapEntryList(iEntryList);
         const entry = entryList.updateEntry(entrydate, data.field, data.value);
         if (entry) {
-          const lquery = { _id: entryList._id };
+          const lquery = { _id: new ObjectId(entryList.id) };
           await entryCol.replaceOne(lquery, entryList);
           return res.status(200).json(entry);
         } else {
@@ -160,12 +160,12 @@ router.delete('/entry/:user/:date', async (req: Request, res: Response) => {
     const sDate = req.params.date;
     const date = new Date(Date.parse(sDate));
     const sUser = req.params.user;
-    const query = { userID: new ObjectId(sUser), year: date.getUTCFullYear()}
+    const query = { userID: sUser, year: date.getUTCFullYear()}
     const iEntryList = await entryCol.findOne<ISoapEntryList>(query);
     if (iEntryList && iEntryList !== null) {
       const entryList = new SoapEntryList(iEntryList);
       entryList.deleteEntry(date);
-      const equery = { _id: entryList._id };
+      const equery = { _id: new ObjectId(entryList.id)};
       if (entryList.entries.length > 0) {
         await entryCol.replaceOne(equery, entryList);
       } else {

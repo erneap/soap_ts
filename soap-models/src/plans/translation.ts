@@ -8,13 +8,11 @@ export interface ITranslation {
 }
 
 export class Translation implements ITranslation {
-  public _id?: ObjectId;
   public id: number;
   public short: string;
   public long: string;
 
   constructor(trans?: ITranslation) {
-    this._id = (trans && trans._id) ? trans._id : undefined;
     this.id = (trans && trans.id) ? trans.id : 0;
     this.short = (trans && trans.short) ? trans.short : '';
     this.long = (trans && trans.long) ? trans.long : '';

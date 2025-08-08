@@ -1,15 +1,15 @@
 import { ObjectId } from "mongodb";
-import { ISoapEntry, SoapEntry } from "./entry";
+import { ISoapEntry, SoapEntry } from "../entries/entry";
 export interface ISoapEntryList {
-    _id?: ObjectId;
-    userID?: string;
+    _id: ObjectId;
+    userID?: ObjectId;
     lastName?: string;
     year: number;
     entries: ISoapEntry[];
 }
 export declare class SoapEntryList implements ISoapEntryList {
-    id: string;
-    userID?: string;
+    _id: ObjectId;
+    userID?: ObjectId;
     lastName?: string;
     year: number;
     entries: SoapEntry[];

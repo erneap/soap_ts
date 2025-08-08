@@ -6,7 +6,6 @@ export interface ITranslation {
     long: string;
 }
 export declare class Translation implements ITranslation {
-    _id?: ObjectId;
     id: number;
     short: string;
     long: string;

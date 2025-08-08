@@ -3,22 +3,22 @@ import { ISoapEntry, SoapEntry } from "./entry";
 
 
 export interface ISoapEntryList {
-    _id: ObjectId;
-    userID?: ObjectId;
+    _id?: ObjectId;
+    userID?: string;
     lastName?: string;
     year: number;
     entries: ISoapEntry[];
 }
 
 export class SoapEntryList implements ISoapEntryList {
-    public _id: ObjectId;
-    public userID?: ObjectId;
+    public id: string;
+    public userID?: string;
     public lastName?: string;
     public year: number;
     public entries: SoapEntry[];
 
     constructor(list?: ISoapEntryList) {
-        this._id = (list) ? list._id : new ObjectId();
+        this.id = (list) ? list._id.toString() : '';
         this.userID = (list && list.userID) ? list.userID : undefined;
         this.lastName = (list && list.lastName) ? list.lastName : undefined;
         this.year = (list) ? list.year : 0;

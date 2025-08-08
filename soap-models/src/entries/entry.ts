@@ -29,6 +29,6 @@ export class SoapEntry implements ISoapEntry {
             return (this.entryDate.getTime() < other.entryDate.getTime()) 
                 ? -1 : 1;
         }
-        return
+        return -1;
     }
 }

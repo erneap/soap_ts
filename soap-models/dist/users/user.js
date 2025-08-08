@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const bcrypt_ts_1 = require("bcrypt-ts");
 class User {
-    _id;
     id;
     email;
     password;
@@ -18,14 +17,16 @@ class User {
     translationId;
     startDate;
     constructor(iuser) {
+        this.id = (iuser && iuser.id) ? iuser.id : '';
+        if (this.id === '') {
+            this.id = (iuser && iuser._id) ? iuser._id.toString() : '';
+        }
         this.email = (iuser) ? iuser.email : '';
         this.password = (iuser) ? iuser.password : '';
         this.badAttempts = (iuser) ? iuser.badAttempts : 0;
         this.firstName = (iuser) ? iuser.firstName : '';
         this.middleName = (iuser && iuser.middleName) ? iuser.middleName : '';
         this.lastName = (iuser) ? iuser.lastName : '';
-        this.id = (iuser && iuser._id) ? iuser._id : undefined;
-        this._id = (iuser && iuser._id) ? iuser._id : undefined;
         this.resetToken = (iuser && iuser.resetToken) ? iuser.resetToken : '';
         this.resetTokenExpires = (iuser && iuser.resetTokenExpires)
             ? new Date(iuser.resetTokenExpires) : new Date(0);

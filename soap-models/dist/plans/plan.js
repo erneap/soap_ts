@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Plan = void 0;
-const mongodb_1 = require("mongodb");
 const month_1 = require("./month");
 class Plan {
-    _id;
     id;
     name;
     months;
     type;
     constructor(plan) {
-        this._id = (plan && plan._id) ? plan._id : new mongodb_1.ObjectId();
-        this.id = (plan && plan._id) ? plan._id : this._id;
+        this.id = (plan && plan.id) ? plan.id : '';
+        if (this.id === '') {
+            this.id = (plan && plan._id) ? plan._id.toString() : '';
+        }
         this.name = (plan) ? plan.name : '';
         this.type = (plan && plan.type) ? plan.type : 'journal';
         this.months = [];

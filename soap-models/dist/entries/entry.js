@@ -21,7 +21,7 @@ class SoapEntry {
             return (this.entryDate.getTime() < other.entryDate.getTime())
                 ? -1 : 1;
         }
-        return;
+        return -1;
     }
 }
 exports.SoapEntry = SoapEntry;

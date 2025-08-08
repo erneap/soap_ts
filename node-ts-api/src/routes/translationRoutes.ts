@@ -71,7 +71,6 @@ router.post("/translation", async (req: Request, res: Response) => {
       trans.short = data.short;
       trans.long = data.long;
       const answer = await transCol.insertOne(trans);
-      trans._id = answer.insertedId;
       return res.status(201).json(trans);
     }
   } else {

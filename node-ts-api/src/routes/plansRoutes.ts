@@ -60,7 +60,7 @@ router.post('/plan/newplan', async (req: Request, res: Response) => {
         plan.months[m].month = m + 1;
       }
       const newResult = await plansCol.insertOne(plan);
-      plan._id = newResult.insertedId;
+      plan.id = newResult.insertedId.toString();
       return res.status(202).json(plan);
     }
   } else {

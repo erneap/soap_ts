@@ -3,21 +3,23 @@ import { IPlanMonth, PlanMonth } from "./month";
 
 export interface IPlan {
     _id?: ObjectId;
+    id?: string;
     name: string;
     months: IPlanMonth[];
     type?: string;
 }
 
 export class Plan implements IPlan{
-    public _id: ObjectId;
-    public id: ObjectId;
+    public id: string;
     public name: string;
     public months: PlanMonth[];
     public type: string;
 
     constructor(plan?: IPlan) {
-        this._id = (plan && plan._id) ? plan._id : new ObjectId();
-        this.id = (plan && plan._id) ? plan._id : this._id;
+        this.id = (plan && plan.id) ? plan.id : '';
+        if (this.id === '') {
+            this.id = (plan && plan._id) ? plan._id.toString() : '';
+        }
         this.name = (plan) ? plan.name : '';
         this.type = (plan && plan.type) ? plan.type : 'journal';
         this.months = [];

@@ -4,12 +4,14 @@ import { AppStateService } from '../../services/app-state.service';
 import { ISoapEntry, SoapEntry } from 'soap-models/dist/entries';
 import { EntryService } from '../entry-service';
 import { AuthService } from '../../services/auth-service';
+import { EntryList } from "./entry-list/entry-list";
 
 @Component({
   selector: 'app-user-entries',
   imports: [
-    MatCardModule
-  ],
+    MatCardModule,
+    EntryList
+],
   templateUrl: './user-entries.html',
   styleUrl: './user-entries.scss'
 })
@@ -17,7 +19,7 @@ export class UserEntries implements OnInit {
   cardStyle = signal('');
   listStyle = signal('');
   editorStyle = signal('');
-  entries: ISoapEntry[] = [];
+  entries: SoapEntry[] = [];
   
   constructor(
     private viewState: AppStateService,
@@ -32,22 +34,25 @@ export class UserEntries implements OnInit {
     let lWidth = width * .3;
     if (lWidth > 300) { lWidth = 300; }
     let eWidth = width - (lWidth + 45);
-    const lHeight = height - 30;
+    const lHeight = height - 20;
     this.listStyle.set(`height: ${lHeight}px; min-width: ${lWidth}px;`
       + `max-width: ${lWidth}px;`);
     this.editorStyle.set(`height: ${lHeight}px; min-width: ${lWidth}px;`
       + `max-width: ${lWidth}px;`);
-    const userid = this.authService.user()._id?.toString();
+    const userid = this.authService.user().id?.toString();
     const endDate = new Date(new Date().getTime() + (24 * 3600000));
     const startDate = new Date(endDate.getTime() - (35 * 24 * 3600000));
     this.entries = [];
     if (userid) {
       this.entryService.getUserEntries(userid, startDate, endDate).subscribe(
         res => {
-          this.entries = res.body as ISoapEntry[];
-          if (this.entries.length > 0) {
-            const entry = new SoapEntry();
+          const list = res.body as ISoapEntry[];
+          if (list.length > 0) {
+            list.forEach(iEntry => {
+              this.entries.push(new SoapEntry(iEntry));
+            });
           }
+          this.entries.sort((a,b) => a.compareTo(b));
         }
       );
     }

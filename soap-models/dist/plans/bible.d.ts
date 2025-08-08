@@ -7,7 +7,6 @@ export interface IBibleBook {
     chapters: number;
 }
 export declare class BibleBook implements IBibleBook {
-    _id: ObjectId;
     id: number;
     abbrev: string;
     title: string;

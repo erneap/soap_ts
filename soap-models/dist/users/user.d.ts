@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
 export interface IUser {
     _id?: ObjectId;
+    id?: string;
     email: string;
     password: string;
     badAttempts: number;
@@ -15,8 +16,7 @@ export interface IUser {
     startDate?: Date;
 }
 export declare class User implements IUser {
-    _id?: ObjectId;
-    id?: ObjectId;
+    id: string;
     email: string;
     password: string;
     badAttempts: number;

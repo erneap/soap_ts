@@ -63,7 +63,6 @@ router.post('/book', async (req: Request, res: Response) => {
       newBook.chapters = data.chapters;
       const result = await booksCol.insertOne(newBook);
       if (result && result.insertedId) {
-        newBook._id = result.insertedId;
         return res.status(201).json(newBook);
       } else {
         return res.status(401).send('New Bible Book not created');
@@ -97,15 +96,15 @@ router.put('/book', async (req: Request, res: Response) => {
         case "move":
           const cursor = await booksCol.find<IBibleBook>({});
           const books = await cursor.toArray();
-          const list: BibleBook[] = [];
+          const list: IBibleBook[] = [];
           books.forEach(b => {
-            list.push(new BibleBook(b));
+            list.push(b);
           }); 
-          list.sort((a,b) => a.compareTo(b));
+          list.sort((a,b) => (a.id < b.id) ? -1 : 1);
 
           let bFound = false;
           for (let i=0; i < list.length && !bFound; i++) {
-            if (ibook._id?.toString() === list[i]._id.toString()) {
+            if (ibook.id === list[i].id) {
               bFound = true;
               const old = list[i].id;
               if (i > 0 && data.value.toLowerCase().substring(0,2) === 'up') {
@@ -144,16 +143,16 @@ router.delete('/book/:id', async (req: Request, res: Response) => {
     // and reapply the id (sort value) to each remaining book in
     // order and update the database for each.
     const id = req.params.id;
-    const query = { _id: new ObjectId(id) };
+    const query = { id: Number(id) };
     const result = await booksCol.deleteOne(query);
     if (result.deletedCount > 0) {
       const cursor = await booksCol.find<IBibleBook>({});
       const books = await cursor.toArray();
-      const list: BibleBook[] = [];
+      const list: IBibleBook[] = [];
       books.forEach(b => {
-        list.push(new BibleBook(b));
+        list.push(b);
       }); 
-      list.sort((a,b) => a.compareTo(b));
+      list.sort((a,b) => (a.id < b.id) ? -1 : 1);
 
       for (let i=0; i < list.length; i++) {
         list[i].id = i + 1;

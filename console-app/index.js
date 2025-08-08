@@ -67,7 +67,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         }
         else {
             if (result._id) {
-                plan._id = result._id;
+                plan.id = result._id.toString();
             }
             yield (plansCol === null || plansCol === void 0 ? void 0 : plansCol.replaceOne(query, plan));
             console.log('Plan replaced');
@@ -91,7 +91,6 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         iBooks.forEach((b) => __awaiter(void 0, void 0, void 0, function* () {
             const dBk = dbBooks.find(x => x.abbrev === b.abbrev);
             if (dBk) {
-                b._id = dBk._id;
                 b.id = dBk.id;
                 const query = { _id: b._id };
                 yield (bookCol === null || bookCol === void 0 ? void 0 : bookCol.replaceOne(query, b));

@@ -2,13 +2,13 @@ import { ObjectId } from "mongodb";
 import { IPlanMonth, PlanMonth } from "./month";
 export interface IPlan {
     _id?: ObjectId;
+    id?: string;
     name: string;
     months: IPlanMonth[];
     type?: string;
 }
 export declare class Plan implements IPlan {
-    _id: ObjectId;
-    id: ObjectId;
+    id: string;
     name: string;
     months: PlanMonth[];
     type: string;

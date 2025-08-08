@@ -3,6 +3,7 @@ import { genSaltSync, hashSync, compareSync } from 'bcrypt-ts';
 
 export interface IUser {
   _id?: ObjectId;
+  id?: string;
   email: string;
   password: string;
   badAttempts: number;
@@ -18,8 +19,7 @@ export interface IUser {
 }
 
 export class User implements IUser{
-  public _id?: ObjectId;
-  public id?: ObjectId;
+  public id: string;
   public email: string;
   public password: string;
   public badAttempts: number;
@@ -34,14 +34,16 @@ export class User implements IUser{
   public startDate: Date;
 
   constructor(iuser?: IUser) {
+      this.id = (iuser && iuser.id) ? iuser.id : '';
+      if (this.id === '') {
+        this.id = (iuser && iuser._id) ? iuser._id.toString() : '';
+      }
       this.email = (iuser) ? iuser.email : '';
       this.password = (iuser) ? iuser.password : '';
       this.badAttempts = (iuser) ? iuser.badAttempts : 0;
       this.firstName = (iuser) ? iuser.firstName : '';
       this.middleName = (iuser && iuser.middleName) ? iuser.middleName : '';
       this.lastName = (iuser) ? iuser.lastName : '';
-      this.id = (iuser && iuser._id) ? iuser._id : undefined;
-      this._id = (iuser && iuser._id) ? iuser._id : undefined;
       this.resetToken = (iuser && iuser.resetToken) ? iuser.resetToken : '';
       this.resetTokenExpires = (iuser && iuser.resetTokenExpires) 
         ? new Date(iuser.resetTokenExpires) : new Date(0);

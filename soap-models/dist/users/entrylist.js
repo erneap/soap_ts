@@ -1,15 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SoapEntryList = void 0;
-const entry_1 = require("./entry");
+const mongodb_1 = require("mongodb");
+const entry_1 = require("../entries/entry");
 class SoapEntryList {
-    id;
+    _id;
     userID;
     lastName;
     year;
     entries;
     constructor(list) {
-        this.id = (list) ? list._id.toString() : '';
+        this._id = (list) ? list._id : new mongodb_1.ObjectId();
         this.userID = (list && list.userID) ? list.userID : undefined;
         this.lastName = (list && list.lastName) ? list.lastName : undefined;
         this.year = (list) ? list.year : 0;

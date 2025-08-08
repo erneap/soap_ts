@@ -59,7 +59,7 @@ router.post('/user/new', async (req: Request, res: Response) => {
     const result = await collections.users?.insertOne(user);
 
     if (result) {
-      user.id = result.insertedId;
+      user.id = result.insertedId.toString();
       const newResponse: NewUserResponse = {
         user: user,
         password: tempPassword,
