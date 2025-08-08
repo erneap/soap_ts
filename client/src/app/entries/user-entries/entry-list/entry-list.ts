@@ -15,7 +15,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 export class EntryList implements OnInit, OnChanges {
   entries = input<{ entries: ISoapEntry[] }>();
-  selected = output();
+  selected = output<string>();
   compStyle = signal('');
   labelMainStyle = signal('');
   buttonStyle = signal('');
@@ -65,5 +65,9 @@ export class EntryList implements OnInit, OnChanges {
       'Sep', 'Oct', 'Nov', 'Dec' ];
     return `${months[entry.entryDate.getMonth()]} ${entry.entryDate.getDate()}, `
       + `${entry.entryDate.getFullYear()} - ${entry.title}`;
+  }
+
+  chooseSoapEntry(id: string) {
+    this.selected.emit(id);
   }
 }

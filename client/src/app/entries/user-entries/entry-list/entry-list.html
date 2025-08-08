@@ -11,7 +11,10 @@
   </div>
   <div class="list" [style]="listStyle()">
     @for (entry of entryArray; track entry) {
-      <div class="item">{{ getLabel(entry) }}</div>
+      <div class="item" 
+        (click)="chooseSoapEntry(entry.entryDate.toISOString())">
+        {{ getLabel(entry) }}
+      </div>
     }
   </div>
 </div>

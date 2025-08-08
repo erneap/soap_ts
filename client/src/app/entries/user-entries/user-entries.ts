@@ -20,6 +20,7 @@ export class UserEntries implements OnInit {
   listStyle = signal('');
   editorStyle = signal('');
   entries = signal<SoapEntry[]>([]);
+  entry = signal<SoapEntry>(new SoapEntry());
   
   constructor(
     private viewState: AppStateService,
@@ -57,5 +58,14 @@ export class UserEntries implements OnInit {
         }
       );
     }
+  }
+
+  onSelect(id: string) {
+    const entryDate = new Date(Date.parse(id));
+    this.entries()!.forEach(entry => {
+      if (entry.useEntry(entryDate)) {
+        this.entry.set(entry);
+      }
+    })
   }
 }

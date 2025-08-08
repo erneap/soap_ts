@@ -23,6 +23,11 @@ class SoapEntry {
         }
         return -1;
     }
+    useEntry(date) {
+        return (this.entryDate.getUTCFullYear() === date.getUTCFullYear()
+            && this.entryDate.getMonth() === date.getUTCMonth()
+            && this.entryDate.getUTCDate() === date.getUTCDate());
+    }
 }
 exports.SoapEntry = SoapEntry;
 //# sourceMappingURL=entry.js.map

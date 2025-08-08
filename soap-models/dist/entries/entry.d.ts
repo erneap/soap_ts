@@ -15,4 +15,5 @@ export declare class SoapEntry implements ISoapEntry {
     prayer: string;
     constructor(other?: ISoapEntry);
     compareTo(other?: SoapEntry): number;
+    useEntry(date: Date): boolean;
 }
