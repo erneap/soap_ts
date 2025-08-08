@@ -1,5 +1,6 @@
 <mat-card [style]="cardStyle()">
   <div class="overall">
-    <app-entry-list class="entries" [style]="listStyle()"></app-entry-list>
+    <app-entry-list class="entries" [style]="listStyle()"
+      [entries]="{ entries: entries() }"></app-entry-list>
   </div>
 </mat-card>

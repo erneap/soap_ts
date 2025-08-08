@@ -17,7 +17,9 @@ export class EntryService {
 
   getUserEntries(userid: string, start: Date, end: Date)
     : Observable<HttpResponse<ISoapEntry[]>> {
-    const url = this.apiUrl + `/entries/dates/${userid}/${start}/${end}`;
+    const url = this.apiUrl + `/entries/dates/${userid}/${start.toISOString()}`
+      + `/${end.toISOString()}`;
+    console.log(url);
     return this.http.get<ISoapEntry[]>(url, {
       observe: 'response'
     });

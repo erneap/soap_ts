@@ -19,7 +19,7 @@ export class UserEntries implements OnInit {
   cardStyle = signal('');
   listStyle = signal('');
   editorStyle = signal('');
-  entries: SoapEntry[] = [];
+  entries = signal<SoapEntry[]>([]);
   
   constructor(
     private viewState: AppStateService,
@@ -42,17 +42,18 @@ export class UserEntries implements OnInit {
     const userid = this.authService.user().id?.toString();
     const endDate = new Date(new Date().getTime() + (24 * 3600000));
     const startDate = new Date(endDate.getTime() - (35 * 24 * 3600000));
-    this.entries = [];
     if (userid) {
       this.entryService.getUserEntries(userid, startDate, endDate).subscribe(
         res => {
+          const elist: SoapEntry[] = []
           const list = res.body as ISoapEntry[];
           if (list.length > 0) {
             list.forEach(iEntry => {
-              this.entries.push(new SoapEntry(iEntry));
+              elist.push(new SoapEntry(iEntry));
             });
           }
-          this.entries.sort((a,b) => a.compareTo(b));
+          elist.sort((a,b) => a.compareTo(b));
+          this.entries.set(elist);
         }
       );
     }

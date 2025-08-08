@@ -40,15 +40,17 @@ router.get('/entries/dates/:user/:start/:end', async (req: Request, res: Respons
       endDate = new Date(Date.parse(sEndDate));
     }
     let year = startDate.getUTCFullYear();
+    console.log(year);
     while (year <= endDate.getUTCFullYear()) {
       const query = { userID: sUser, year: startDate.getUTCFullYear()};
       const iEntryList = await entryCol.findOne<ISoapEntryList>(query);
       if (iEntryList && iEntryList !== null) {
         const entryList = new SoapEntryList(iEntryList);
         const tlist = entryList.getEntries(startDate, endDate);
+        console.log(JSON.stringify(entryList));
         tlist.forEach(entry => {
           list.push(new SoapEntry(entry));
-        })
+        });
       }
       year++;
     }
