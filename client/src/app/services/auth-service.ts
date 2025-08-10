@@ -12,6 +12,7 @@ export class AuthService {
   private authUrl = `${this.settings.apiUrl}/user`;
   public accessToken = signal('');
   public refreshToken = signal('');
+  public errorMsg = signal('');
   public user = signal(new User);
   isLoggedIn = computed(() => this.accessToken() !== '');
 

@@ -3,8 +3,8 @@
     <mat-toolbar-row>
       <span class="title">{{ settings.title }}</span>
       <span class="flex-spacer"></span>
-      <button mat-button>Entries</button>
-      <button mat-button>Plans</button>
+      <button mat-button (click)="onMenuChoice('entries')">Entries</button>
+      <button mat-button (click)="onMenuChoice('plans')">Plans</button>
       <button mat-button>Bibles</button>
       @if (authService.isLoggedIn()) {
         <button mat-icon-button class="toolbar-icon" (click)="logout()">
@@ -19,7 +19,7 @@
   <footer>
     <mat-toolbar class="footer-toolbar">
       <mat-toolbar-row>
-        <span class="status">Status Message</span>
+        <span class="status">{{ authService.errorMsg() }}</span>
         <span class="flex-spacer"></span>
         <span class="status">v{{ settings.version }}</span>
       </mat-toolbar-row>

@@ -11,7 +11,7 @@ export interface IUser {
     resetToken: string;
     resetTokenExpires: Date;
     administrator: boolean;
-    planId?: ObjectId;
+    planId?: string;
     translationId?: string;
     startDate?: Date;
 }
@@ -26,7 +26,7 @@ export declare class User implements IUser {
     resetToken: string;
     resetTokenExpires: Date;
     administrator: boolean;
-    planId?: ObjectId;
+    planId?: string;
     translationId: string;
     startDate: Date;
     constructor(iuser?: IUser);

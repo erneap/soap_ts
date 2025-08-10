@@ -1,16 +1,20 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { MatCardModule } from "@angular/material/card";
 import { AppStateService } from '../../services/app-state.service';
-import { ISoapEntry, SoapEntry } from 'soap-models/dist/entries';
+import { ISoapEntry, SoapEntry, UpdateEntryRequest } from 'soap-models/dist/entries';
 import { EntryService } from '../entry-service';
 import { AuthService } from '../../services/auth-service';
 import { EntryList } from "./entry-list/entry-list";
+import { Entry } from "./entry-list/entry/entry";
+import { HttpErrorResponse } from '@angular/common/http';
+import { Message } from 'soap-models/dist/common';
 
 @Component({
   selector: 'app-user-entries',
   imports: [
     MatCardModule,
-    EntryList
+    EntryList,
+    Entry
 ],
   templateUrl: './user-entries.html',
   styleUrl: './user-entries.scss'
@@ -36,16 +40,15 @@ export class UserEntries implements OnInit {
     if (lWidth > 300) { lWidth = 300; }
     let eWidth = width - (lWidth + 45);
     const lHeight = height - 20;
-    this.listStyle.set(`height: ${lHeight}px; min-width: ${lWidth}px;`
-      + `max-width: ${lWidth}px;`);
-    this.editorStyle.set(`height: ${lHeight}px; min-width: ${lWidth}px;`
-      + `max-width: ${lWidth}px;`);
+    this.listStyle.set(`height: ${lHeight}px; width: ${lWidth}px;`);
+    this.editorStyle.set(`height: ${lHeight}px; width: ${eWidth};`);
     const userid = this.authService.user().id?.toString();
     const endDate = new Date(new Date().getTime() + (24 * 3600000));
     const startDate = new Date(endDate.getTime() - (35 * 24 * 3600000));
+    this.authService.errorMsg.set('');
     if (userid) {
-      this.entryService.getUserEntries(userid, startDate, endDate).subscribe(
-        res => {
+      this.entryService.getUserEntries(userid, startDate, endDate).subscribe({
+        next: (res) => {
           const elist: SoapEntry[] = []
           const list = res.body as ISoapEntry[];
           if (list.length > 0) {
@@ -53,19 +56,102 @@ export class UserEntries implements OnInit {
               elist.push(new SoapEntry(iEntry));
             });
           }
-          elist.sort((a,b) => a.compareTo(b));
+          elist.sort((a,b) => b.compareTo(a));
           this.entries.set(elist);
+        }, error: (err) => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              this.authService.errorMsg.set(`Unauthorized: ${err.error}`);
+            } else {
+              this.authService.errorMsg.set(`${err.status}: ${err.error}`);
+            }
+          }
         }
-      );
+      });
     }
   }
 
   onSelect(id: string) {
-    const entryDate = new Date(Date.parse(id));
-    this.entries()!.forEach(entry => {
-      if (entry.useEntry(entryDate)) {
-        this.entry.set(entry);
+    if (id.toLowerCase() === 'new') {
+      let newdate = new Date();
+      let found = false;
+      this.entries()!.forEach(entry => {
+        if (entry.useEntry(newdate)) {
+          newdate = new Date(newdate.getTime() + (24 * 3600000));
+        }
+      })
+      this.entryService.newEntry(this.authService.user()!.id, newdate).subscribe({
+        next: (res) => {
+          const entry = new SoapEntry(res.body as ISoapEntry);
+          this.entries()!.push(entry);
+          this.entries()!.sort((a,b) => b.compareTo(a));
+          this.entry.set(entry);
+        }, error: (err) => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              this.authService.errorMsg.set(`Unauthorized: ${err.error}`);
+            } else {
+              this.authService.errorMsg.set(`${err.status}: ${err.error}`);
+            }
+          }
+        }
+      });
+    } else if (id.toLowerCase().startsWith('delete-')) {
+      id = id.substring(7);
+      const date = new Date(Date.parse(id));
+      this.entryService.deleteEntry(this.authService.user().id, date)
+        .subscribe(res => {
+          const msg = res.body as Message;
+          if (msg.message.toLowerCase() === 'deletion completed') {
+            this.entry.set(new SoapEntry());
+            let found = -1;
+            const entries = this.entries();
+            for (let e=0; e < entries.length && found < 0; e++) {
+              if (entries[e].useEntry(date)) {
+                found = e;
+              }
+            }
+            if (found >= 0) {
+              entries.splice(found, 1);
+            }
+            this.entries.set(entries);
+          }
+        });
+    } else {
+      const entryDate = new Date(Date.parse(id));
+      this.entries()!.forEach(entry => {
+        if (entry.useEntry(entryDate)) {
+          this.entry.set(entry);
+        }
+      });
+    }
+  }
+
+  onEntryChange(change: UpdateEntryRequest) {
+    change.user = this.authService.user()!.id;
+    const oldDate = new Date(Date.parse(change.entrydate));
+    this.authService.errorMsg.set('');
+    this.entryService.updateEntry(change.user, change.entrydate, change.field, change.value).subscribe({
+      next: (res) => {
+        const entry = new SoapEntry(res.body as ISoapEntry);
+        for (let e=0; e < this.entries()!.length; e++) {
+          if (this.entries()![e].useEntry(oldDate)) {
+            this.entries()![e] = entry;
+          }
+        }
+        this.entries()!.sort((a,b) => b.compareTo(a));
+        if (change.field.toLowerCase() === 'entrydate' || change.field.toLowerCase() === 'date') {
+          this.entry.set(entry);
+        }
+      }, error: (err) => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this.authService.errorMsg.set(`Unauthorized: ${err.error}`);
+          } else {
+            this.authService.errorMsg.set(`${err.status}: ${err.error}`);
+          }
+        }
       }
-    })
+    });
   }
 }

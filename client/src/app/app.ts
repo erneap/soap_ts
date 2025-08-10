@@ -33,8 +33,6 @@ export class App implements OnInit {
   ngOnInit(): void {
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login']);
-    } else {
-      this.router.navigate(['/entries']);
     }
   }
 
@@ -42,5 +40,12 @@ export class App implements OnInit {
     this.authService.accessToken.set('');
     this.authService.refreshToken.set('');
     this.router.navigate(['/login']);
+  }
+
+  onMenuChoice(page: string) {
+    if (page !== '') {
+      page = `/${page}`;
+      this.router.navigate([page]);
+    }
   }
 }

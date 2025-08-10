@@ -51,6 +51,7 @@ class SoapEntryList {
                 found = true;
                 switch (field.toLowerCase()) {
                     case "date":
+                    case "entrydate":
                         entry.entryDate = new Date(Date.parse(value));
                         break;
                     case "title":

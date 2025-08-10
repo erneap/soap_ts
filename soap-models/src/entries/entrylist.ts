@@ -63,6 +63,7 @@ export class SoapEntryList implements ISoapEntryList {
                 found = true;
                 switch (field.toLowerCase()) {
                     case "date":
+                    case "entrydate":
                         entry.entryDate = new Date(Date.parse(value));
                         break;
                     case "title":

@@ -16,7 +16,7 @@ export class SoapEntry implements ISoapEntry {
     public prayer: string;
 
     constructor(other?: ISoapEntry) {
-        this.entryDate = (other) ? new Date(other.entryDate) : new Date();
+        this.entryDate = (other) ? new Date(other.entryDate) : new Date(0);
         this.title = (other) ? other.title : '';
         this.scripture = (other) ? other.scripture : '';
         this.observations = (other) ? other.observations : '';

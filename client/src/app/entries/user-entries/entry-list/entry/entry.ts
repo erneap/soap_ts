@@ -1,11 +1,219 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, OnChanges, OnInit, output, signal, SimpleChanges } from '@angular/core';
+import { BibleBook, IBibleBook, IPlan, IReading, Plan, Reading } from 'soap-models/dist/plans';
+import { AuthService } from '../../../../services/auth-service';
+import { PlanService } from '../../../../plans/plan-service';
+import { EntryService } from '../../../entry-service';
+import { AppStateService } from '../../../../services/app-state.service';
+import { ISoapEntry, SoapEntry } from 'soap-models/dist/entries';
+import { User } from 'soap-models/dist/users';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BooksService } from '../../../../books/books-service';
+import { MatError, MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { UpdateEntryRequest } from 'soap-models/dist/entries';
 
 @Component({
   selector: 'app-entry',
-  imports: [],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatError
+],
   templateUrl: './entry.html',
-  styleUrl: './entry.scss'
+  styleUrl: './entry.scss',
+  providers: [provideNativeDateAdapter()],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Entry {
+export class Entry implements OnInit, OnChanges {
+  private user = signal(new User());
+  private plan = signal(new Plan());
+  private books: BibleBook[] = [];
+  entry = input<SoapEntry>()
+  formStyle = signal('');
+  readings = signal<IReading[]>([]);
+  changed = output<UpdateEntryRequest>();
 
+  editorForm = new FormGroup({
+    entrydate: new FormControl(this.entry()?.entryDate, {
+      nonNullable: true,
+      validators: Validators.required
+    }),
+    title: new FormControl(this.entry()?.title, {
+      nonNullable: true,
+      validators: Validators.required
+    }),
+    scripture: new FormControl(this.entry()?.title, {
+      nonNullable: true,
+      validators: Validators.required
+    }),
+    observations: new FormControl(this.entry()?.title, {
+      nonNullable: true,
+      validators: Validators.required
+    }),
+    application: new FormControl(this.entry()?.title, {
+      nonNullable: true,
+      validators: Validators.required
+    }),
+    prayer: new FormControl(this.entry()?.title, {
+      nonNullable: true,
+      validators: Validators.required
+    })
+  });
+
+  constructor(
+    private authService: AuthService,
+    private planService: PlanService,
+    private entryService: EntryService, 
+    private bookService: BooksService,
+    private appState: AppStateService
+  ) {}
+
+  ngOnInit(): void {
+    const height = this.appState.viewHeight - 84;
+    const width = this.appState.viewWidth - 60;let lWidth = width * .3;
+    if (lWidth > 300) { lWidth = 300; }
+    let eWidth = width - (lWidth + 45);
+    this.formStyle.set(`min-height: ${height}px; max-height: ${height}px;`
+      + `width: ${eWidth}px;`);
+    this.user.set(this.authService.user());
+    const planid = this.user().planId;
+    if (planid) {
+      this.readings.set([]);
+      this.planService.getReadingPlan(planid).subscribe(res => {
+        this.plan.set(new Plan(res.body as IPlan));
+        this.readings.set(this.getPlanReadings(this.entry()?.entryDate));
+      });
+    }
+    this.books = [];
+    this.bookService.getBookList().subscribe(res => {
+      const booklist = res.body as IBibleBook[];
+      booklist.forEach(bk => {
+        this.books.push(new BibleBook(bk));
+      });
+      this.books.sort((a,b) => a.compareTo(b));
+    });
+  }
+
+  showReading(book: string, chapter: number, start?: number, end?: number) {
+    const version = this.authService.user()!.translationId;
+    let url = `https://www.blueletterbible.org/${version}/${book}/${chapter}`;
+    if (start && end && start > 0 && end >= start)
+      url += `/${start}/${end}`;
+    window.open(url, 'readings');
+  } 
+
+  getPlanReadings(date?: Date): IReading[] {
+    const plan = this.plan();
+    if (plan && date) {
+      switch (plan.type.toLowerCase()) {
+        case "journal":
+          const imonth = date.getMonth();
+          const iday = date.getDate();
+          const readings: Reading[] = [];
+          plan.months.forEach(month => {
+            if (month.month === imonth) {
+              month.days.forEach(day => {
+                if (day.dayOfMonth == iday) {
+                  day.readings.forEach(read => {
+                    readings.push(new Reading(read));
+                  });
+                  readings.sort((a,b) => a.compareTo(b));
+                }
+              });
+            }
+          });
+          return readings;
+      }
+    }
+    return [];
+  }
+
+  readingText(reading: IReading): string {
+    let answer = '';
+    this.books.forEach(bk => {
+      if (bk.abbrev.toLowerCase() === reading.book.toLowerCase() 
+        || bk.title.toLowerCase() === reading.book.toLowerCase())
+        answer += bk.title;
+    });
+    answer += ` ${reading.chapter}`;
+    if (reading.verseStart && reading.verseEnd && reading.verseStart !== 0) {
+      answer += `:${reading.verseStart}-${reading.verseEnd}`
+    }
+    return answer;
+  }
+
+  readingLink(reading: IReading): string {
+    let answer = `https://www.blueletterbible.org/${this.user().translationId}`
+      + `/${reading.book}/${reading.chapter}`;
+    if (reading.verseEnd && reading.verseStart && reading.verseStart !== 0) {
+      answer += `/${reading.verseStart}/${reading.verseEnd}`;
+    }
+    return answer;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const change = changes['entry'];
+    const newentry = change.currentValue as ISoapEntry;
+    this.editorForm.controls.entrydate.setValue(new Date(newentry.entryDate));
+    this.editorForm.controls.title.setValue(newentry.title);
+    this.editorForm.controls.scripture.setValue(newentry.scripture);
+    this.editorForm.controls.observations.setValue(newentry.observations);
+    this.editorForm.controls.application.setValue(newentry.application);
+    this.editorForm.controls.prayer.setValue(newentry.prayer);
+    this.readings.set(this.getPlanReadings(newentry.entryDate));
+  }
+
+  onEntryChange(field: string) {
+    let value = 'empty';
+    switch (field.toLowerCase()) {
+      case "entrydate":
+        const newdate = this.editorForm.controls.entrydate.value;
+        if (newdate) {
+          value = new Date(newdate).toISOString();
+        }
+        break;
+      case "title":
+        if (this.editorForm.controls.title.value) {
+          value = this.editorForm.controls.title.value;
+        }
+        break;
+      case "scripture":
+        if (this.editorForm.controls.scripture.value) {
+          value = this.editorForm.controls.scripture.value;
+        }
+        break;
+      case "observations":
+        if (this.editorForm.controls.observations.value) {
+          value = this.editorForm.controls.observations.value;
+        }
+        break;
+      case "application":
+        if (this.editorForm.controls.application.value) {
+          value = this.editorForm.controls.application.value;
+        }
+        break;
+      case "prayer":
+        if (this.editorForm.controls.prayer.value) {
+          value = this.editorForm.controls.prayer.value;
+        }
+        break;
+    }
+    if (value !== 'empty') {
+      const change: UpdateEntryRequest = {
+        user: '',
+        entrydate: this.entry()!.entryDate.toISOString(),
+        field: field,
+        value: value
+      };
+      this.changed.emit(change);
+    }
+  }
 }

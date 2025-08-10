@@ -173,7 +173,7 @@ router.delete('/entry/:user/:date', async (req: Request, res: Response) => {
       } else {
         await entryCol.deleteOne(equery);
       }
-      return res.status(200).send('Deletion completed');
+      return res.status(200).json({"message" : 'Deletion completed'});
     } else {
       return res.status(404).send('Entry List for user and year not found');
     }

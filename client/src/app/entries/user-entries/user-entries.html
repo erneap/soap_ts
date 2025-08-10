@@ -1,6 +1,13 @@
 <mat-card [style]="cardStyle()">
   <div class="overall">
-    <app-entry-list class="entries" [style]="listStyle()"
-      [entries]="{ entries: entries() }"></app-entry-list>
+    <div class="entries" [style]="listStyle()">
+    <app-entry-list [entries]="{ entries: entries() }"
+      [select]="entry().entryDate.toISOString()"
+      (selected)="onSelect($event)"></app-entry-list>
+    </div>
+    <div class="editor" [style]="editorStyle()">
+      <app-entry [entry]="entry()" (changed)="onEntryChange($event)">
+      </app-entry>
+    </div>
   </div>
 </mat-card>

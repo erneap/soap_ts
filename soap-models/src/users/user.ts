@@ -13,7 +13,7 @@ export interface IUser {
   resetToken: string;
   resetTokenExpires: Date;
   administrator: boolean;
-  planId?: ObjectId;
+  planId?: string;
   translationId?: string;
   startDate?: Date;
 }
@@ -29,7 +29,7 @@ export class User implements IUser{
   public resetToken: string;
   public resetTokenExpires: Date;
   public administrator: boolean;
-  public planId?: ObjectId;
+  public planId?: string;
   public translationId: string;
   public startDate: Date;
 
