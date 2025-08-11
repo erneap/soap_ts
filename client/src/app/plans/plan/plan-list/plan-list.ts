@@ -1,6 +1,7 @@
-import { Component, input, OnInit, signal } from '@angular/core';
+import { Component, input, OnInit, output, signal } from '@angular/core';
 import { AppStateService } from '../../../services/app-state.service';
 import { MatIcon } from '@angular/material/icon';
+import { IPlan, Plan } from 'soap-models/dist/plans';
 
 @Component({
   selector: 'app-plan-list',
@@ -17,6 +18,8 @@ export class PlanList implements OnInit {
   labelStyle = signal('');
   listStyle = signal('');
   select = input<string>();
+  plans = input<IPlan[]>();
+  plan = output<string>()
 
   constructor(
     private appState: AppStateService
@@ -38,5 +41,17 @@ export class PlanList implements OnInit {
     this.listStyle.set(`width: ${lWidth}px;`
       + `min-height: ${lHeight - ((40 * ratio) + 2)}px;`
       + `max-height: ${lHeight - ((40 * ratio) + 2)}px;`);
+  }
+  
+  itemClasses(entry: IPlan): string {
+    if (entry.id && entry.id === this.select()) {
+      return 'item selected';
+    } else {
+      return 'item';
+    }
+  }
+
+  onSelect(id: string) {
+    this.plan.emit(id);
   }
 }

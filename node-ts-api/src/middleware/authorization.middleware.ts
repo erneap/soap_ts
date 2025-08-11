@@ -24,7 +24,6 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
       const key = (process.env.JWT_REFRESH_SECRET)
         ? process.env.JWT_REFRESH_SECRET as string : 'secret';
       const decoded = jwt.verify(refreshToken, key);
-      console.log(JSON.stringify(decoded));
       const id = (decoded as jwt.JwtPayload)._id;
       const aKey: string = (process.env.JWT_SECRET) ? process.env.JWT_SECRET : 'secret';
       const expires: string = (process.env.JWT_EXPIRES) ? process.env.JWT_EXPIRES : '1h';

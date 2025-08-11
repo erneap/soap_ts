@@ -1,14 +1,15 @@
-import { ChangeDetectionStrategy, Component, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
 import { AppStateService } from '../../../services/app-state.service';
 import { BooksService } from '../../../books/books-service';
-import { BibleBook, IBibleBook, IPlan } from 'soap-models/dist/plans';
+import { BibleBook, IBibleBook, IPlan, Plan } from 'soap-models/dist/plans';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-interface PlanNode {
+export interface PlanNode {
   id: string;
   name: string;
+  plantype: string;
   children?: PlanNode[]
 }
 
@@ -19,7 +20,7 @@ interface PlanNode {
   styleUrl: './plan-editor.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PlanEditor implements OnInit {
+export class PlanEditor implements OnInit, OnChanges {
   formStyle = signal('');
   private books: BibleBook[] = [];
   plan = input<IPlan>();
@@ -51,6 +52,8 @@ export class PlanEditor implements OnInit {
       });
       this.books.sort((a,b) => a.compareTo(b));
     });
+    
+    this.setPlanNodes(this.plan());
   }
 
   getBook(id: string): string {
@@ -63,61 +66,76 @@ export class PlanEditor implements OnInit {
     return answer;
   }
 
-  setPlanNodes() {
+  setPlanNodes(pn?: IPlan) {
     const months = [ 'January', 'Febuary', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December' ];
-    const plan = this.plan();
     this.planNodes = [];
-    if (plan) {
-      const parent: PlanNode = {
-        id: plan.id!,
-        name: plan.name,
-        children: []
-      }
-      plan.months.forEach(month => {
-        const child: PlanNode = {
-          id: month.month.toString(),
-          name: months[month.month - 1], 
+    if (pn) {
+      const plan = new Plan(pn);
+      if (plan) {
+        const parent: PlanNode = {
+          id: plan.id!,
+          name: plan.name,
+          plantype: 'plan',
           children: []
         }
-        month.days.forEach(day => {
-          const dayChild: PlanNode = {
-            id: day.dayOfMonth.toString(),
-            name: day.dayOfMonth.toString(),
+        plan.months.forEach(month => {
+          const child: PlanNode = {
+            id: month.month.toString(),
+            name: months[month.month - 1], 
+            plantype: 'planmonth',
             children: []
           }
-          day.readings.forEach(read => {
-            let label = `${this.getBook(read.book)} ${read.chapter}`;
-            if (read.verseStart && read.verseEnd && read.verseStart > 0) {
-              label += `:${read.verseStart}-${read.verseEnd}`;
-            }
-            const readNode: PlanNode = {
-              id: read.id.toString(),
-              name: label,
+          month.days.forEach(day => {
+            const dayChild: PlanNode = {
+              id: day.dayOfMonth.toString(),
+              name: day.dayOfMonth.toString(),
+              plantype: 'planday',
               children: []
-            };
-            dayChild.children!.push(readNode);
+            }
+            day.readings.forEach(read => {
+              let label = `${this.getBook(read.book)} ${read.chapter}`;
+              if (read.verseStart && read.verseEnd && read.verseStart > 0) {
+                label += `:${read.verseStart}-${read.verseEnd}`;
+              }
+              const readNode: PlanNode = {
+                id: read.id.toString(),
+                name: label,
+                plantype: 'reading',
+                children: []
+              };
+              dayChild.children!.push(readNode);
+            });
+            const addReadNode: PlanNode = {
+              id: 'newreading',
+              name: 'Add New Daily Reading',
+              plantype: "newreading"
+            }
+            dayChild.children!.push(addReadNode);
+            child.children?.push(dayChild);
           });
-          const addReadNode: PlanNode = {
-            id: 'newreading',
-            name: 'Add New Daily Reading',
-          }
-          dayChild.children!.push(addReadNode);
-          child.children?.push(dayChild);
+          const addDayNode: PlanNode = {
+            id: 'addday',
+            name: 'Add New Day',
+            plantype: 'newday'
+          };
+          child.children?.push(addDayNode);
+          parent.children?.push(child);
         });
-        const addDayNode: PlanNode = {
-          id: 'addday',
-          name: 'Add New Day'
-        };
-        child.children?.push(addDayNode);
-        parent.children?.push(child);
-      });
-      const addMonthNode: PlanNode = {
-        id: 'addmonth',
-        name: 'Add New Month/Plan Set'
+        const addMonthNode: PlanNode = {
+          id: 'addmonth',
+          name: 'Add New Month/Plan Set',
+          plantype: 'newmonth'
+        }
+        parent.children?.push(addMonthNode);
+        this.planNodes.push(parent);
       }
-      parent.children?.push(addMonthNode);
-      this.planNodes.push(parent);
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const change = changes['plan'];
+    const newplan = change.currentValue as IPlan;
+    this.setPlanNodes(newplan);
   }
 }

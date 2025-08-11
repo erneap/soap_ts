@@ -18,4 +18,9 @@ export class PlanService {
     const url = this.apiUrl + `/plan/${id}`;
     return this.http.get<IPlan>(url, { observe: 'response'});
   }
+
+  getPlans(): Observable<HttpResponse<IPlan[]>> {
+    const url = this.apiUrl + '/plans';
+    return this.http.get<IPlan[]>(url, { observe: 'response'});
+  }
 }

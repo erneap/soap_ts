@@ -47,7 +47,6 @@ router.get('/entries/dates/:user/:start/:end', async (req: Request, res: Respons
       if (iEntryList && iEntryList !== null) {
         const entryList = new SoapEntryList(iEntryList);
         const tlist = entryList.getEntries(startDate, endDate);
-        console.log(JSON.stringify(entryList));
         tlist.forEach(entry => {
           list.push(new SoapEntry(entry));
         });
@@ -113,7 +112,6 @@ router.post('/entry', async (req: Request, res: Response) => {
       const lquery = { _id: new ObjectId(entryList.id) };
       await entryCol.replaceOne(lquery, entryList);
     }
-    console.log(JSON.stringify(entry));
     return res.status(202).json(entry);
   } else {
     return res.status(404).send('No Soap Entry Collection');

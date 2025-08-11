@@ -3,7 +3,7 @@
     <div class="nobutton" [style]="buttonStyle()"></div>
     <div class="nobutton" [style]="buttonStyle()"></div>
     <div class="label" [style]="labelStyle()">
-      User's Entries
+      Available Plans
     </div>
     <div class="button" [style]="buttonStyle()"
       matTooltip="Add new plan">
@@ -19,6 +19,10 @@
     }
   </div>
   <div class="list" [style]="listStyle()">
-    
+    @for (plan of plans(); track plan.id) {
+      <div [class]="itemClasses(plan)" (click)="onSelect(plan.id!)">
+        {{ plan.name }}
+      </div>
+    }
   </div>
 </div>

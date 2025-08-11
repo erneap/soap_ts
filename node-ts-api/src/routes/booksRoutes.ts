@@ -124,7 +124,6 @@ router.put('/book', async (req: Request, res: Response) => {
           }
           break;
       }
-      console.log(JSON.stringify(ibook));
       await booksCol.replaceOne(query, ibook);
       return res.status(200).json(ibook);
     } else {

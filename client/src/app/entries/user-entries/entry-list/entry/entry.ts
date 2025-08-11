@@ -115,7 +115,7 @@ export class Entry implements OnInit, OnChanges {
     if (plan && date) {
       switch (plan.type.toLowerCase()) {
         case "journal":
-          const imonth = date.getMonth();
+          const imonth = date.getMonth() + 1;
           const iday = date.getDate();
           const readings: Reading[] = [];
           plan.months.forEach(month => {
