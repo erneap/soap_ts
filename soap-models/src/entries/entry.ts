@@ -5,6 +5,7 @@ export interface ISoapEntry {
     observations: string;
     application: string;
     prayer: string;
+    read?: boolean;
 }
 
 export class SoapEntry implements ISoapEntry {
@@ -14,6 +15,7 @@ export class SoapEntry implements ISoapEntry {
     public observations: string;
     public application: string;
     public prayer: string;
+    public read: boolean;
 
     constructor(other?: ISoapEntry) {
         this.entryDate = (other) ? new Date(other.entryDate) : new Date(0);
@@ -22,6 +24,7 @@ export class SoapEntry implements ISoapEntry {
         this.observations = (other) ? other.observations : '';
         this.application = (other) ? other.application : '';
         this.prayer = (other) ? other.prayer : '';
+        this.read = (other && other.read) ? other.read : false;
     }
 
     compareTo(other?: SoapEntry): number {

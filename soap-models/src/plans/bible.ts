@@ -13,12 +13,19 @@ export class BibleBook implements IBibleBook {
   public abbrev: string;
   public title: string;
   public chapters: number;
+  public complete: boolean[];
 
   constructor(book?: IBibleBook) {
     this.id = (book && book.id) ? book.id : 0;
     this.abbrev = (book) ? book.abbrev : '';
     this.title = (book) ? book.title : '';
     this.chapters = (book) ? book.chapters : 0;
+    this.complete = [];
+    if (this.chapters > 0) {
+      for (let c=0; c >= this.chapters; c++) {
+        this.complete.push(false);
+      }
+    }
   }
 
   compareTo(other?: BibleBook): number {

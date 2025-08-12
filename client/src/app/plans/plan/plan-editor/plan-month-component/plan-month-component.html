@@ -1,0 +1,15 @@
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    @if (plantype()!.toLowerCase() === 'journal') {
+      <mat-panel-title>{{months[month()!.month - 1]}}</mat-panel-title>
+    } @else {
+      <mat-panel-title>Full Plan List</mat-panel-title>
+    }
+  </mat-expansion-panel-header> 
+  <mat-accordion>
+    @for (day of month()!.days; track day.dayOfMonth) {
+      <app-plan-day-component [day]="day" [books]="books()">
+      </app-plan-day-component>
+    }
+  </mat-accordion>
+</mat-expansion-panel>

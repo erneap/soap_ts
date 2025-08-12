@@ -24,7 +24,6 @@ router.get('/users', auth, async (req: Request, res: Response) => {
     list.sort((a,b) => a.compareTo(b));
     return res.status(200).json(list);
   } else {
-    console.log("No User Collection");
     return res.status(404).send("Unable to find collection");
   }
 });
@@ -69,7 +68,6 @@ router.post('/user/new', async (req: Request, res: Response) => {
       return res.status(500).send("Failed to create new user");
     }
   } catch (error) {
-    console.log(error);
     return res.status(400).send(error)
   }
 });
@@ -93,7 +91,6 @@ router.post('/user/find', auth, async (req: Request, res: Response) => {
     } else if (typeof error === "string") {
       return res.status(404).send(error);
     } else {
-      console.log(error);
       return res.status(500).send(error);
     }
   }

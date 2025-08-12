@@ -5,6 +5,7 @@ export interface ISoapEntry {
     observations: string;
     application: string;
     prayer: string;
+    read?: boolean;
 }
 export declare class SoapEntry implements ISoapEntry {
     entryDate: Date;
@@ -13,6 +14,7 @@ export declare class SoapEntry implements ISoapEntry {
     observations: string;
     application: string;
     prayer: string;
+    read: boolean;
     constructor(other?: ISoapEntry);
     compareTo(other?: SoapEntry): number;
     useEntry(date: Date): boolean;

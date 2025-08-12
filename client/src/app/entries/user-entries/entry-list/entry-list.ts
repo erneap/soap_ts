@@ -59,7 +59,11 @@ export class EntryList implements OnInit, OnChanges {
   getLabel(entry: ISoapEntry): string {
     const months = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
       'Sep', 'Oct', 'Nov', 'Dec' ];
-    return `${months[entry.entryDate.getMonth()]} ${entry.entryDate.getDate()}, `
+    let bNew = '';
+    if (entry && !entry.read) {
+      bNew = ' * '
+    }
+    return `${bNew}${months[entry.entryDate.getMonth()]} ${entry.entryDate.getDate()}, `
       + `${entry.entryDate.getFullYear()} - ${entry.title}`;
   }
 

@@ -23,6 +23,9 @@
           >{{ readingText(reading) }}</button>
         }
       </div>
+      <mat-checkbox (change)="onEntryChange('read')" formControlName="read">
+        Shared
+      </mat-checkbox>
     </div>
     <div class="center full">
       <mat-form-field class="full">

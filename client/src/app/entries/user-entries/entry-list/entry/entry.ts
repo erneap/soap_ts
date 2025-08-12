@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckbox } from '@angular/material/checkbox';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { UpdateEntryRequest } from 'soap-models/dist/entries';
 
@@ -25,7 +26,8 @@ import { UpdateEntryRequest } from 'soap-models/dist/entries';
     MatInputModule,
     MatDatepickerModule,
     MatIconModule,
-    MatError
+    MatError,
+    MatCheckbox
 ],
   templateUrl: './entry.html',
   styleUrl: './entry.scss',
@@ -65,6 +67,9 @@ export class Entry implements OnInit, OnChanges {
     prayer: new FormControl(this.entry()?.title, {
       nonNullable: true,
       validators: Validators.required
+    }),
+    read: new FormControl(this.entry()?.read, {
+      nonNullable: true
     })
   });
 
@@ -162,13 +167,15 @@ export class Entry implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const change = changes['entry'];
     const newentry = change.currentValue as ISoapEntry;
-    this.editorForm.controls.entrydate.setValue(new Date(newentry.entryDate));
-    this.editorForm.controls.title.setValue(newentry.title);
-    this.editorForm.controls.scripture.setValue(newentry.scripture);
-    this.editorForm.controls.observations.setValue(newentry.observations);
-    this.editorForm.controls.application.setValue(newentry.application);
-    this.editorForm.controls.prayer.setValue(newentry.prayer);
-    this.readings.set(this.getPlanReadings(newentry.entryDate));
+    const entry = new SoapEntry(newentry);
+    this.editorForm.controls.entrydate.setValue(new Date(entry.entryDate));
+    this.editorForm.controls.title.setValue(entry.title);
+    this.editorForm.controls.scripture.setValue(entry.scripture);
+    this.editorForm.controls.observations.setValue(entry.observations);
+    this.editorForm.controls.application.setValue(entry.application);
+    this.editorForm.controls.prayer.setValue(entry.prayer);
+    this.editorForm.controls.read.setValue(entry.read);
+    this.readings.set(this.getPlanReadings(entry.entryDate));
   }
 
   onEntryChange(field: string) {
@@ -203,6 +210,13 @@ export class Entry implements OnInit, OnChanges {
       case "prayer":
         if (this.editorForm.controls.prayer.value) {
           value = this.editorForm.controls.prayer.value;
+        }
+        break;
+      case "read":
+        if (this.editorForm.controls.read.value) {
+          value = `${this.editorForm.controls.read.value}`;
+        } else {
+          value = 'false';
         }
         break;
     }

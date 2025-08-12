@@ -8,6 +8,7 @@ class SoapEntry {
     observations;
     application;
     prayer;
+    read;
     constructor(other) {
         this.entryDate = (other) ? new Date(other.entryDate) : new Date(0);
         this.title = (other) ? other.title : '';
@@ -15,6 +16,7 @@ class SoapEntry {
         this.observations = (other) ? other.observations : '';
         this.application = (other) ? other.application : '';
         this.prayer = (other) ? other.prayer : '';
+        this.read = (other && other.read) ? other.read : false;
     }
     compareTo(other) {
         if (other) {

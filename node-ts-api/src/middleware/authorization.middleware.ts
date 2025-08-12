@@ -15,7 +15,6 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
     (req as any).user = (decoded as jwt.JwtPayload)._id;
     next();
   } catch (error) {
-    console.log(error);
     if (!refreshToken) {
       return res.status(401).send('Access Denied.  No refresh token provided.');
     }
@@ -29,18 +28,8 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
       const expires: string = (process.env.JWT_EXPIRES) ? process.env.JWT_EXPIRES : '1h';
       const accessToken = jwt.sign({ _id: id}, aKey, { expiresIn: (expires as any)});
       res
-        .cookie('refreshToken', refreshToken, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          maxAge: 24 * 60 * 60 * 1000,
-          sameSite: 'strict'
-        })
-        .cookie('authorization', accessToken, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          maxAge: 60 * 60 * 1000,
-          sameSite: 'strict'
-        });
+        .setHeader('authorization', accessToken);
+        
       next()
     } catch (error) {
       return res.status(400).send('Invalid Token')

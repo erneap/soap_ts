@@ -57,9 +57,7 @@ export class SoapEntryList implements ISoapEntryList {
         let found = false;
         for (let i=0; i < this.entries.length && !found; i++) {
             const entry = this.entries[i];
-            if (tDate.getUTCFullYear() === entry.entryDate.getUTCFullYear()
-                && tDate.getUTCMonth() === entry.entryDate.getUTCMonth()
-                && tDate.getUTCDate() === entry.entryDate.getUTCDate()) {
+            if (entry.useEntry(date)) {
                 found = true;
                 switch (field.toLowerCase()) {
                     case "date":
@@ -80,6 +78,9 @@ export class SoapEntryList implements ISoapEntryList {
                         break;
                     case "prayer":
                         entry.prayer = value;
+                        break;
+                    case "read":
+                        entry.read = (value.toLowerCase() === 'true');
                         break;
                 }
                 this.entries[i] = entry;
