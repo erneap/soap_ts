@@ -26,3 +26,33 @@ div.icon {
 mat-icon {
   font-size: 1rem;
 }
+
+div.days {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+div.dayeditor {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 1px;
+}
+
+div.editorHeader {
+  width: 100%;
+  padding: 3px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  background-color: var(--electric-violet);
+  color: white;
+  font-weight: bold;
+}

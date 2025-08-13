@@ -1,10 +1,14 @@
 import { Component, input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatIcon } from '@angular/material/icon';
 import { BibleBook, IReading, Reading } from 'soap-models/dist/plans';
 
 @Component({
   selector: 'app-plan-reading-component',
-  imports: [ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    MatIcon
+  ],
   templateUrl: './plan-reading-component.html',
   styleUrl: './plan-reading-component.scss'
 })

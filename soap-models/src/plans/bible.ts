@@ -6,6 +6,8 @@ export interface IBibleBook {
   abbrev: string;
   title: string;
   chapters: number;
+  testament?: string;
+  apocryphal?: boolean;
 }
 
 export class BibleBook implements IBibleBook {
@@ -13,6 +15,8 @@ export class BibleBook implements IBibleBook {
   public abbrev: string;
   public title: string;
   public chapters: number;
+  public testament: string;
+  public apocryphal: boolean;
   public complete: boolean[];
 
   constructor(book?: IBibleBook) {
@@ -20,6 +24,8 @@ export class BibleBook implements IBibleBook {
     this.abbrev = (book) ? book.abbrev : '';
     this.title = (book) ? book.title : '';
     this.chapters = (book) ? book.chapters : 0;
+    this.testament = (book && book.testament) ? book.testament : 'old';
+    this.apocryphal = (book && book.apocryphal) ? book.apocryphal : false;
     this.complete = [];
     if (this.chapters > 0) {
       for (let c=0; c >= this.chapters; c++) {

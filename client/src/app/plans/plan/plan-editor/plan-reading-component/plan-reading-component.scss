@@ -12,5 +12,17 @@ div.id {
 }
 
 input.number {
-  width: 2rem;
+  width: 3rem;
+}
+
+div.icon {
+  display: flex;
+  flex-direction: column;
+  width: 1.2rem;
+  height: 1.2rem;
+  align-items: center;
+  justify-content: center;
+}
+mat-icon {
+  font-size: 1rem;
 }

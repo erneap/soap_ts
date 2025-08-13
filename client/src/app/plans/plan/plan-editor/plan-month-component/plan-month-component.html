@@ -14,12 +14,30 @@
     } @else {
       <mat-panel-title>Full Plan List</mat-panel-title>
     }
-  </mat-expansion-panel-header> 
-  <mat-accordion>
-    @for (day of month()!.days; track `${key()!}-${day.dayOfMonth}`) {
-      <app-plan-day-component [day]="day" [books]="books()" 
-        [key]="key()! + '-' + day.dayOfMonth">
-      </app-plan-day-component>
+  </mat-expansion-panel-header>
+  <div class="days">
+    @for (day of month()!.days; track day.dayOfMonth) {
+      <button mat-button (click)="onSelectDay(day.dayOfMonth)">
+        {{ day.dayOfMonth }}
+      </button>
     }
-  </mat-accordion>
+  </div>
+  @if (showEditor()) {
+    <div class="dayeditor">
+      <div class="editorHeader">
+        <div class="day">{{ day()!.dayOfMonth }}</div>
+        <span class="flex-spacer"></span>
+        <div class="icon">
+          <mat-icon>add_circle</mat-icon>
+        </div>
+        <div class="icon">
+          <mat-icon>more_vert</mat-icon>
+        </div>
+      </div>
+      @for (reading of day()!.readings; track reading.id) {
+        <app-plan-reading-component [reading]="reading" [books]="books()!">
+        </app-plan-reading-component>
+      }
+    </div>
+  }
 </mat-expansion-panel>
