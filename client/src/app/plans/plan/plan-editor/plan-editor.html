@@ -3,7 +3,7 @@
   <mat-accordion style="width: 99%;">
     @for (month of plan()!.months; track month.month) {
       <app-plan-month-component [plantype]="plan()!.type!" [month]="month" 
-        [books]="books">
+        [books]="books" [key]="plan()!.id + '-' + month.month">
       </app-plan-month-component>
     }
   </mat-accordion>

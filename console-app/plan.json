@@ -388,8 +388,8 @@
           "readings": [
             { "id": 1, "book": "Lev", "chapter": 18 },
             { "id": 2, "book": "Lev", "chapter": 19 },
-            { "id": 2, "book": "Psa", "chapter": 13 },
-            { "id": 3, "book": "Act", "chapter": 19 }
+            { "id": 3, "book": "Psa", "chapter": 13 },
+            { "id": 4, "book": "Act", "chapter": 19 }
           ]
         },
         {
@@ -842,8 +842,8 @@
           "readings": [
             { "id": 1, "book": "Jdg", "chapter": 17 },
             { "id": 2, "book": "Jdg", "chapter": 18 },
-            { "id": 2, "book": "Psa", "chapter": 89 },
-            { "id": 3, "book": "2Co", "chapter": 3 }
+            { "id": 3, "book": "Psa", "chapter": 89 },
+            { "id": 4, "book": "2Co", "chapter": 3 }
           ]
         },
         {
@@ -871,8 +871,8 @@
             { "id": 1, "book": "Rth", "chapter": 3 },
             { "id": 2, "book": "Rth", "chapter": 4 },
             { "id": 3, "book": "Psa", "chapter": 64 },
-            { "id": 3, "book": "Psa", "chapter": 65 },
-            { "id": 4, "book": "2Co", "chapter": 6 }
+            { "id": 4, "book": "Psa", "chapter": 65 },
+            { "id": 5, "book": "2Co", "chapter": 6 }
           ]
         },
         {
@@ -1086,7 +1086,7 @@
             { "id": 1, "book": "2Sa", "chapter": 6 },
             { "id": 2, "book": "1Ch", "chapter": 13 },
             { "id": 3, "book": "Psa", "chapter": 68 },
-            { "id": 3, "book": "Mat", "chapter": 17 }
+            { "id": 4, "book": "Mat", "chapter": 17 }
           ]
         }
       ]
@@ -1127,7 +1127,7 @@
             { "id": 2, "book": "2Sa", "chapter": 9 },
             { "id": 3, "book": "1Ch", "chapter": 18 },
             { "id": 4, "book": "1Ch", "chapter": 19 },
-            { "id": 3, "book": "Mat", "chapter": 21 }
+            { "id": 5, "book": "Mat", "chapter": 21 }
           ]
         },
         {
@@ -2060,8 +2060,8 @@
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 10 },
             { "id": 2, "book": "Jer", "chapter": 11 },
-            { "id": 2, "book": "Jer", "chapter": 12 },
-            { "id": 3, "book": "Jhn", "chapter": 14 }
+            { "id": 3, "book": "Jer", "chapter": 12 },
+            { "id": 4, "book": "Jhn", "chapter": 14 }
           ]
         },
         {

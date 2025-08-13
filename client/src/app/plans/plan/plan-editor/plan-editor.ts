@@ -15,7 +15,7 @@ import { PlanMonthComponent } from './plan-month-component/plan-month-component'
 export class PlanEditor implements OnInit, OnChanges {
   formStyle = signal('');
   books: BibleBook[] = [];
-  plan = input<IPlan>();
+  plan = input<Plan>();
 
   constructor(
     private appState: AppStateService,

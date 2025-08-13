@@ -17,7 +17,7 @@
       <div style="font-weight: bold;">Today's Readings:</div>
       <div class="flex-spacer"></div>
       <div>
-        @for (reading of readings(); track reading) {
+        @for (reading of readings(); track reading.id) {
           <button matButton 
           (click)="showReading(reading.book, reading.chapter, reading.verseStart, reading.verseEnd)"
           >{{ readingText(reading) }}</button>
