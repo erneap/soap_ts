@@ -24,6 +24,7 @@ export class PlanReadingComponent implements OnInit, OnChanges {
   readings = input<number>();
   change = output<string>();
   readonly dialog = inject(MatDialog);
+  showActions: boolean = false;
   readingForm = new FormGroup({
     book: new FormControl('', {
       nonNullable: true
@@ -58,23 +59,7 @@ export class PlanReadingComponent implements OnInit, OnChanges {
   }
 
   onMenu() {
-    let width = 10;
-    if (this.reading()!.id > 1) {
-      width += 10;
-    }
-    if (this.reading()!.id < this.readings()!) {
-      width += 10;
-    }
-    const dialogRef = this.dialog.open(PlanMenuDialog, {
-      data: { key: this.key(),
-        plantype: 'reading', position: this.reading()!.id,
-        length: this.readings() },
-        height: '30px', width: `${width}px;`
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    })
+    this.showActions = !this.showActions;
   }
 
   onDelete(): void {
@@ -87,6 +72,16 @@ export class PlanReadingComponent implements OnInit, OnChanges {
         console.log(this.key());
         this.change.emit(`${this.key()}-delete`);
       }
-    })
+    });
+    this.onMenu();
+  }
+
+  onMove(direction: string) {
+    console.log(direction);
+    this.onMenu()
+  }
+
+  onMenuClear() {
+    this.showActions = false;
   }
 }

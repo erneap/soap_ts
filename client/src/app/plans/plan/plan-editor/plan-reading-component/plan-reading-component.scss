@@ -35,3 +35,11 @@ div.icon {
 mat-icon {
   font-size: 1rem;
 }
+
+div.menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 1px;
+}
