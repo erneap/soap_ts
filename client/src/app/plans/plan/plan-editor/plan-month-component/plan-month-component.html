@@ -34,10 +34,15 @@
           <mat-icon>more_vert</mat-icon>
         </div>
       </div>
-      @for (reading of day()!.readings; track reading.id) {
-        <app-plan-reading-component [reading]="reading" [books]="books()!">
-        </app-plan-reading-component>
-      }
+      <div class="editor">
+        @for (reading of day()!.readings; track reading.id) {
+          <app-plan-reading-component [reading]="reading" [books]="books()!"
+            [key]="key()! + '-' + day().dayOfMonth + '-' + reading.id" 
+            [readings]="day().readings.length"
+            (change)="onChange($event)" style="width: 100%;">
+          </app-plan-reading-component>
+        }
+      </div>
     </div>
   }
 </mat-expansion-panel>

@@ -22,8 +22,8 @@ export class PlanComponent implements OnInit {
   cardStyle = signal('');
   listStyle = signal('');
   editorStyle = signal('');
-  plan = signal<IPlan>(new Plan());
-  plans = signal<IPlan[]>([]);
+  plan = signal<Plan>(new Plan());
+  plans = signal<Plan[]>([]);
 
   constructor(
     private viewState: AppStateService,
@@ -70,5 +70,9 @@ export class PlanComponent implements OnInit {
         }
       });
     }
+  }
+
+  onChange(action: string) {
+    console.log(action);
   }
 }

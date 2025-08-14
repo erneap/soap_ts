@@ -1,17 +1,21 @@
-<form class="overall" [formGroup]="readingForm">
-  <div class="id">{{reading()!.id}}.</div>
-  <select formControlName="book">
-    @for (book of books()!; track book.abbrev) {
-      <option [value]="book.abbrev">{{book.title}}</option>
-    }
-  </select>
-  <input formControlName="chapter" type="number" class="number">
-  <div class="id">Optional Verses ( Start:</div>
-  <input formControlName="start" type="number" class="number">
-  <div class="id"> - </div>
-  <input formControlName="end" type="number" class="number">
-  <div class="id"> )</div>
-  <div class="icon">
-    <mat-icon>cancel</mat-icon>
+<div class="overall">
+  <form class="overall" [formGroup]="readingForm">
+    <div class="id">{{reading()!.id}}.</div>
+    <select formControlName="book">
+      @for (book of books()!; track book.abbrev) {
+        <option [value]="book.abbrev">{{book.title}}</option>
+      }
+    </select>
+    <input formControlName="chapter" type="number" class="number">
+    <div class="id">Optional Verses ( Start:</div>
+    <input formControlName="start" type="number" class="number">
+    <div class="id"> - </div>
+    <input formControlName="end" type="number" class="number">
+    <div class="id"> )</div>
+  </form>
+  <span class="flex-spacer"></span>
+  <div class="icon" matTooltip="action for this reading" 
+    (click)="onMenu()">
+    <mat-icon>more_vert</mat-icon>
   </div>
-</form>
+</div>

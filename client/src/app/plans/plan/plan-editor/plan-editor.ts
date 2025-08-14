@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, OnChanges, OnInit, output, signal, SimpleChanges } from '@angular/core';
 import { AppStateService } from '../../../services/app-state.service';
 import { BooksService } from '../../../books/books-service';
 import { BibleBook, IBibleBook, IPlan, Plan } from 'soap-models/dist/plans';
@@ -16,6 +16,7 @@ export class PlanEditor implements OnInit, OnChanges {
   formStyle = signal('');
   books: BibleBook[] = [];
   plan = input<Plan>();
+  change = output<string>();
 
   constructor(
     private appState: AppStateService,
@@ -54,5 +55,10 @@ export class PlanEditor implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const change = changes['plan'];
     const newplan = change.currentValue as IPlan;
+  }
+
+  onChange(action: string) {
+    console.log(`Editor -- ${action}`);
+    this.change.emit(action);
   }
 }

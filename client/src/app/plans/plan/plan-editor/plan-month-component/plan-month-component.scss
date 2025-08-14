@@ -44,6 +44,15 @@ div.dayeditor {
   justify-content: start;
   gap: 1px;
 }
+  
+div.editor {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 1px;
+}
 
 div.editorHeader {
   width: 100%;

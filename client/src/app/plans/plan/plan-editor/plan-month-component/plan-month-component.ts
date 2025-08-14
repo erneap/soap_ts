@@ -1,4 +1,4 @@
-import { Component, input, OnChanges, signal, SimpleChanges } from '@angular/core';
+import { Component, input, OnChanges, output, signal, SimpleChanges } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BibleBook, IPlanDay, PlanDay, PlanMonth } from 'soap-models/dist/plans';
 import { MatIcon } from '@angular/material/icon';
@@ -24,6 +24,7 @@ export class PlanMonthComponent implements OnChanges {
   books = input<BibleBook[]>();
   key = input<string>();
   day = signal<PlanDay>(new PlanDay())
+  change = output<string>();
   months = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July',
     'August', 'September', 'October', 'November', 'December'];
 
@@ -42,5 +43,10 @@ export class PlanMonthComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const change = changes['day'];
 
+  }
+
+  onChange(action: string) {
+    console.log(action);
+    this.change.emit(action);
   }
 }
