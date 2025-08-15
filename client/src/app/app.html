@@ -3,10 +3,10 @@
     <mat-toolbar-row>
       <span class="title">{{ settings.title }}</span>
       <span class="flex-spacer"></span>
-      <button mat-button (click)="onMenuChoice('entries')">Entries</button>
-      <button mat-button (click)="onMenuChoice('plans')">Plans</button>
-      <button mat-button>Bibles</button>
       @if (authService.isLoggedIn()) {
+        <button mat-button (click)="onMenuChoice('entries')">Entries</button>
+        <button mat-button (click)="onMenuChoice('plans')">Plans</button>
+        <button mat-button>Bibles</button>
         <button mat-icon-button class="toolbar-icon" (click)="logout()">
           <mat-icon>logout</mat-icon>
         </button>

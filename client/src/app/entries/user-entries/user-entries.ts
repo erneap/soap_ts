@@ -74,6 +74,8 @@ export class UserEntries implements OnInit {
   onSelect(id: string) {
     if (id.toLowerCase() === 'new') {
       let newdate = new Date();
+      newdate = new Date(Date.UTC(newdate.getFullYear(), newdate.getMonth(), 
+        newdate.getDate()));
       let found = false;
       this.entries()!.forEach(entry => {
         if (entry.useEntry(newdate)) {

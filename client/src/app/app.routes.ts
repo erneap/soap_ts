@@ -3,9 +3,15 @@ import { Login } from './user/login/login';
 import { UserList } from './user/user-list/user-list';
 import { UserEntries } from './entries/user-entries/user-entries';
 import { PlanComponent } from './plans/plan/plan';
+import { CreateUserComponent } from './user/create-user/create-user';
+import { ForgotPasswordComponent } from './user/forgot-password/forgot-password';
+import { ProfileComponent } from './user/profile/profile';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
+  { path: 'createuser', component: CreateUserComponent },
+  { path: 'forgot', component: ForgotPasswordComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'users', component: UserList },
   { path: 'entries', component: UserEntries },
   { path: 'plans', component: PlanComponent },

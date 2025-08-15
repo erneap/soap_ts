@@ -56,7 +56,10 @@ div.item {
   align-items: center;
   justify-content: center;
   width: 100%;
+  text-align: center;
+  flex-wrap: wrap;
   cursor: pointer;
+  border-bottom: solid 1px black;
 }
 
 div.item:hover {

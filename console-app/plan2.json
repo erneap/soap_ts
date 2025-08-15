@@ -1,11 +1,1639 @@
 {
-  "name": "Daily Journaling",
+  "name": "Bible in 365 days",
+  "type": "circular",
   "months": [
     {
-      "month": 7,
+      "month": 1,
       "days": [
         {
           "dayOfMonth": 1,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 1 },
+            { "id": 2, "book": "Gen",  "chapter": 2 },
+            { "id": 3, "book": "Luk", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 2,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 3 },
+            { "id": 2, "book": "Gen", "chapter": 4 },
+            { "id": 3, "book": "Gen", "chapter": 5 },
+            { "id": 4, "book": "Luk", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 3,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 6 },
+            { "id": 2, "book": "Gen", "chapter": 7 },
+            { "id": 3, "book": "Gen", "chapter": 8 },
+            { "id": 4, "book": "Luk", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 4,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 9 },
+            { "id": 2, "book": "Gen", "chapter": 10 },
+            { "id": 3, "book": "Gen", "chapter": 11 },
+            { "id": 4, "book": "Luk", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 5,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 12 },
+            { "id": 2, "book": "Gen", "chapter": 13 },
+            { "id": 3, "book": "Gen", "chapter": 14 },
+            { "id": 4, "book": "Luk", "chapter": 5 }
+          ]
+        },
+        {
+          "dayOfMonth": 6,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 15 },
+            { "id": 2, "book": "Gen", "chapter": 16 },
+            { "id": 3, "book": "Gen", "chapter": 17 },
+            { "id": 4, "book": "Luk", "chapter": 6 }
+          ]
+        },
+        {
+          "dayOfMonth": 7,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 18 },
+            { "id": 2, "book": "Gen", "chapter": 19 },
+            { "id": 3, "book": "Psa", "chapter": 3 },
+            { "id": 4, "book": "Luk", "chapter": 7 }
+          ]
+        },
+        {
+          "dayOfMonth": 8,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 20 },
+            { "id": 2, "book": "Gen", "chapter": 21 },
+            { "id": 3, "book": "Gen", "chapter": 22 },
+            { "id": 4, "book": "Luk", "chapter": 8 }
+          ]
+        },
+        {
+          "dayOfMonth": 9,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 23 },
+            { "id": 2, "book": "Gen", "chapter": 24 },
+            { "id": 3, "book": "Luk", "chapter": 9 }
+          ]
+        },
+        {
+          "dayOfMonth": 10,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 25 },
+            { "id": 2, "book": "Gen", "chapter": 26 },
+            { "id": 3, "book": "Psa", "chapter": 6 },
+            { "id": 4, "book": "Luk", "chapter": 10 }
+          ]
+        },
+        {
+          "dayOfMonth": 11,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 27 },
+            { "id": 2, "book": "Gen", "chapter": 28 },
+            { "id": 3, "book": "Psa", "chapter": 54 },
+            { "id": 4, "book": "Luk", "chapter": 11 }
+          ]
+        },
+        {
+          "dayOfMonth": 12,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 29 },
+            { "id": 2, "book": "Gen", "chapter": 30 },
+            { "id": 3, "book": "Luk", "chapter": 12 }
+          ]
+        },
+        {
+          "dayOfMonth": 13,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 31 },
+            { "id": 2, "book": "Gen", "chapter": 32 },
+            { "id": 3, "book": "Gen", "chapter": 33 },
+            { "id": 4, "book": "Luk", "chapter": 13 }
+          ]
+        },
+        {
+          "dayOfMonth": 14,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 34 },
+            { "id": 2, "book": "Gen", "chapter": 35 },
+            { "id": 3, "book": "Gen", "chapter": 36 },
+            { "id": 4, "book": "Luk", "chapter": 14 }
+          ]
+        },
+        {
+          "dayOfMonth": 15,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 37 },
+            { "id": 2, "book": "Gen", "chapter": 38 },
+            { "id": 3, "book": "Psa", "chapter": 7 },
+            { "id": 4, "book": "Luk", "chapter": 15 }
+          ]
+        },
+        {
+          "dayOfMonth": 16,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 39 },
+            { "id": 2, "book": "Gen", "chapter": 40 },
+            { "id": 3, "book": "Gen", "chapter": 41 },
+            { "id": 4, "book": "Luk", "chapter": 16 }
+          ]
+        },
+        {
+          "dayOfMonth": 17,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 42 },
+            { "id": 2, "book": "Gen", "chapter": 43 },
+            { "id": 3, "book": "Psa", "chapter": 5 },
+            { "id": 4, "book": "Luk", "chapter": 17 }
+          ]
+        },
+        {
+          "dayOfMonth": 18,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 44 },
+            { "id": 2, "book": "Gen", "chapter": 45 },
+            { "id": 3, "book": "Gen", "chapter": 46 },
+            { "id": 4, "book": "Luk", "chapter": 18 }
+          ]
+        },
+        {
+          "dayOfMonth": 19,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 47 },
+            { "id": 2, "book": "Gen", "chapter": 48 },
+            { "id": 3, "book": "Psa", "chapter": 510 },
+            { "id": 4, "book": "Luk", "chapter": 19 }
+          ]
+        },
+        {
+          "dayOfMonth": 20,
+          "readings": [
+            { "id": 1, "book": "Gen", "chapter": 49 },
+            { "id": 2, "book": "Gen", "chapter": 50 },
+            { "id": 3, "book": "Psa", "chapter": 8 },
+            { "id": 4, "book": "Luk", "chapter": 20 }
+          ]
+        },
+        {
+          "dayOfMonth": 21,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 1 },
+            { "id": 2, "book": "Exo", "chapter": 2 },
+            { "id": 3, "book": "Psa", "chapter": 88 },
+            { "id": 4, "book": "Luk", "chapter": 21 }
+          ]
+        },
+        {
+          "dayOfMonth": 22,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 3 },
+            { "id": 2, "book": "Exo", "chapter": 4 },
+            { "id": 3, "book": "Exo", "chapter": 5 },
+            { "id": 4, "book": "Luk", "chapter": 22 }
+          ]
+        },
+        {
+          "dayOfMonth": 23,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 6 },
+            { "id": 2, "book": "Exo", "chapter": 7 },
+            { "id": 3, "book": "Exo", "chapter": 8 },
+            { "id": 4, "book": "Luk", "chapter": 23 }
+          ]
+        },
+        {
+          "dayOfMonth": 24,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 9 },
+            { "id": 2, "book": "Exo", "chapter": 10 },
+            { "id": 3, "book": "Exo", "chapter": 11 },
+            { "id": 4, "book": "Luk", "chapter": 24 }
+          ]
+        },
+        {
+          "dayOfMonth": 25,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 12 },
+            { "id": 2, "book": "Exo", "chapter": 13 },
+            { "id": 3, "book": "Psa", "chapter": 21 },
+            { "id": 4, "book": "Act", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 26,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 14 },
+            { "id": 2, "book": "Exo", "chapter": 15 },
+            { "id": 3, "book": "Exo", "chapter": 16 },
+            { "id": 4, "book": "Act", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 27,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 17 },
+            { "id": 2, "book": "Exo", "chapter": 18 },
+            { "id": 3, "book": "Exo", "chapter": 19 },
+            { "id": 4, "book": "Exo", "chapter": 20 },
+            { "id": 5, "book": "Act", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 28,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 21 },
+            { "id": 2, "book": "Exo", "chapter": 22 },
+            { "id": 3, "book": "Psa", "chapter": 12 },
+            { "id": 4, "book": "Act", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 29,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 23 },
+            { "id": 2, "book": "Exo", "chapter": 24 },
+            { "id": 3, "book": "Psa", "chapter": 14 },
+            { "id": 4, "book": "Act", "chapter": 5 }
+          ]
+        },
+        {
+          "dayOfMonth": 30,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 25 },
+            { "id": 2, "book": "Exo", "chapter": 26 },
+            { "id": 3, "book": "Exo", "chapter": 27 },
+            { "id": 4, "book": "Act", "chapter": 6 }
+          ]
+        },
+        {
+          "dayOfMonth": 31,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 28 },
+            { "id": 2, "book": "Exo", "chapter": 29 },
+            { "id": 3, "book": "Act", "chapter": 7 }
+          ]
+        },
+        {
+          "dayOfMonth": 32,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 30 },
+            { "id": 2, "book": "Exo",  "chapter":31 },
+            { "id": 3, "book": "Exo",  "chapter":32 },
+            { "id": 4, "book": "Act", "chapter": 8 }
+          ]
+        },
+        {
+          "dayOfMonth": 33,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 33 },
+            { "id": 2, "book": "Exo", "chapter": 34 },
+            { "id": 3, "book": "Psa", "chapter": 16 },
+            { "id": 4, "book": "Act", "chapter": 9 }
+          ]
+        },
+        {
+          "dayOfMonth": 34,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 35 },
+            { "id": 2, "book": "Exo", "chapter": 36 },
+            { "id": 3, "book": "Act", "chapter": 10 }
+          ]
+        },
+        {
+          "dayOfMonth": 35,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 37 },
+            { "id": 2, "book": "Exo", "chapter": 38 },
+            { "id": 3, "book": "Psa", "chapter": 19 },
+            { "id": 4, "book": "Luk", "chapter": 11 }
+          ]
+        },
+        {
+          "dayOfMonth": 36,
+          "readings": [
+            { "id": 1, "book": "Exo", "chapter": 39 },
+            { "id": 2, "book": "Exo", "chapter": 40 },
+            { "id": 3, "book": "Psa", "chapter": 15 },
+            { "id": 4, "book": "Act", "chapter": 12 }
+          ]
+        },
+        {
+          "dayOfMonth": 37,
+          "readings": [
+            { "id": 1, "book": "Lev", "chapter": 1 },
+            { "id": 2, "book": "Lev", "chapter": 2 },
+            { "id": 3, "book": "Lev", "chapter": 3 },
+            { "id": 4, "book": "Act", "chapter": 13 }
+          ]
+        },
+        {
+          "dayOfMonth": 38,
+          "readings": [
+            { "id": 1, "book": "Lev", "chapter": 4 },
+            { "id": 2, "book": "Lev", "chapter": 5 },
+            { "id": 3, "book": "Lev", "chapter": 6},
+            { "id": 4, "book": "Act", "chapter": 14 }
+          ]
+        },
+        {
+          "dayOfMonth": 39,
+          "readings": [
+            { "id": 1, "book": "Lev", "chapter": 7 },
+            { "id": 2, "book": "Lev", "chapter": 8 },
+            { "id": 3, "book": "Lev", "chapter": 9 },
+            { "id": 4, "book": "Act", "chapter": 15 }
+          ]
+        },
+        {
+          "dayOfMonth": 40,
+          "readings": [
+            { "id": 1, "book": "Lev", "chapter": 10 },
+            { "id": 2, "book": "Lev", "chapter": 11 },
+            { "id": 3, "book": "Lev", "chapter": 12 },
+            { "id": 4, "book": "Act", "chapter": 16 }
+          ]
+        },
+        {
+          "dayOfMonth": 41,
+          "readings": [
+            { "id": 1, "book": "Lev", "chapter": 13 },
+            { "id": 2, "book": "Lev", "chapter": 14 },
+            { "id": 4, "book": "Act", "chapter": 17 }
+          ]
+        },
+        {
+          "dayOfMonth": 42,
+          "readings": [
+            { "id": 1, "book": "Lev", "chapter": 15 },
+            { "id": 2, "book": "Lev", "chapter": 16 },
+            { "id": 3, "book": "Lev", "chapter": 17 },
+            { "id": 4, "book": "Act", "chapter": 18 }
+          ]
+        },
+        {
+          "dayOfMonth": 43,
+          "readings": [
+            { "id": 1, "book": "Lev", "chapter": 18 },
+            { "id": 2, "book": "Lev", "chapter": 19 },
+            { "id": 3, "book": "Psa", "chapter": 13 },
+            { "id": 4, "book": "Act", "chapter": 19 }
+          ]
+        },
+        {
+          "dayOfMonth": 44,
+          "readings": [
+            { "id": 1, "book": "Lev", "chapter": 20 },
+            { "id": 2, "book": "Lev", "chapter": 21 },
+            { "id": 3, "book": "Lev", "chapter": 22 },
+            { "id": 4, "book": "Act", "chapter": 20 }
+          ]
+        },
+        {
+          "dayOfMonth": 45,
+          "readings": [
+            { "id": 1, "book": "Lev", "chapter": 23 },
+            { "id": 2, "book": "Lev", "chapter": 24 },
+            { "id": 3, "book": "Psa", "chapter": 24 },
+            { "id": 4, "book": "Act", "chapter": 21 }
+          ]
+        },
+        {
+          "dayOfMonth": 46,
+          "readings": [
+            { "id": 1, "book": "Lev", "chapter": 25 },
+            { "id": 2, "book": "Psa", "chapter": 25 },
+            { "id": 3, "book": "Psa", "chapter":26 },
+            { "id": 4, "book": "Act", "chapter": 22 }
+          ]
+        },
+        {
+          "dayOfMonth": 47,
+          "readings": [
+            { "id": 1, "book": "Lev", "chapter": 26 },
+            { "id": 2, "book": "Lev", "chapter": 27 },
+            { "id": 3, "book": "Act", "chapter": 23 }
+          ]
+        },
+        {
+          "dayOfMonth": 48,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 1 },
+            { "id": 2, "book": "Num", "chapter": 2 },
+            { "id": 3, "book": "Act", "chapter": 24 }
+          ]
+        },
+        {
+          "dayOfMonth": 49,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 3 },
+            { "id": 2, "book": "Num", "chapter": 4 },
+            { "id": 3, "book": "Act", "chapter": 25 }
+          ]
+        },
+        {
+          "dayOfMonth": 50,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 5 },
+            { "id": 2, "book": "Num", "chapter": 6 },
+            { "id": 3, "book": "Psa", "chapter": 22 },
+            { "id": 4, "book": "Act", "chapter": 26 }
+          ]
+        },
+        {
+          "dayOfMonth": 51,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 7 },
+            { "id": 2, "book": "Psa", "chapter": 23 },
+            { "id": 3, "book": "Act", "chapter": 27 }
+          ]
+        },
+        {
+          "dayOfMonth": 52,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 8 },
+            { "id": 2, "book": "Num", "chapter": 9 },
+            { "id": 3, "book": "Act", "chapter": 28 }
+          ]
+        },
+        {
+          "dayOfMonth": 53,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 10 },
+            { "id": 2, "book": "Num", "chapter": 11 },
+            { "id": 3, "book": "Psa", "chapter": 27 },
+            { "id": 4, "book": "Mar", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 54,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 12 },
+            { "id": 2, "book": "Num", "chapter": 13 },
+            { "id": 3, "book": "Psa", "chapter": 90 },
+            { "id": 4, "book": "Mar", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 55,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 14 },
+            { "id": 2, "book": "Num", "chapter": 15 },
+            { "id": 3, "book": "Num", "chapter": 16 },
+            { "id": 4, "book": "Mar", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 56,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 17 },
+            { "id": 2, "book": "Num", "chapter": 18 },
+            { "id": 3, "book": "Psa", "chapter": 29 },
+            { "id": 4, "book": "Mar", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 57,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 19 },
+            { "id": 2, "book": "Num", "chapter": 20 },
+            { "id": 3, "book": "Psa", "chapter": 28 },
+            { "id": 4, "book": "Mar", "chapter": 5 }
+          ]
+        },
+        {
+          "dayOfMonth": 58,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 17 },
+            { "id": 2, "book": "Num", "chapter": 18 },
+            { "id": 3, "book": "Num", "chapter": 19 },
+            { "id": 4, "book": "Num", "chapter": 20 },
+            { "id": 5, "book": "Mar", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 59,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 21 },
+            { "id": 2, "book": "Num", "chapter": 22 },
+            { "id": 3, "book": "Num", "chapter": 12 },
+            { "id": 4, "book": "1Co", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 60,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 28 },
+            { "id": 2, "book": "Num",  "chapter": 29 },
+            { "id": 3, "book": "Mar", "chapter": 8 }
+          ]
+        },
+        {
+          "dayOfMonth": 61,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 30 },
+            { "id": 2, "book": "Num", "chapter": 31 },
+            { "id": 3, "book": "Mar", "chapter": 9 }
+          ]
+        },
+        {
+          "dayOfMonth": 62,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 32 },
+            { "id": 2, "book": "Num", "chapter": 33 },
+            { "id": 3, "book": "Mar", "chapter": 10 }
+          ]
+        },
+        {
+          "dayOfMonth": 63,
+          "readings": [
+            { "id": 1, "book": "Num", "chapter": 34 },
+            { "id": 2, "book": "Num", "chapter": 35 },
+            { "id": 3, "book": "Num", "chapter": 36 },
+            { "id": 4, "book": "Mar", "chapter": 11 }
+          ]
+        },
+        {
+          "dayOfMonth": 64,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 1 },
+            { "id": 2, "book": "Deu", "chapter": 2 },
+            { "id": 3, "book": "Mar", "chapter": 12 }
+          ]
+        },
+        {
+          "dayOfMonth": 65,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 3 },
+            { "id": 2, "book": "Deu", "chapter": 4 },
+            { "id": 3, "book": "Psa", "chapter": 36 },
+            { "id": 4, "book": "Mar", "chapter": 13 }
+          ]
+        },
+        {
+          "dayOfMonth": 66,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 5 },
+            { "id": 2, "book": "Deu", "chapter": 6 },
+            { "id": 3, "book": "Psa", "chapter": 13 },
+            { "id": 4, "book": "Mar", "chapter": 14 }
+          ]
+        },
+        {
+          "dayOfMonth": 67,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 7 },
+            { "id": 2, "book": "Deu", "chapter": 8 },
+            { "id": 3, "book": "Deu", "chapter": 9 },
+            { "id": 4, "book": "Mar", "chapter": 15 }
+          ]
+        },
+        {
+          "dayOfMonth": 68,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 10 },
+            { "id": 2, "book": "Deu", "chapter": 11 },
+            { "id": 3, "book": "Deu", "chapter": 12 },
+            { "id": 4, "book": "Mar", "chapter": 16 }
+          ]
+        },
+        {
+          "dayOfMonth": 69,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 13 },
+            { "id": 2, "book": "Deu", "chapter": 14 },
+            { "id": 3, "book": "Deu", "chapter": 15 },
+            { "id": 4, "book": "Gal", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 70,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 16 },
+            { "id": 2, "book": "Deu", "chapter": 17 },
+            { "id": 3, "book": "Deu", "chapter": 18 },
+            { "id": 4, "book": "Psa", "chapter": 38 },
+            { "id": 5, "book": "Gal", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 71,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 19 },
+            { "id": 2, "book": "Deu", "chapter": 20 },
+            { "id": 3, "book": "Deu", "chapter": 21 },
+            { "id": 4, "book": "Gal", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 72,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 22 },
+            { "id": 2, "book": "Deu", "chapter": 23 },
+            { "id": 3, "book": "Deu", "chapter": 24 },
+            { "id": 4, "book": "Gal", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 73,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 25 },
+            { "id": 2, "book": "Deu", "chapter": 26 },
+            { "id": 3, "book": "Deu", "chapter": 27 },
+            { "id": 4, "book": "Gal", "chapter": 5 }
+          ]
+        },
+        {
+          "dayOfMonth": 74,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 28 },
+            { "id": 2, "book": "Deu", "chapter": 29 },
+            { "id": 3, "book": "Gal", "chapter": 6 }
+          ]
+        },
+        {
+          "dayOfMonth": 75,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 30 },
+            { "id": 2, "book": "Deu", "chapter": 31 },
+            { "id": 3, "book": "Psa", "chapter": 40 },
+            { "id": 4, "book": "1Co", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 76,
+          "readings": [
+            { "id": 1, "book": "Deu", "chapter": 32 },
+            { "id": 2, "book": "Deu", "chapter": 33 },
+            { "id": 3, "book": "Deu", "chapter": 34 },
+            { "id": 4, "book": "1Co", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 77,
+          "readings": [
+            { "id": 1, "book": "Jos", "chapter": 1 },
+            { "id": 2, "book": "Jos", "chapter": 2 },
+            { "id": 3, "book": "Psa", "chapter": 37 },
+            { "id": 4, "book": "1Co", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 78,
+          "readings": [
+            { "id": 1, "book": "Jos", "chapter": 3 },
+            { "id": 2, "book": "Jos", "chapter": 4 },
+            { "id": 3, "book": "Jos", "chapter": 5 },
+            { "id": 4, "book": "Jos", "chapter": 6 },
+            { "id": 5, "book": "1Co", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 79,
+          "readings": [
+            { "id": 1, "book": "Jos", "chapter": 7 },
+            { "id": 2, "book": "Jos", "chapter": 8 },
+            { "id": 3, "book": "Psa", "chapter": 69 },
+            { "id": 4, "book": "1Co", "chapter": 5 }
+          ]
+        },
+        {
+          "dayOfMonth": 80,
+          "readings": [
+            { "id": 1, "book": "Jos", "chapter": 9 },
+            { "id": 2, "book": "Jos", "chapter": 10 },
+            { "id": 3, "book": "Jos", "chapter": 11 },
+            { "id": 4, "book": "1Co", "chapter": 6 }
+          ]
+        },
+        {
+          "dayOfMonth": 81,
+          "readings": [
+            { "id": 1, "book": "Jos", "chapter": 12 },
+            { "id": 2, "book": "Jos", "chapter": 13 },
+            { "id": 3, "book": "Jos", "chapter": 14 },
+            { "id": 4, "book": "1Co", "chapter": 7 }
+          ]
+        },
+        {
+          "dayOfMonth": 82,
+          "readings": [
+            { "id": 1, "book": "Jos", "chapter": 15 },
+            { "id": 2, "book": "Jos", "chapter": 16 },
+            { "id": 3, "book": "Jos", "chapter": 17 },
+            { "id": 4, "book": "1Co", "chapter": 8 }
+          ]
+        },
+        {
+          "dayOfMonth": 83,
+          "readings": [
+            { "id": 1, "book": "Jos", "chapter": 18 },
+            { "id": 2, "book": "Jos", "chapter": 19 },
+            { "id": 3, "book": "Jos", "chapter": 20 },
+            { "id": 4, "book": "1Co", "chapter": 9 }
+          ]
+        },
+        {
+          "dayOfMonth": 84,
+          "readings": [
+            { "id": 1, "book": "Jos", "chapter": 21 },
+            { "id": 2, "book": "Jos", "chapter": 22 },
+            { "id": 3, "book": "Psa", "chapter": 47 },
+            { "id": 4, "book": "1Co", "chapter": 10 }
+          ]
+        },
+        {
+          "dayOfMonth": 85,
+          "readings": [
+            { "id": 1, "book": "Jos", "chapter": 23 },
+            { "id": 2, "book": "Jos", "chapter": 24 },
+            { "id": 3, "book": "Psa", "chapter": 44 },
+            { "id": 4, "book": "1Co", "chapter": 11 }
+          ]
+        },
+        {
+          "dayOfMonth": 86,
+          "readings": [
+            { "id": 1, "book": "Jdg", "chapter": 1 },
+            { "id": 2, "book": "Jdg", "chapter": 2 },
+            { "id": 3, "book": "Jdg", "chapter": 3 },
+            { "id": 4, "book": "1Co", "chapter": 12 }
+          ]
+        },
+        {
+          "dayOfMonth": 87,
+          "readings": [
+            { "id": 1, "book": "Jdg", "chapter": 4 },
+            { "id": 2, "book": "Jdg", "chapter": 5 },
+            { "id": 3, "book": "Psa", "chapter": 39 },
+            { "id": 4, "book": "Psa", "chapter": 41 },
+            { "id": 5, "book": "1Co", "chapter": 13 }
+          ]
+        },
+        {
+          "dayOfMonth": 88,
+          "readings": [
+            { "id": 1, "book": "Jdg", "chapter": 6 },
+            { "id": 2, "book": "Jdg", "chapter": 7 },
+            { "id": 3, "book": "Jdg", "chapter": 52 },
+            { "id": 4, "book": "Act", "chapter": 14 }
+          ]
+        },
+        {
+          "dayOfMonth": 89,
+          "readings": [
+            { "id": 1, "book": "Jdg", "chapter": 8 },
+            { "id": 2, "book": "Psa", "chapter": 42 },
+            { "id": 3, "book": "1Co", "chapter": 15 }
+          ]
+        },
+        {
+          "dayOfMonth": 90,
+          "readings": [
+            { "id": 1, "book": "Jdg", "chapter": 9 },
+            { "id": 2, "book": "Jdg", "chapter": 10 },
+            { "id": 3, "book": "Psa", "chapter": 49 },
+            { "id": 4, "book": "Act", "chapter": 16 }
+          ]
+        },
+        {
+          "dayOfMonth": 91,
+          "readings": [
+            { "id": 1, "book": "Jdg", "chapter": 11 },
+            { "id": 2, "book": "Jdg", "chapter": 12 },
+            { "id": 3, "book": "Psa", "chapter": 50 },
+            { "id": 4, "book": "2Co", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 92,
+          "readings": [
+            { "id": 1, "book": "Jdg", "chapter": 13 },
+            { "id": 2, "book": "Jdg", "chapter": 14 },
+            { "id": 3, "book": "Jdg", "chapter": 15 },
+            { "id": 4, "book": "Jdg", "chapter": 16 },
+            { "id": 5, "book": "2Co", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 93,
+          "readings": [
+            { "id": 1, "book": "Jdg", "chapter": 17 },
+            { "id": 2, "book": "Jdg", "chapter": 18 },
+            { "id": 3, "book": "Psa", "chapter": 89 },
+            { "id": 4, "book": "2Co", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 94,
+          "readings": [
+            { "id": 1, "book": "Jdg", "chapter": 19 },
+            { "id": 2, "book": "Jdg", "chapter": 20 },
+            { "id": 3, "book": "Jdg", "chapter": 21 },
+            { "id": 4, "book": "2Co", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 95,
+          "readings": [
+            { "id": 1, "book": "Rth", "chapter": 1 },
+            { "id": 2, "book": "Rth", "chapter": 2 },
+            { "id": 3, "book": "Psa", "chapter": 53 },
+            { "id": 4, "book": "Psa", "chapter": 61 },
+            { "id": 5, "book": "2Co", "chapter": 5 }
+          ]
+        },
+        {
+          "dayOfMonth": 96,
+          "readings": [
+            { "id": 1, "book": "Rth", "chapter": 3 },
+            { "id": 2, "book": "Rth", "chapter": 4 },
+            { "id": 3, "book": "Psa", "chapter": 64 },
+            { "id": 4, "book": "Psa", "chapter": 65 },
+            { "id": 5, "book": "2Co", "chapter": 6 }
+          ]
+        },
+        {
+          "dayOfMonth": 97,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 1 },
+            { "id": 2, "book": "1Sa", "chapter": 2 },
+            { "id": 3, "book": "Psa", "chapter": 66 },
+            { "id": 4, "book": "2Co", "chapter": 7 }
+          ]
+        },
+        {
+          "dayOfMonth": 98,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 3 },
+            { "id": 2, "book": "1Sa", "chapter": 4 },
+            { "id": 3, "book": "1Sa", "chapter": 5 },
+            { "id": 4, "book": "Psa", "chapter": 77 },
+            { "id": 5, "book": "2Co", "chapter": 8 }
+          ]
+        },
+        {
+          "dayOfMonth": 99,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 6 },
+            { "id": 2, "book": "1Sa", "chapter": 7 },
+            { "id": 3, "book": "Psa", "chapter": 72 },
+            { "id": 4, "book": "2Co", "chapter": 9 }
+          ]
+        },
+        {
+          "dayOfMonth": 100,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 8 },
+            { "id": 2, "book": "1Sa", "chapter": 9 },
+            { "id": 3, "book": "1Sa", "chapter": 10 },
+            { "id": 4, "book": "2Co", "chapter": 10}
+          ]
+        },
+        {
+          "dayOfMonth": 101,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 11 },
+            { "id": 2, "book": "1Sa", "chapter": 12 },
+            { "id": 3, "book": "1Ch", "chapter": 1 },
+            { "id": 4, "book": "2Co", "chapter": 11 }
+          ]
+        },
+        {
+          "dayOfMonth": 102,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 13 },
+            { "id": 2, "book": "1Ch", "chapter": 2 },
+            { "id": 3, "book": "1Ch", "chapter": 3 },
+            { "id": 4, "book": "2Co", "chapter": 12 }
+          ]
+        },
+        {
+          "dayOfMonth": 103,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 14 },
+            { "id": 2, "book": "1Ch", "chapter": 4 },
+            { "id": 3, "book": "2Co", "chapter": 13 }
+          ]
+        },
+        {
+          "dayOfMonth": 104,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 15 },
+            { "id": 2, "book": "1Sa", "chapter": 16 },
+            { "id": 3, "book": "1Ch", "chapter": 5 },
+            { "id": 4, "book": "Mat", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 105,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 17 },
+            { "id": 2, "book": "Psa", "chapter": 9 },
+            { "id": 3, "book": "Mat", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 106,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 18 },
+            { "id": 2, "book": "1Ch", "chapter": 6 },
+            { "id": 3, "book": "Psa", "chapter": 11 },
+            { "id": 4, "book": "Mat", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 107,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 19 },
+            { "id": 2, "book": "1Ch", "chapter": 7 },
+            { "id": 3, "book": "Psa", "chapter": 59 },
+            { "id": 4, "book": "Mat", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 108,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 20 },
+            { "id": 2, "book": "1Sa", "chapter": 21 },
+            { "id": 3, "book": "Psa", "chapter": 34 },
+            { "id": 4, "book": "Mat", "chapter": 5 }
+          ]
+        },
+        {
+          "dayOfMonth": 109,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 22 },
+            { "id": 2, "book": "Psa", "chapter": 17 },
+            { "id": 3, "book": "Psa", "chapter": 35 },
+            { "id": 4, "book": "Mat", "chapter": 6 }
+          ]
+        },
+        {
+          "dayOfMonth": 110,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 23 },
+            { "id": 2, "book": "Psa", "chapter": 31 },
+            { "id": 3, "book": "Psa", "chapter": 54 },
+            { "id": 4, "book": "Mat", "chapter": 7 }
+          ]
+        },
+        {
+          "dayOfMonth": 111,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 24 },
+            { "id": 2, "book": "Psa", "chapter": 57 },
+            { "id": 3, "book": "Psa", "chapter": 58 },
+            { "id": 4, "book": "1Ch", "chapter": 8 },
+            { "id": 5, "book": "Mat", "chapter": 8 }
+          ]
+        },
+        {
+          "dayOfMonth": 112,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 25 },
+            { "id": 2, "book": "1Sa", "chapter": 26 },
+            { "id": 3, "book": "Psa", "chapter": 63 },
+            { "id": 4, "book": "Mat", "chapter": 9 }
+          ]
+        },
+        {
+          "dayOfMonth": 113,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 27 },
+            { "id": 2, "book": "Psa", "chapter": 141 },
+            { "id": 3, "book": "1Ch", "chapter": 9 },
+            { "id": 4, "book": "Mat", "chapter": 10 }
+          ]
+        },
+        {
+          "dayOfMonth": 114,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 28 },
+            { "id": 2, "book": "1Sa", "chapter": 29 },
+            { "id": 3, "book": "Psa", "chapter": 109 },
+            { "id": 4, "book": "Mat", "chapter": 11 }
+          ]
+        },
+        {
+          "dayOfMonth": 115,
+          "readings": [
+            { "id": 1, "book": "1Sa", "chapter": 30 },
+            { "id": 2, "book": "1Sa", "chapter": 31 },
+            { "id": 3, "book": "1Ch", "chapter": 10 },
+            { "id": 4, "book": "Mat", "chapter": 12 }
+          ]
+        },
+        {
+          "dayOfMonth": 116,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 1 },
+            { "id": 2, "book": "Psa", "chapter": 140 },
+            { "id": 3, "book": "Mat", "chapter": 13 }
+          ]
+        },
+        {
+          "dayOfMonth": 117,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 2 },
+            { "id": 2, "book": "1Ch", "chapter": 11 },
+            { "id": 3, "book": "Psa", "chapter": 142 },
+            { "id": 4, "book": "Mat", "chapter": 14 }
+          ]
+        },
+        {
+          "dayOfMonth": 118,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 3 },
+            { "id": 2, "book": "1Ch", "chapter": 12 },
+            { "id": 3, "book": "Mat", "chapter": 15 }
+          ]
+        },
+        {
+          "dayOfMonth": 119,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 4 },
+            { "id": 2, "book": "2Sa", "chapter": 5 },
+            { "id": 3, "book": "Psa", "chapter": 139 },
+            { "id": 4, "book": "Mat", "chapter": 16 }
+          ]
+        },
+        {
+          "dayOfMonth": 120,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 6 },
+            { "id": 2, "book": "1Ch", "chapter": 13 },
+            { "id": 3, "book": "Psa", "chapter": 68 },
+            { "id": 4, "book": "Mat", "chapter": 17 }
+          ]
+        },
+        {
+          "dayOfMonth": 121,
+          "readings": [
+            { "id": 1, "book": "1Ch", "chapter": 14 },
+            { "id": 2, "book": "1Ch",  "chapter": 15 },
+            { "id": 3, "book": "Psa", "chapter": 132 },
+            { "id": 4, "book": "Mat", "chapter": 18 }
+          ]
+        },
+        {
+          "dayOfMonth": 122,
+          "readings": [
+            { "id": 1, "book": "1Ch", "chapter": 16 },
+            { "id": 2, "book": "Psa", "chapter": 106 },
+            { "id": 3, "book": "Mat", "chapter": 19 }
+          ]
+        },
+        {
+          "dayOfMonth": 123,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 7 },
+            { "id": 2, "book": "1Ch", "chapter": 17 },
+            { "id": 3, "book": "Psa", "chapter": 2 },
+            { "id": 4, "book": "Mat", "chapter": 20 }
+          ]
+        },
+        {
+          "dayOfMonth": 124,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 8 },
+            { "id": 2, "book": "2Sa", "chapter": 9 },
+            { "id": 3, "book": "1Ch", "chapter": 18 },
+            { "id": 4, "book": "1Ch", "chapter": 19 },
+            { "id": 5, "book": "Mat", "chapter": 21 }
+          ]
+        },
+        {
+          "dayOfMonth": 125,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 10 },
+            { "id": 2, "book": "1Ch", "chapter": 20 },
+            { "id": 3, "book": "Psa", "chapter": 20 },
+            { "id": 4, "book": "Mat", "chapter": 22 }
+          ]
+        },
+        {
+          "dayOfMonth": 126,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 11 },
+            { "id": 2, "book": "2Sa", "chapter": 12 },
+            { "id": 3, "book": "Psa", "chapter": 51 },
+            { "id": 4, "book": "Mat", "chapter": 23 }
+          ]
+        },
+        {
+          "dayOfMonth": 127,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 13 },
+            { "id": 2, "book": "2Sa", "chapter": 14 },
+            { "id": 3, "book": "Mat", "chapter": 24 }
+          ]
+        },
+        {
+          "dayOfMonth": 128,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 15 },
+            { "id": 2, "book": "2Sa", "chapter": 16 },
+            { "id": 3, "book": "Psa", "chapter": 32 },
+            { "id": 4, "book": "Mat", "chapter": 25 }
+          ]
+        },
+        {
+          "dayOfMonth": 129,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 17 },
+            { "id": 2, "book": "Psa", "chapter": 71 },
+            { "id": 3, "book": "Mat", "chapter": 26 }
+          ]
+        },
+        {
+          "dayOfMonth": 130,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 18 },
+            { "id": 2, "book": "Psa", "chapter": 56 },
+            { "id": 3, "book": "Mat", "chapter": 27 }
+          ]
+        },
+        {
+          "dayOfMonth": 131,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 19 },
+            { "id": 2, "book": "2Sa", "chapter": 20 },
+            { "id": 3, "book": "Psa", "chapter": 55 },
+            { "id": 4, "book": "Mat", "chapter": 28 }
+          ]
+        },
+        {
+          "dayOfMonth": 132,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 21 },
+            { "id": 2, "book": "2Sa", "chapter": 22 },
+            { "id": 3, "book": "2Sa", "chapter": 23 },
+            { "id": 4, "book": "1Th", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 133,
+          "readings": [
+            { "id": 1, "book": "2Sa", "chapter": 24 },
+            { "id": 2, "book": "1Ch", "chapter": 21 },
+            { "id": 3, "book": "Psa", "chapter": 30 },
+            { "id": 4, "book": "1Th", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 134,
+          "readings": [
+            { "id": 1, "book": "1Ch", "chapter": 22 },
+            { "id": 2, "book": "1Ch", "chapter": 23 },
+            { "id": 3, "book": "1Ch", "chapter": 24 },
+            { "id": 4, "book": "1Th", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 135,
+          "readings": [
+            { "id": 1, "book": "1Ch", "chapter": 25 },
+            { "id": 2, "book": "1Ch", "chapter": 26 },
+            { "id": 3, "book": "1Ch", "chapter": 27 },
+            { "id": 4, "book": "1Th", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 136,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 1 },
+            { "id": 2, "book": "1Ch", "chapter": 28 },
+            { "id": 3, "book": "Psa", "chapter": 91 },
+            { "id": 4, "book": "1Th", "chapter": 5 }
+          ]
+        },
+        {
+          "dayOfMonth": 137,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 2 },
+            { "id": 2, "book": "1Ch", "chapter": 29 },
+            { "id": 3, "book": "Psa", "chapter": 95 },
+            { "id": 4, "book": "2Th", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 138,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 3 },
+            { "id": 2, "book": "2Ch", "chapter": 1 },
+            { "id": 3, "book": "Psa", "chapter": 78 },
+            { "id": 4, "book": "2Th", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 139,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 4 },
+            { "id": 2, "book": "1Ki", "chapter": 5 },
+            { "id": 3, "book": "2Ch", "chapter": 2 },
+            { "id": 4, "book": "Psa", "chapter": 101 },
+            { "id": 5, "book": "2Th", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 140,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 6 },
+            { "id": 2, "book": "2Ch", "chapter": 3 },
+            { "id": 3, "book": "Psa", "chapter": 97 },
+            { "id": 4, "book": "Rom", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 141,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 7 },
+            { "id": 2, "book": "2Ch", "chapter": 4 },
+            { "id": 3, "book": "Psa", "chapter": 98 },
+            { "id": 4, "book": "Rom", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 142,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 8 },
+            { "id": 2, "book": "2Ch", "chapter": 5 },
+            { "id": 3, "book": "Psa", "chapter": 99 },
+            { "id": 4, "book": "Rom", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 143,
+          "readings": [
+            { "id": 1, "book": "2Ch", "chapter": 6 },
+            { "id": 2, "book": "2Ch", "chapter": 7 },
+            { "id": 3, "book": "Psa", "chapter": 135 },
+            { "id": 4, "book": "Rom", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 144,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 9 },
+            { "id": 2, "book": "2Ch", "chapter": 8 },
+            { "id": 3, "book": "Psa", "chapter": 136 },
+            { "id": 4, "book": "Rom", "chapter": 5 }
+          ]
+        },
+        {
+          "dayOfMonth": 145,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 10 },
+            { "id": 2, "book": "1Ki", "chapter": 11 },
+            { "id": 3, "book": "2Ch", "chapter": 9 },
+            { "id": 4, "book": "Rom", "chapter": 6 }
+          ]
+        },
+        {
+          "dayOfMonth": 146,
+          "readings": [
+            { "id": 1, "book": "Pro", "chapter": 1 },
+            { "id": 2, "book": "Pro", "chapter": 2 },
+            { "id": 3, "book": "Pro", "chapter": 3 },
+            { "id": 4, "book": "Rom", "chapter": 7 }
+          ]
+        },
+        {
+          "dayOfMonth": 147,
+          "readings": [
+            { "id": 1, "book": "Pro", "chapter": 4 },
+            { "id": 2, "book": "Pro", "chapter": 5 },
+            { "id": 3, "book": "Pro", "chapter": 6 },
+            { "id": 4, "book": "Rom", "chapter": 8 }
+          ]
+        },
+        {
+          "dayOfMonth": 148,
+          "readings": [
+            { "id": 1, "book": "Pro", "chapter": 7 },
+            { "id": 2, "book": "Pro", "chapter": 8 },
+            { "id": 3, "book": "Pro", "chapter": 9 },
+            { "id": 4, "book": "Rom", "chapter": 9 }
+          ]
+        },
+        {
+          "dayOfMonth": 149,
+          "readings": [
+            { "id": 1, "book": "Pro", "chapter": 10 },
+            { "id": 2, "book": "Pro", "chapter": 11 },
+            { "id": 3, "book": "Pro", "chapter": 12 },
+            { "id": 4, "book": "Rom", "chapter": 10 }
+          ]
+        },
+        {
+          "dayOfMonth": 140,
+          "readings": [
+            { "id": 1, "book": "Pro", "chapter": 13 },
+            { "id": 2, "book": "Pro", "chapter": 14 },
+            { "id": 3, "book": "Pro", "chapter": 15 },
+            { "id": 4, "book": "Rom", "chapter": 11 }
+          ]
+        },
+        {
+          "dayOfMonth": 151,
+          "readings": [
+            { "id": 1, "book": "Pro", "chapter": 16 },
+            { "id": 2, "book": "Pro", "chapter": 17 },
+            { "id": 3, "book": "Pro", "chapter": 18 },
+            { "id": 4, "book": "Rom", "chapter": 12 }
+          ]
+        },
+        {
+          "dayOfMonth": 152,
+          "readings": [
+            { "id": 1, "book": "Pro", "chapter": 19 },
+            { "id": 2, "book": "Pro", "chapter": 20 },
+            { "id": 3, "book": "Pro", "chapter": 21 },
+            { "id": 4, "book": "Rom", "chapter": 13 }
+          ]
+        },
+        {
+          "dayOfMonth": 153,
+          "readings": [
+            { "id": 1, "book": "Pro", "chapter": 22 },
+            { "id": 2, "book": "Pro", "chapter": 23 },
+            { "id": 3, "book": "Pro", "chapter": 24 },
+            { "id": 4, "book": "Rom", "chapter": 14 }
+          ]
+        },
+        {
+          "dayOfMonth": 154,
+          "readings": [
+            { "id": 1, "book": "Pro", "chapter": 25 },
+            { "id": 2, "book": "Pro", "chapter": 26 },
+            { "id": 3, "book": "Pro", "chapter": 27 },
+            { "id": 4, "book": "Rom", "chapter": 15 }
+          ]
+        },
+        {
+          "dayOfMonth": 155,
+          "readings": [
+            { "id": 1, "book": "Pro", "chapter": 28 },
+            { "id": 2, "book": "Pro", "chapter": 29 },
+            { "id": 3, "book": "Psa", "chapter": 60 },
+            { "id": 4, "book": "Rom", "chapter": 16 }
+          ]
+        },
+        {
+          "dayOfMonth": 156,
+          "readings": [
+            { "id": 1, "book": "Pro", "chapter": 30 },
+            { "id": 2, "book": "Pro", "chapter": 31 },
+            { "id": 3, "book": "Psa", "chapter": 33 },
+            { "id": 4, "book": "Eph", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 157,
+          "readings": [
+            { "id": 1, "book": "Ecc", "chapter": 1 },
+            { "id": 2, "book": "Ecc", "chapter": 2 },
+            { "id": 3, "book": "Ecc", "chapter": 3 },
+            { "id": 4, "book": "Psa", "chapter": 45 },
+            { "id": 5, "book": "Eph", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 158,
+          "readings": [
+            { "id": 1, "book": "Ecc", "chapter": 4 },
+            { "id": 2, "book": "Ecc", "chapter": 5 },
+            { "id": 3, "book": "Ecc", "chapter": 6 },
+            { "id": 4, "book": "Psa", "chapter": 18 },
+            { "id": 5, "book": "Eph", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 159,
+          "readings": [
+            { "id": 1, "book": "Ecc", "chapter": 7 },
+            { "id": 2, "book": "Ecc", "chapter": 8 },
+            { "id": 3, "book": "Ecc", "chapter": 9 },
+            { "id": 4, "book": "Eph", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 160,
+          "readings": [
+            { "id": 1, "book": "Ecc", "chapter": 10 },
+            { "id": 2, "book": "Ecc", "chapter": 11 },
+            { "id": 3, "book": "Ecc", "chapter": 12 },
+            { "id": 4, "book": "Psa", "chapter": 94 },
+            { "id": 5, "book": "Eph", "chapter": 5 }
+          ]
+        },
+        {
+          "dayOfMonth": 161,
+          "readings": [
+            { "id": 1, "book": "Sng", "chapter": 1 },
+            { "id": 2, "book": "Sng", "chapter": 2 },
+            { "id": 3, "book": "Sng", "chapter": 3 },
+            { "id": 4, "book": "Sng", "chapter": 4 },
+            { "id": 5, "book": "Eph", "chapter": 6 }
+          ]
+        },
+        {
+          "dayOfMonth": 162,
+          "readings": [
+            { "id": 1, "book": "Sng", "chapter": 5 },
+            { "id": 2, "book": "Sng", "chapter": 6 },
+            { "id": 3, "book": "Sng", "chapter": 7 },
+            { "id": 4, "book": "Sng", "chapter": 8 },
+            { "id": 5, "book": "Phl", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 163,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 12 },
+            { "id": 2, "book": "2Ch", "chapter": 10 },
+            { "id": 3, "book": "2Ch", "chapter": 11 },
+            { "id": 4, "book": "Phl", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 164,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 13 },
+            { "id": 2, "book": "1Ki", "chapter": 14 },
+            { "id": 3, "book": "2Ch", "chapter": 12 },
+            { "id": 4, "book": "Phl", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 165,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 15 },
+            { "id": 2, "book": "2Ch", "chapter": 13 },
+            { "id": 3, "book": "2Ch", "chapter": 14 },
+            { "id": 4, "book": "Phl", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 166,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 16 },
+            { "id": 2, "book": "2Ch", "chapter": 15 },
+            { "id": 3, "book": "2Ch", "chapter": 16 },
+            { "id": 4, "book": "Col", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 167,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 17 },
+            { "id": 2, "book": "1Ki", "chapter": 18 },
+            { "id": 3, "book": "1Ki", "chapter": 19 },
+            { "id": 4, "book": "Col", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 168,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 20 },
+            { "id": 2, "book": "1Ki", "chapter": 21 },
+            { "id": 3, "book": "2Ch", "chapter": 17 },
+            { "id": 4, "book": "Col", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 169,
+          "readings": [
+            { "id": 1, "book": "1Ki", "chapter": 22 },
+            { "id": 2, "book": "2Ch", "chapter": 18 },
+            { "id": 3, "book": "2Ch", "chapter": 19 },
+            { "id": 4, "book": "Col", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 170,
+          "readings": [
+            { "id": 1, "book": "2Ki", "chapter": 1 },
+            { "id": 2, "book": "2Ki", "chapter": 2 },
+            { "id": 3, "book": "2Ki", "chapter": 3 },
+            { "id": 4, "book": "Psa", "chapter": 82 },
+            { "id": 5, "book": "1Ti", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 171,
+          "readings": [
+            { "id": 1, "book": "2Ki", "chapter": 4 },
+            { "id": 2, "book": "2Ki", "chapter": 5 },
+            { "id": 3, "book": "Psa", "chapter": 83 },
+            { "id": 4, "book": "1Ti", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 172,
+          "readings": [
+            { "id": 1, "book": "2Ki", "chapter": 6 },
+            { "id": 2, "book": "2Ki", "chapter": 7 },
+            { "id": 3, "book": "2Ch", "chapter": 20 },
+            { "id": 4, "book": "1Ti", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 173,
+          "readings": [
+            { "id": 1, "book": "2Ki", "chapter": 8 },
+            { "id": 2, "book": "2Ki", "chapter": 9 },
+            { "id": 3, "book": "2Ch", "chapter": 21 },
+            { "id": 4, "book": "1Ti", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 174,
+          "readings": [
+            { "id": 1, "book": "2Ki", "chapter": 10 },
+            { "id": 2, "book": "2Ch", "chapter": 22 },
+            { "id": 3, "book": "2Ch", "chapter": 23 },
+            { "id": 4, "book": "1Ti", "chapter": 5 }
+          ]
+        },
+        {
+          "dayOfMonth": 175,
+          "readings": [
+            { "id": 1, "book": "2Ki", "chapter": 11 },
+            { "id": 2, "book": "2Ki", "chapter": 12 },
+            { "id": 3, "book": "2Ch", "chapter": 24 },
+            { "id": 4, "book": "1Ti", "chapter": 6 }
+          ]
+        },
+        {
+          "dayOfMonth": 176,
+          "readings": [
+            { "id": 1, "book": "Joe", "chapter": 1 },
+            { "id": 2, "book": "Joe", "chapter": 2 },
+            { "id": 3, "book": "Joe", "chapter": 3 },
+            { "id": 4, "book": "2Ti", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 177,
+          "readings": [
+            { "id": 1, "book": "Jon", "chapter": 1 },
+            { "id": 2, "book": "Jon", "chapter": 2 },
+            { "id": 3, "book": "Jon", "chapter": 3 },
+            { "id": 4, "book": "Jon", "chapter": 4 },
+            { "id": 5, "book": "2Ti", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 178,
+          "readings": [
+            { "id": 1, "book": "2Ki", "chapter": 12 },
+            { "id": 2, "book": "2Ki", "chapter": 14 },
+            { "id": 3, "book": "2Ch", "chapter": 25 },
+            { "id": 4, "book": "2Ti", "chapter": 3 }
+          ]
+        },
+        {
+          "dayOfMonth": 179,
+          "readings": [
+            { "id": 1, "book": "Amo", "chapter": 1 },
+            { "id": 2, "book": "Amo", "chapter": 2 },
+            { "id": 3, "book": "Amo", "chapter": 3 },
+            { "id": 4, "book": "Psa", "chapter": 80 },
+            { "id": 5, "book": "2Ti", "chapter": 4 }
+          ]
+        },
+        {
+          "dayOfMonth": 180,
+          "readings": [
+            { "id": 1, "book": "Amo", "chapter": 4 },
+            { "id": 2, "book": "Amo", "chapter": 5 },
+            { "id": 3, "book": "Amo", "chapter": 6 },
+            { "id": 4, "book": "Psa", "chapter": 86 },
+            { "id": 5, "book": "Psa", "chapter": 87 },
+            { "id": 6, "book": "Tit", "chapter": 1 }
+          ]
+        },
+        {
+          "dayOfMonth": 181,
+          "readings": [
+            { "id": 1, "book": "Amo", "chapter": 7 },
+            { "id": 2, "book": "Amo", "chapter": 8 },
+            { "id": 3, "book": "Amo", "chapter": 9 },
+            { "id": 4, "book": "Psa", "chapter": 104 },
+            { "id": 5, "book": "Tit", "chapter": 2 }
+          ]
+        },
+        {
+          "dayOfMonth": 182,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 1 },
             { "id": 2, "book": "Isa", "chapter": 2 },
@@ -14,7 +1642,7 @@
           ]
         },
         {
-          "dayOfMonth": 2,
+          "dayOfMonth": 183,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 4 },
             { "id": 2, "book": "Isa", "chapter": 5 },
@@ -24,7 +1652,7 @@
           ]
         },
         {
-          "dayOfMonth": 3,
+          "dayOfMonth": 184,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 6 },
             { "id": 2, "book": "Isa", "chapter": 7 },
@@ -34,7 +1662,7 @@
           ]
         },
         {
-          "dayOfMonth": 4,
+          "dayOfMonth": 185,
           "readings": [
             { "id": 1, "book": "2Ki", "chapter": 15 },
             { "id": 2, "book": "2Ki", "chapter": 16 },
@@ -43,7 +1671,7 @@
           ]
         },
         {
-          "dayOfMonth": 5,
+          "dayOfMonth": 186,
           "readings": [
             { "id": 1, "book": "Hos", "chapter": 2 },
             { "id": 2, "book": "Hos", "chapter": 3 },
@@ -53,7 +1681,7 @@
           ]
         },
         {
-          "dayOfMonth": 6,
+          "dayOfMonth": 187,
           "readings": [
             { "id": 1, "book": "Hos", "chapter": 6 },
             { "id": 2, "book": "Hos", "chapter": 7 },
@@ -63,7 +1691,7 @@
           ]
         },
         {
-          "dayOfMonth": 7,
+          "dayOfMonth": 188,
           "readings": [
             { "id": 1, "book": "Hos", "chapter": 10 },
             { "id": 2, "book": "Hos", "chapter": 11 },
@@ -73,7 +1701,7 @@
           ]
         },
         {
-          "dayOfMonth": 8,
+          "dayOfMonth": 189,
           "readings": [
             { "id": 1, "book": "Hos", "chapter": 13 },
             { "id": 2, "book": "Hos", "chapter": 14 },
@@ -83,7 +1711,7 @@
           ]
         },
         {
-          "dayOfMonth": 9,
+          "dayOfMonth": 190,
           "readings": [
             { "id": 1, "book": "Mic", "chapter": 1 },
             { "id": 2, "book": "Mic", "chapter": 2 },
@@ -93,7 +1721,7 @@
           ]
         },
         {
-          "dayOfMonth": 10,
+          "dayOfMonth": 191,
           "readings": [
             { "id": 1, "book": "Mic", "chapter": 5 },
             { "id": 2, "book": "Mic", "chapter": 6 },
@@ -102,7 +1730,7 @@
           ]
         },
         {
-          "dayOfMonth": 11,
+          "dayOfMonth": 192,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 8 },
             { "id": 2, "book": "Isa", "chapter": 9 },
@@ -111,17 +1739,17 @@
           ]
         },
         {
-          "dayOfMonth": 12,
+          "dayOfMonth": 193,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 11 },
             { "id": 2, "book": "Isa", "chapter": 12 },
             { "id": 3, "book": "Isa", "chapter": 13 },
-            { "id": 4, "book": "Isa", "chapter": 14 }
+            { "id": 4, "book": "Isa", "chapter": 14 },
             { "id": 5, "book": "Heb", "chapter": 9 }
           ]
         },
         {
-          "dayOfMonth": 13,
+          "dayOfMonth": 194,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 15 },
             { "id": 2, "book": "Isa", "chapter": 16 },
@@ -131,7 +1759,7 @@
           ]
         },
         {
-          "dayOfMonth": 14,
+          "dayOfMonth": 195,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 19 },
             { "id": 2, "book": "Isa", "chapter": 20 },
@@ -140,7 +1768,7 @@
           ]
         },
         {
-          "dayOfMonth": 15,
+          "dayOfMonth": 196,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 22 },
             { "id": 2, "book": "Isa", "chapter": 23 },
@@ -149,7 +1777,7 @@
           ]
         },
         {
-          "dayOfMonth": 16,
+          "dayOfMonth": 197,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 25 },
             { "id": 2, "book": "Isa", "chapter": 26 },
@@ -159,7 +1787,7 @@
           ]
         },
         {
-          "dayOfMonth": 17,
+          "dayOfMonth": 198,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 29 },
             { "id": 2, "book": "Isa", "chapter": 30 },
@@ -168,7 +1796,7 @@
           ]
         },
         {
-          "dayOfMonth": 18,
+          "dayOfMonth": 199,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 32 },
             { "id": 2, "book": "Isa", "chapter": 33 },
@@ -178,7 +1806,7 @@
           ]
         },
         {
-          "dayOfMonth": 19,
+          "dayOfMonth": 200,
           "readings": [
             { "id": 1, "book": "2Ki", "chapter": 17 },
             { "id": 2, "book": "2Ch", "chapter": 28 },
@@ -187,7 +1815,7 @@
           ]
         },
         {
-          "dayOfMonth": 20,
+          "dayOfMonth": 201,
           "readings": [
             { "id": 1, "book": "2Ch", "chapter": 29 },
             { "id": 2, "book": "2Ch", "chapter": 30 },
@@ -196,7 +1824,7 @@
           ]
         },
         {
-          "dayOfMonth": 21,
+          "dayOfMonth": 202,
           "readings": [
             { "id": 1, "book": "2Ki", "chapter": 18 },
             { "id": 2, "book": "2Ki", "chapter": 19 },
@@ -205,7 +1833,7 @@
           ]
         },
         {
-          "dayOfMonth": 22,
+          "dayOfMonth": 203,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 36 },
             { "id": 2, "book": "Isa", "chapter": 37 },
@@ -214,7 +1842,7 @@
           ]
         },
         {
-          "dayOfMonth": 23,
+          "dayOfMonth": 204,
           "readings": [
             { "id": 1, "book": "2Ki", "chapter": 20 },
             { "id": 2, "book": "Isa", "chapter": 38 },
@@ -224,7 +1852,7 @@
           ]
         },
         {
-          "dayOfMonth": 24,
+          "dayOfMonth": 205,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 40 },
             { "id": 2, "book": "Isa", "chapter": 41 },
@@ -233,7 +1861,7 @@
           ]
         },
         {
-          "dayOfMonth": 25,
+          "dayOfMonth": 206,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 43 },
             { "id": 2, "book": "Isa", "chapter": 44 },
@@ -242,7 +1870,7 @@
           ]
         },
         {
-          "dayOfMonth": 26,
+          "dayOfMonth": 207,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 46 },
             { "id": 2, "book": "Isa", "chapter": 47 },
@@ -252,7 +1880,7 @@
           ]
         },
         {
-          "dayOfMonth": 27,
+          "dayOfMonth": 208,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 50 },
             { "id": 2, "book": "Isa", "chapter": 51 },
@@ -262,7 +1890,7 @@
           ]
         },
         {
-          "dayOfMonth": 28,
+          "dayOfMonth": 209,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 53 },
             { "id": 2, "book": "Isa", "chapter": 54 },
@@ -272,7 +1900,7 @@
           ]
         },
         {
-          "dayOfMonth": 29,
+          "dayOfMonth": 210,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 57 },
             { "id": 2, "book": "Isa", "chapter": 58 },
@@ -282,7 +1910,7 @@
           ]
         },
         {
-          "dayOfMonth": 30,
+          "dayOfMonth": 211,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 60 },
             { "id": 2, "book": "Isa", "chapter": 61 },
@@ -291,21 +1919,16 @@
           ]
         },
         {
-          "dayOfMonth": 31,
+          "dayOfMonth": 212,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 63 },
             { "id": 2, "book": "Isa", "chapter": 64 },
             { "id": 3, "book": "Psa", "chapter": 107 },
             { "id": 4, "book": "Jhn", "chapter": 2 }
           ]
-        }
-      ]
-    },
-    {
-      "month": 8,
-      "days": [
+        },
         {
-          "dayOfMonth": 1,
+          "dayOfMonth": 213,
           "readings": [
             { "id": 1, "book": "Isa", "chapter": 65 },
             { "id": 2, "book": "Isa",  "chapter":66 },
@@ -314,7 +1937,7 @@
           ]
         },
         {
-          "dayOfMonth": 2,
+          "dayOfMonth": 214,
           "readings": [
             { "id": 1, "book": "2Ki", "chapter": 21 },
             { "id": 2, "book": "2Ch", "chapter": 33 },
@@ -322,7 +1945,7 @@
           ]
         },
         {
-          "dayOfMonth": 3,
+          "dayOfMonth": 215,
           "readings": [
             { "id": 1, "book": "Nah", "chapter": 1 },
             { "id": 2, "book": "Nah", "chapter": 2 },
@@ -331,7 +1954,7 @@
           ]
         },
         {
-          "dayOfMonth": 4,
+          "dayOfMonth": 216,
           "readings": [
             { "id": 1, "book": "2Ki", "chapter": 22 },
             { "id": 2, "book": "2Ch", "chapter": 34 },
@@ -339,7 +1962,7 @@
           ]
         },
         {
-          "dayOfMonth": 5,
+          "dayOfMonth": 217,
           "readings": [
             { "id": 1, "book": "2Ki", "chapter": 23 },
             { "id": 2, "book": "2Ch", "chapter": 35 },
@@ -347,7 +1970,7 @@
           ]
         },
         {
-          "dayOfMonth": 6,
+          "dayOfMonth": 218,
           "readings": [
             { "id": 1, "book": "Hab", "chapter": 1 },
             { "id": 2, "book": "Hab", "chapter": 2 },
@@ -356,7 +1979,7 @@
           ]
         },
         {
-          "dayOfMonth": 7,
+          "dayOfMonth": 219,
           "readings": [
             { "id": 1, "book": "Zep", "chapter": 1 },
             { "id": 2, "book": "Zep", "chapter": 2 },
@@ -365,7 +1988,7 @@
           ]
         },
         {
-          "dayOfMonth": 8,
+          "dayOfMonth": 220,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 1 },
             { "id": 2, "book": "Jer", "chapter": 2 },
@@ -373,7 +1996,7 @@
           ]
         },
         {
-          "dayOfMonth": 9,
+          "dayOfMonth": 221,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 3 },
             { "id": 2, "book": "Jer", "chapter": 4 },
@@ -381,7 +2004,7 @@
           ]
         },
         {
-          "dayOfMonth": 10,
+          "dayOfMonth": 222,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 5 },
             { "id": 2, "book": "Jer", "chapter": 6 },
@@ -389,7 +2012,7 @@
           ]
         },
         {
-          "dayOfMonth": 11,
+          "dayOfMonth": 223,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 7 },
             { "id": 2, "book": "Jer", "chapter": 8 },
@@ -398,16 +2021,16 @@
           ]
         },
         {
-          "dayOfMonth": 12,
+          "dayOfMonth": 224,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 10 },
             { "id": 2, "book": "Jer", "chapter": 11 },
-            { "id": 2, "book": "Jer", "chapter": 12 },
-            { "id": 3, "book": "Jhn", "chapter": 14 }
+            { "id": 3, "book": "Jer", "chapter": 12 },
+            { "id": 4, "book": "Jhn", "chapter": 14 }
           ]
         },
         {
-          "dayOfMonth": 13,
+          "dayOfMonth": 225,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 13 },
             { "id": 2, "book": "Jer", "chapter": 14 },
@@ -416,7 +2039,7 @@
           ]
         },
         {
-          "dayOfMonth": 14,
+          "dayOfMonth": 226,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 16 },
             { "id": 2, "book": "Jer", "chapter": 17 },
@@ -425,7 +2048,7 @@
           ]
         },
         {
-          "dayOfMonth": 15,
+          "dayOfMonth": 227,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 18 },
             { "id": 2, "book": "Jer", "chapter": 19 },
@@ -435,7 +2058,7 @@
           ]
         },
         {
-          "dayOfMonth": 16,
+          "dayOfMonth": 228,
           "readings": [
             { "id": 1, "book": "2Ki", "chapter": 24 },
             { "id": 2, "book": "Jer", "chapter": 22 },
@@ -444,7 +2067,7 @@
           ]
         },
         {
-          "dayOfMonth": 17,
+          "dayOfMonth": 229,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 23 },
             { "id": 2, "book": "Jer", "chapter": 25 },
@@ -452,7 +2075,7 @@
           ]
         },
         {
-          "dayOfMonth": 18,
+          "dayOfMonth": 230,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 26 },
             { "id": 2, "book": "Jer", "chapter": 35 },
@@ -461,7 +2084,7 @@
           ]
         },
         {
-          "dayOfMonth": 19,
+          "dayOfMonth": 231,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 45 },
             { "id": 2, "book": "Jer", "chapter": 46 },
@@ -471,7 +2094,7 @@
           ]
         },
         {
-          "dayOfMonth": 20,
+          "dayOfMonth": 232,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 48 },
             { "id": 2, "book": "Jer", "chapter": 49 },
@@ -480,7 +2103,7 @@
           ]
         },
         {
-          "dayOfMonth": 21,
+          "dayOfMonth": 233,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 21 },
             { "id": 2, "book": "Jer", "chapter": 24 },
@@ -490,7 +2113,7 @@
           ]
         },
         {
-          "dayOfMonth": 22,
+          "dayOfMonth": 234,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 28 },
             { "id": 2, "book": "Jer", "chapter": 29 },
@@ -499,7 +2122,7 @@
           ]
         },
         {
-          "dayOfMonth": 23,
+          "dayOfMonth": 235,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 31 },
             { "id": 2, "book": "Jer", "chapter": 32 },
@@ -507,7 +2130,7 @@
           ]
         },
         {
-          "dayOfMonth": 24,
+          "dayOfMonth": 236,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 33 },
             { "id": 2, "book": "Jer", "chapter": 34 },
@@ -516,7 +2139,7 @@
           ]
         },
         {
-          "dayOfMonth": 25,
+          "dayOfMonth": 237,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 37 },
             { "id": 2, "book": "Jer", "chapter": 38 },
@@ -526,7 +2149,7 @@
           ]
         },
         {
-          "dayOfMonth": 26,
+          "dayOfMonth": 238,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 50 },
             { "id": 2, "book": "Jer", "chapter": 51 },
@@ -534,7 +2157,7 @@
           ]
         },
         {
-          "dayOfMonth": 27,
+          "dayOfMonth": 239,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 52 },
             { "id": 2, "book": "Rev", "chapter": 1 },
@@ -543,7 +2166,7 @@
           ]
         },
         {
-          "dayOfMonth": 28,
+          "dayOfMonth": 240,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 1 },
             { "id": 2, "book": "Eze", "chapter": 2 },
@@ -552,7 +2175,7 @@
           ]
         },
         {
-          "dayOfMonth": 29,
+          "dayOfMonth": 241,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 4 },
             { "id": 2, "book": "Eze", "chapter": 5 },
@@ -562,7 +2185,7 @@
           ]
         },
         {
-          "dayOfMonth": 30,
+          "dayOfMonth": 242,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 8 },
             { "id": 2, "book": "Eze", "chapter": 9 },
@@ -572,21 +2195,16 @@
           ]
         },
         {
-          "dayOfMonth": 31,
+          "dayOfMonth": 243,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 12 },
             { "id": 2, "book": "Eze", "chapter": 13 },
             { "id": 3, "book": "Eze", "chapter": 14 },
             { "id": 4, "book": "Rev", "chapter": 5 }
           ]
-        }
-      ]
-    },
-    {
-      "month": 9,
-      "days": [
+        },
         {
-          "dayOfMonth": 1,
+          "dayOfMonth": 244,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 15 },
             { "id": 2, "book": "Eze", "chapter": 16 },
@@ -595,7 +2213,7 @@
           ]
         },
         {
-          "dayOfMonth": 2,
+          "dayOfMonth": 245,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 17 },
             { "id": 2, "book": "Eze", "chapter": 18 },
@@ -604,7 +2222,7 @@
           ]
         },
         {
-          "dayOfMonth": 3,
+          "dayOfMonth": 246,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 20 },
             { "id": 2, "book": "Eze", "chapter": 21 },
@@ -613,7 +2231,7 @@
           ]
         },
         {
-          "dayOfMonth": 4,
+          "dayOfMonth": 247,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 22 },
             { "id": 2, "book": "Eze", "chapter": 23 },
@@ -622,7 +2240,7 @@
           ]
         },
         {
-          "dayOfMonth": 5,
+          "dayOfMonth": 248,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 25 },
             { "id": 2, "book": "Eze", "chapter": 26 },
@@ -632,7 +2250,7 @@
           ]
         },
         {
-          "dayOfMonth": 6,
+          "dayOfMonth": 249,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 29 },
             { "id": 2, "book": "Eze", "chapter": 30 },
@@ -642,7 +2260,7 @@
           ]
         },
         {
-          "dayOfMonth": 7,
+          "dayOfMonth": 250,
           "readings": [
             { "id": 1, "book": "2Ki", "chapter": 25 },
             { "id": 2, "book": "2Ch", "chapter": 36 },
@@ -652,7 +2270,7 @@
           ]
         },
         {
-          "dayOfMonth": 8,
+          "dayOfMonth": 251,
           "readings": [
             { "id": 1, "book": "Jer", "chapter": 42 },
             { "id": 2, "book": "Jer", "chapter": 43 },
@@ -662,7 +2280,7 @@
           ]
         },
         {
-          "dayOfMonth": 9,
+          "dayOfMonth": 252,
           "readings": [
             { "id": 1, "book": "Lam", "chapter": 1 },
             { "id": 2, "book": "Lam", "chapter": 2 },
@@ -671,7 +2289,7 @@
           ]
         },
         {
-          "dayOfMonth": 10,
+          "dayOfMonth": 253,
           "readings": [
             { "id": 1, "book": "Lam", "chapter": 3 },
             { "id": 2, "book": "Lam", "chapter": 4 },
@@ -680,7 +2298,7 @@
           ]
         },
         {
-          "dayOfMonth": 11,
+          "dayOfMonth": 254,
           "readings": [
             { "id": 1, "book": "Dan", "chapter": 1 },
             { "id": 2, "book": "Dan", "chapter": 2 },
@@ -688,7 +2306,7 @@
           ]
         },
         {
-          "dayOfMonth": 12,
+          "dayOfMonth": 255,
           "readings": [
             { "id": 1, "book": "Dan", "chapter": 3 },
             { "id": 2, "book": "Dan", "chapter": 4 },
@@ -697,7 +2315,7 @@
           ]
         },
         {
-          "dayOfMonth": 13,
+          "dayOfMonth": 256,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 33 },
             { "id": 2, "book": "Eze", "chapter": 34 },
@@ -706,7 +2324,7 @@
           ]
         },
         {
-          "dayOfMonth": 14,
+          "dayOfMonth": 257,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 36 },
             { "id": 2, "book": "Eze", "chapter": 37 },
@@ -715,7 +2333,7 @@
           ]
         },
         {
-          "dayOfMonth": 15,
+          "dayOfMonth": 258,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 38 },
             { "id": 2, "book": "Eze", "chapter": 39 },
@@ -724,7 +2342,7 @@
           ]
         },
         {
-          "dayOfMonth": 16,
+          "dayOfMonth": 259,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 40 },
             { "id": 2, "book": "Eze", "chapter": 41 },
@@ -733,7 +2351,7 @@
           ]
         },
         {
-          "dayOfMonth": 17,
+          "dayOfMonth": 260,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 42 },
             { "id": 2, "book": "Eze", "chapter": 43 },
@@ -742,7 +2360,7 @@
           ]
         },
         {
-          "dayOfMonth": 18,
+          "dayOfMonth": 261,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 45 },
             { "id": 2, "book": "Eze", "chapter": 46 },
@@ -750,7 +2368,7 @@
           ]
         },
         {
-          "dayOfMonth": 19,
+          "dayOfMonth": 262,
           "readings": [
             { "id": 1, "book": "Eze", "chapter": 47 },
             { "id": 2, "book": "Eze", "chapter": 48 },
@@ -758,7 +2376,7 @@
           ]
         },
         {
-          "dayOfMonth": 20,
+          "dayOfMonth": 263,
           "readings": [
             { "id": 1, "book": "Dan", "chapter": 5 },
             { "id": 2, "book": "Dan", "chapter": 6 },
@@ -767,7 +2385,7 @@
           ]
         },
         {
-          "dayOfMonth": 21,
+          "dayOfMonth": 264,
           "readings": [
             { "id": 1, "book": "Dan", "chapter": 7 },
             { "id": 2, "book": "Dan", "chapter": 8 },
@@ -776,7 +2394,7 @@
           ]
         },
         {
-          "dayOfMonth": 22,
+          "dayOfMonth": 265,
           "readings": [
             { "id": 1, "book": "Dan", "chapter": 9 },
             { "id": 2, "book": "Dan", "chapter": 10 },
@@ -785,7 +2403,7 @@
           ]
         },
         {
-          "dayOfMonth": 23,
+          "dayOfMonth": 266,
           "readings": [
             { "id": 1, "book": "Dan", "chapter": 11 },
             { "id": 2, "book": "Dan", "chapter": 12 },
@@ -793,7 +2411,7 @@
           ]
         },
         {
-          "dayOfMonth": 24,
+          "dayOfMonth": 267,
           "readings": [
             { "id": 1, "book": "Ezr", "chapter": 1 },
             { "id": 2, "book": "Psa", "chapter": 84 },
@@ -802,7 +2420,7 @@
           ]
         },
         {
-          "dayOfMonth": 25,
+          "dayOfMonth": 268,
           "readings": [
             { "id": 1, "book": "Ezr", "chapter": 2 },
             { "id": 2, "book": "Ezr", "chapter": 3 },
@@ -810,7 +2428,7 @@
           ]
         },
         {
-          "dayOfMonth": 26,
+          "dayOfMonth": 269,
           "readings": [
             { "id": 1, "book": "Ezr", "chapter": 4 },
             { "id": 2, "book": "Psa", "chapter": 113 },
@@ -819,7 +2437,7 @@
           ]
         },
         {
-          "dayOfMonth": 27,
+          "dayOfMonth": 270,
           "readings": [
             { "id": 1, "book": "Hag", "chapter": 1 },
             { "id": 2, "book": "Hag", "chapter": 2 },
@@ -828,7 +2446,7 @@
           ]
         },
         {
-          "dayOfMonth": 28,
+          "dayOfMonth": 271,
           "readings": [
             { "id": 1, "book": "Zec", "chapter": 1 },
             { "id": 2, "book": "Zec", "chapter": 2 },
@@ -837,7 +2455,7 @@
           ]
         },
         {
-          "dayOfMonth": 29,
+          "dayOfMonth": 272,
           "readings": [
             { "id": 1, "book": "Zec", "chapter": 4 },
             { "id": 2, "book": "Zec", "chapter": 5 },
@@ -846,21 +2464,16 @@
           ]
         },
         {
-          "dayOfMonth": 30,
+          "dayOfMonth": 273,
           "readings": [
             { "id": 1, "book": "Zec", "chapter": 7 },
             { "id": 2, "book": "Zec", "chapter": 8 },
             { "id": 3, "book": "Zec", "chapter": 9 },
             { "id": 4, "book": "Luk", "chapter": 13 }
           ]
-        }
-      ]
-    },
-    {
-      "month": 10,
-      "days": [
+        },
         {
-          "dayOfMonth": 1,
+          "dayOfMonth": 274,
           "readings": [
             { "id": 1, "book": "Zec", "chapter": 10 },
             { "id": 2, "book": "Zec", "chapter": 11 },
@@ -870,7 +2483,7 @@
           ]
         },
         {
-          "dayOfMonth": 2,
+          "dayOfMonth": 275,
           "readings": [
             { "id": 1, "book": "Zec", "chapter": 13 },
             { "id": 2, "book": "Zec", "chapter": 14 },
@@ -879,7 +2492,7 @@
           ]
         },
         {
-          "dayOfMonth": 3,
+          "dayOfMonth": 276,
           "readings": [
             { "id": 1, "book": "Ezr", "chapter": 5 },
             { "id": 2, "book": "Ezr", "chapter": 6 },
@@ -888,7 +2501,7 @@
           ]
         },
         {
-          "dayOfMonth": 4,
+          "dayOfMonth": 277,
           "readings": [
             { "id": 1, "book": "Est", "chapter": 1 },
             { "id": 2, "book": "Est", "chapter": 2 },
@@ -897,7 +2510,7 @@
           ]
         },
         {
-          "dayOfMonth": 5,
+          "dayOfMonth": 278,
           "readings": [
             { "id": 1, "book": "Est", "chapter": 3 },
             { "id": 2, "book": "Est", "chapter": 4 },
@@ -909,7 +2522,7 @@
           ]
         },
         {
-          "dayOfMonth": 6,
+          "dayOfMonth": 279,
           "readings": [
             { "id": 1, "book": "Est", "chapter": 9 },
             { "id": 2, "book": "Est", "chapter": 10 },
@@ -917,7 +2530,7 @@
           ]
         },
         {
-          "dayOfMonth": 7,
+          "dayOfMonth": 280,
           "readings": [
             { "id": 1, "book": "Ezr", "chapter": 7 },
             { "id": 2, "book": "Ezr", "chapter": 8 },
@@ -925,7 +2538,7 @@
           ]
         },
         {
-          "dayOfMonth": 8,
+          "dayOfMonth": 281,
           "readings": [
             { "id": 1, "book": "Ezr", "chapter": 9 },
             { "id": 2, "book": "Ezr", "chapter": 10 },
@@ -934,7 +2547,7 @@
           ]
         },
         {
-          "dayOfMonth": 9,
+          "dayOfMonth": 282,
           "readings": [
             { "id": 1, "book": "Neh", "chapter": 1 },
             { "id": 2, "book": "Neh", "chapter": 2 },
@@ -944,7 +2557,7 @@
           ]
         },
         {
-          "dayOfMonth": 10,
+          "dayOfMonth": 283,
           "readings": [
             { "id": 1, "book": "Neh", "chapter": 3 },
             { "id": 2, "book": "Neh", "chapter": 4 },
@@ -952,7 +2565,7 @@
           ]
         },
         {
-          "dayOfMonth": 11,
+          "dayOfMonth": 284,
           "readings": [
             { "id": 1, "book": "Neh", "chapter": 5 },
             { "id": 2, "book": "Neh", "chapter": 6 },
@@ -961,7 +2574,7 @@
           ]
         },
         {
-          "dayOfMonth": 12,
+          "dayOfMonth": 285,
           "readings": [
             { "id": 1, "book": "Neh", "chapter": 7 },
             { "id": 2, "book": "Neh", "chapter": 8 },
@@ -969,7 +2582,7 @@
           ]
         },
         {
-          "dayOfMonth": 13,
+          "dayOfMonth": 286,
           "readings": [
             { "id": 1, "book": "Neh", "chapter": 9 },
             { "id": 2, "book": "Neh", "chapter": 10 },
@@ -977,7 +2590,7 @@
           ]
         },
         {
-          "dayOfMonth": 14,
+          "dayOfMonth": 287,
           "readings": [
             { "id": 1, "book": "Neh", "chapter": 11 },
             { "id": 2, "book": "Neh", "chapter": 12 },
@@ -986,7 +2599,7 @@
           ]
         },
         {
-          "dayOfMonth": 15,
+          "dayOfMonth": 288,
           "readings": [
             { "id": 1, "book": "Neh", "chapter": 13 },
             { "id": 2, "book": "Mal", "chapter": 1 },
@@ -995,7 +2608,7 @@
           ]
         },
         {
-          "dayOfMonth": 16,
+          "dayOfMonth": 289,
           "readings": [
             { "id": 1, "book": "Mal", "chapter": 3 },
             { "id": 2, "book": "Mal", "chapter": 4 },
@@ -1004,7 +2617,7 @@
           ]
         },
         {
-          "dayOfMonth": 17,
+          "dayOfMonth": 290,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 1 },
             { "id": 2, "book": "Job", "chapter": 2 },
@@ -1013,7 +2626,7 @@
           ]
         },
         {
-          "dayOfMonth": 18,
+          "dayOfMonth": 291,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 3 },
             { "id": 2, "book": "Job", "chapter": 4 },
@@ -1022,7 +2635,7 @@
           ]
         },
         {
-          "dayOfMonth": 19,
+          "dayOfMonth": 292,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 5 },
             { "id": 2, "book": "Psa", "chapter": 108 },
@@ -1031,7 +2644,7 @@
           ]
         },
         {
-          "dayOfMonth": 20,
+          "dayOfMonth": 293,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 6 },
             { "id": 2, "book": "Job", "chapter": 7 },
@@ -1040,7 +2653,7 @@
           ]
         },
         {
-          "dayOfMonth": 21,
+          "dayOfMonth": 294,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 9 },
             { "id": 2, "book": "Job", "chapter": 10 },
@@ -1049,7 +2662,7 @@
           ]
         },
         {
-          "dayOfMonth": 22,
+          "dayOfMonth": 295,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 11 },
             { "id": 2, "book": "Job", "chapter": 12 },
@@ -1058,7 +2671,7 @@
           ]
         },
         {
-          "dayOfMonth": 23,
+          "dayOfMonth": 296,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 13 },
             { "id": 2, "book": "Job", "chapter": 14 },
@@ -1067,7 +2680,7 @@
           ]
         },
         {
-          "dayOfMonth": 24,
+          "dayOfMonth": 297,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 15 },
             { "id": 2, "book": "Act", "chapter": 19 },
@@ -1075,7 +2688,7 @@
           ]
         },
         {
-          "dayOfMonth": 25,
+          "dayOfMonth": 298,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 16 },
             { "id": 2, "book": "Act", "chapter": 21 },
@@ -1084,7 +2697,7 @@
           ]
         },
         {
-          "dayOfMonth": 26,
+          "dayOfMonth": 299,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 17 },
             { "id": 2, "book": "Act", "chapter": 24 },
@@ -1093,7 +2706,7 @@
           ]
         },
         {
-          "dayOfMonth": 27,
+          "dayOfMonth": 300,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 18 },
             { "id": 2, "book": "Psa", "chapter": 114 },
@@ -1102,7 +2715,7 @@
           ]
         },
         {
-          "dayOfMonth": 28,
+          "dayOfMonth": 301,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 19 },
             { "id": 2, "book": "Mar", "chapter": 1 },
@@ -1110,7 +2723,7 @@
           ]
         },
         {
-          "dayOfMonth": 29,
+          "dayOfMonth": 302,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 20 },
             { "id": 2, "book": "Mar", "chapter": 3 },
@@ -1118,7 +2731,7 @@
           ]
         },
         {
-          "dayOfMonth": 30,
+          "dayOfMonth": 303,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 21 },
             { "id": 2, "book": "Mar", "chapter": 5 },
@@ -1126,20 +2739,15 @@
           ]
         },
         {
-          "dayOfMonth": 31,
+          "dayOfMonth": 304,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 22 },
             { "id": 2, "book": "Mar", "chapter": 7 },
             { "id": 3, "book": "Mar", "chapter": 8 }
           ]
-        }
-      ]
-    },
-    {
-      "month": 11,
-      "days": [
+        },
         {
-          "dayOfMonth": 1,
+          "dayOfMonth": 305,
           "readings": [
             { "id": 1, "book": "Psa", "chapter": 121 },
             { "id": 2, "book": "Mar", "chapter": 9 },
@@ -1147,7 +2755,7 @@
           ]
         },
         {
-          "dayOfMonth": 2,
+          "dayOfMonth": 306,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 23 },
             { "id": 2, "book": "Job", "chapter": 24 },
@@ -1156,7 +2764,7 @@
           ]
         },
         {
-          "dayOfMonth": 3,
+          "dayOfMonth": 307,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 25 },
             { "id": 2, "book": "Mar", "chapter": 13 },
@@ -1164,7 +2772,7 @@
           ]
         },
         {
-          "dayOfMonth": 4,
+          "dayOfMonth": 308,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 26 },
             { "id": 2, "book": "Job", "chapter": 27 },
@@ -1173,7 +2781,7 @@
           ]
         },
         {
-          "dayOfMonth": 5,
+          "dayOfMonth": 309,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 28 },
             { "id": 2, "book": "Job", "chapter": 29 },
@@ -1182,7 +2790,7 @@
           ]
         },
         {
-          "dayOfMonth": 6,
+          "dayOfMonth": 310,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 30 },
             { "id": 2, "book": "Psa", "chapter": 120 },
@@ -1191,7 +2799,7 @@
           ]
         },
         {
-          "dayOfMonth": 7,
+          "dayOfMonth": 311,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 31 },
             { "id": 2, "book": "Job", "chapter": 32 },
@@ -1200,7 +2808,7 @@
           ]
         },
         {
-          "dayOfMonth": 8,
+          "dayOfMonth": 312,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 33 },
             { "id": 2, "book": "1Co", "chapter": 1 },
@@ -1209,7 +2817,7 @@
           ]
         },
         {
-          "dayOfMonth": 9,
+          "dayOfMonth": 313,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 34 },
             { "id": 2, "book": "1Co", "chapter": 4 },
@@ -1218,7 +2826,7 @@
           ]
         },
         {
-          "dayOfMonth": 10,
+          "dayOfMonth": 314,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 35 },
             { "id": 2, "book": "Job", "chapter": 36 },
@@ -1227,7 +2835,7 @@
           ]
         },
         {
-          "dayOfMonth": 11,
+          "dayOfMonth": 315,
           "readings": [
             { "id": 1, "book": "Psa", "chapter": 122 },
             { "id": 2, "book": "1Co", "chapter": 9 },
@@ -1236,7 +2844,7 @@
           ]
         },
         {
-          "dayOfMonth": 12,
+          "dayOfMonth": 316,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 37 },
             { "id": 2, "book": "Job", "chapter": 38 },
@@ -1244,7 +2852,7 @@
           ]
         },
         {
-          "dayOfMonth": 13,
+          "dayOfMonth": 317,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 39 },
             { "id": 2, "book": "Job", "chapter": 40 },
@@ -1253,7 +2861,7 @@
           ]
         },
         {
-          "dayOfMonth": 14,
+          "dayOfMonth": 318,
           "readings": [
             { "id": 1, "book": "Psa", "chapter": 149 },
             { "id": 2, "book": "1Co", "chapter": 15 },
@@ -1261,7 +2869,7 @@
           ]
         },
         {
-          "dayOfMonth": 15,
+          "dayOfMonth": 319,
           "readings": [
             { "id": 1, "book": "Job", "chapter": 41 },
             { "id": 2, "book": "Job", "chapter": 42 },
@@ -1270,7 +2878,7 @@
           ]
         },
         {
-          "dayOfMonth": 16,
+          "dayOfMonth": 320,
           "readings": [
             { "id": 1, "book": "2Co", "chapter": 3 },
             { "id": 2, "book": "2Co", "chapter": 4 },
@@ -1279,7 +2887,7 @@
           ]
         },
         {
-          "dayOfMonth": 17,
+          "dayOfMonth": 321,
           "readings": [
             { "id": 1, "book": "2Co", "chapter": 7 },
             { "id": 2, "book": "2Co", "chapter": 8 },
@@ -1288,7 +2896,7 @@
           ]
         },
         {
-          "dayOfMonth": 18,
+          "dayOfMonth": 322,
           "readings": [
             { "id": 1, "book": "Psa", "chapter": 124 },
             { "id": 2, "book": "2Co", "chapter": 11 },
@@ -1297,7 +2905,7 @@
           ]
         },
         {
-          "dayOfMonth": 19,
+          "dayOfMonth": 323,
           "readings": [
             { "id": 1, "book": "Mat", "chapter": 1 },
             { "id": 2, "book": "Mat", "chapter": 2 },
@@ -1306,7 +2914,7 @@
           ]
         },
         {
-          "dayOfMonth": 20,
+          "dayOfMonth": 324,
           "readings": [
             { "id": 1, "book": "Mat", "chapter": 5 },
             { "id": 2, "book": "Mat", "chapter": 6 },
@@ -1314,7 +2922,7 @@
           ]
         },
         {
-          "dayOfMonth": 21,
+          "dayOfMonth": 325,
           "readings": [
             { "id": 1, "book": "Mat", "chapter": 8 },
             { "id": 2, "book": "Mat", "chapter": 9 },
@@ -1322,7 +2930,7 @@
           ]
         },
         {
-          "dayOfMonth": 22,
+          "dayOfMonth": 326,
           "readings": [
             { "id": 1, "book": "Mat", "chapter": 11 },
             { "id": 2, "book": "Mat", "chapter": 12 },
@@ -1330,7 +2938,7 @@
           ]
         },
         {
-          "dayOfMonth": 23,
+          "dayOfMonth": 327,
           "readings": [
             { "id": 1, "book": "Mat", "chapter": 14 },
             { "id": 2, "book": "Mat", "chapter": 15 },
@@ -1338,7 +2946,7 @@
           ]
         },
         {
-          "dayOfMonth": 24,
+          "dayOfMonth": 328,
           "readings": [
             { "id": 1, "book": "Mat", "chapter": 17 },
             { "id": 2, "book": "Mat", "chapter": 18 },
@@ -1346,7 +2954,7 @@
           ]
         },
         {
-          "dayOfMonth": 25,
+          "dayOfMonth": 329,
           "readings": [
             { "id": 1, "book": "Mat", "chapter": 20 },
             { "id": 2, "book": "Mat", "chapter": 21 },
@@ -1354,7 +2962,7 @@
           ]
         },
         {
-          "dayOfMonth": 26,
+          "dayOfMonth": 330,
           "readings": [
             { "id": 1, "book": "Mat", "chapter": 23 },
             { "id": 2, "book": "Mat", "chapter": 24 },
@@ -1362,7 +2970,7 @@
           ]
         },
         {
-          "dayOfMonth": 27,
+          "dayOfMonth": 331,
           "readings": [
             { "id": 1, "book": "Psa", "chapter": 125 },
             { "id": 2, "book": "Mat", "chapter": 26 },
@@ -1370,7 +2978,7 @@
           ]
         },
         {
-          "dayOfMonth": 28,
+          "dayOfMonth": 332,
           "readings": [
             { "id": 1, "book": "Mat", "chapter": 28 },
             { "id": 2, "book": "1Th", "chapter": 1 },
@@ -1379,7 +2987,7 @@
           ]
         },
         {
-          "dayOfMonth": 29,
+          "dayOfMonth": 333,
           "readings": [
             { "id": 1, "book": "1Th", "chapter": 4 },
             { "id": 2, "book": "1Th", "chapter": 5 },
@@ -1389,21 +2997,16 @@
           ]
         },
         {
-          "dayOfMonth": 30,
+          "dayOfMonth": 334,
           "readings": [
             { "id": 1, "book": "Rom", "chapter": 1 },
             { "id": 2, "book": "Rom", "chapter": 2 },
             { "id": 3, "book": "Rom", "chapter": 3 },
             { "id": 4, "book": "Rom", "chapter": 4 }
           ]
-        }
-      ]
-    },
-    {
-      "month": 12,
-      "days": [
+        },
         {
-          "dayOfMonth": 1,
+          "dayOfMonth": 335,
           "readings": [
             { "id": 1, "book": "Rom", "chapter": 5 },
             { "id": 2, "book": "Rom", "chapter": 6 },
@@ -1412,7 +3015,7 @@
           ]
         },
         {
-          "dayOfMonth": 2,
+          "dayOfMonth": 336,
           "readings": [
             { "id": 1, "book": "Rom", "chapter": 9 },
             { "id": 2, "book": "Rom", "chapter": 10 },
@@ -1421,7 +3024,7 @@
           ]
         },
         {
-          "dayOfMonth": 3,
+          "dayOfMonth": 337,
           "readings": [
             { "id": 1, "book": "Rom", "chapter": 13 },
             { "id": 2, "book": "Rom", "chapter": 14 },
@@ -1430,7 +3033,7 @@
           ]
         },
         {
-          "dayOfMonth": 4,
+          "dayOfMonth": 338,
           "readings": [
             { "id": 1, "book": "Eph", "chapter": 1 },
             { "id": 2, "book": "Eph", "chapter": 2 },
@@ -1439,7 +3042,7 @@
           ]
         },
         {
-          "dayOfMonth": 5,
+          "dayOfMonth": 339,
           "readings": [
             { "id": 1, "book": "Eph", "chapter": 5 },
             { "id": 2, "book": "Eph", "chapter": 6 },
@@ -1447,7 +3050,7 @@
           ]
         },
         {
-          "dayOfMonth": 6,
+          "dayOfMonth": 340,
           "readings": [
             { "id": 1, "book": "Phl", "chapter": 1 },
             { "id": 2, "book": "Phl", "chapter": 2 },
@@ -1456,7 +3059,7 @@
           ]
         },
         {
-          "dayOfMonth": 7,
+          "dayOfMonth": 341,
           "readings": [
             { "id": 1, "book": "Col", "chapter": 1 },
             { "id": 2, "book": "Col", "chapter": 2 },
@@ -1465,7 +3068,7 @@
           ]
         },
         {
-          "dayOfMonth": 8,
+          "dayOfMonth": 342,
           "readings": [
             { "id": 1, "book": "1Ti", "chapter": 1 },
             { "id": 2, "book": "1Ti", "chapter": 2 },
@@ -1474,7 +3077,7 @@
           ]
         },
         {
-          "dayOfMonth": 9,
+          "dayOfMonth": 343,
           "readings": [
             { "id": 1, "book": "1Ti", "chapter": 5 },
             { "id": 2, "book": "1Ti", "chapter": 6 },
@@ -1484,7 +3087,7 @@
           ]
         },
         {
-          "dayOfMonth": 10,
+          "dayOfMonth": 344,
           "readings": [
             { "id": 1, "book": "2Ti", "chapter": 1 },
             { "id": 2, "book": "2Ti", "chapter": 2 },
@@ -1493,7 +3096,7 @@
           ]
         },
         {
-          "dayOfMonth": 11,
+          "dayOfMonth": 345,
           "readings": [
             { "id": 1, "book": "Phm", "chapter": 1 },
             { "id": 2, "book": "Heb", "chapter": 1 },
@@ -1503,7 +3106,7 @@
           ]
         },
         {
-          "dayOfMonth": 12,
+          "dayOfMonth": 346,
           "readings": [
             { "id": 1, "book": "Heb", "chapter": 5 },
             { "id": 2, "book": "Heb", "chapter": 6 },
@@ -1512,7 +3115,7 @@
           ]
         },
         {
-          "dayOfMonth": 13,
+          "dayOfMonth": 347,
           "readings": [
             { "id": 1, "book": "Heb", "chapter": 9 },
             { "id": 2, "book": "Heb", "chapter": 10 },
@@ -1520,7 +3123,7 @@
           ]
         },
         {
-          "dayOfMonth": 14,
+          "dayOfMonth": 348,
           "readings": [
             { "id": 1, "book": "Heb", "chapter": 12 },
             { "id": 2, "book": "Heb", "chapter": 13 },
@@ -1528,7 +3131,7 @@
           ]
         },
         {
-          "dayOfMonth": 15,
+          "dayOfMonth": 349,
           "readings": [
             { "id": 1, "book": "Jas", "chapter": 1 },
             { "id": 2, "book": "Jas", "chapter": 2 },
@@ -1538,7 +3141,7 @@
           ]
         },
         {
-          "dayOfMonth": 16,
+          "dayOfMonth": 350,
           "readings": [
             { "id": 1, "book": "1Pe", "chapter": 1 },
             { "id": 2, "book": "1Pe", "chapter": 2 },
@@ -1548,7 +3151,7 @@
           ]
         },
         {
-          "dayOfMonth": 17,
+          "dayOfMonth": 351,
           "readings": [
             { "id": 1, "book": "2Pe", "chapter": 1 },
             { "id": 2, "book": "2Pe", "chapter": 2 },
@@ -1557,7 +3160,7 @@
           ]
         },
         {
-          "dayOfMonth": 18,
+          "dayOfMonth": 352,
           "readings": [
             { "id": 1, "book": "Jhn", "chapter": 2 },
             { "id": 2, "book": "Jhn", "chapter": 3 },
@@ -1565,21 +3168,21 @@
           ]
         },
         {
-          "dayOfMonth": 19,
+          "dayOfMonth": 353,
           "readings": [
             { "id": 1, "book": "Jhn", "chapter": 5 },
             { "id": 2, "book": "Jhn", "chapter": 6 }
           ]
         },
         {
-          "dayOfMonth": 20,
+          "dayOfMonth": 354,
           "readings": [
             { "id": 1, "book": "Jhn", "chapter": 7 },
             { "id": 2, "book": "Jhn", "chapter": 8 }
           ]
         },
         {
-          "dayOfMonth": 21,
+          "dayOfMonth": 355,
           "readings": [
             { "id": 1, "book": "Jhn", "chapter": 9 },
             { "id": 2, "book": "Jhn", "chapter": 10 },
@@ -1587,7 +3190,7 @@
           ]
         },
         {
-          "dayOfMonth": 22,
+          "dayOfMonth": 356,
           "readings": [
             { "id": 1, "book": "Jhn", "chapter": 12 },
             { "id": 2, "book": "Jhn", "chapter": 13 },
@@ -1595,7 +3198,7 @@
           ]
         },
         {
-          "dayOfMonth": 23,
+          "dayOfMonth": 357,
           "readings": [
             { "id": 1, "book": "Jhn", "chapter": 15 },
             { "id": 2, "book": "Jhn", "chapter": 16 },
@@ -1604,7 +3207,7 @@
           ]
         },
         {
-          "dayOfMonth": 24,
+          "dayOfMonth": 358,
           "readings": [
             { "id": 1, "book": "Jhn", "chapter": 19 },
             { "id": 2, "book": "Jhn", "chapter": 20 },
@@ -1612,7 +3215,7 @@
           ]
         },
         {
-          "dayOfMonth": 25,
+          "dayOfMonth": 359,
           "readings": [
             { "id": 1, "book": "1Jo", "chapter": 1 },
             { "id": 2, "book": "1Jo", "chapter": 2 },
@@ -1622,7 +3225,7 @@
           ]
         },
         {
-          "dayOfMonth": 26,
+          "dayOfMonth": 360,
           "readings": [
             { "id": 1, "book": "Psa", "chapter": 117 },
             { "id": 2, "book": "Psa", "chapter": 119, "verseStart":  81, "verseEnd": 176 },
@@ -1631,7 +3234,7 @@
           ]
         },
         {
-          "dayOfMonth": 27,
+          "dayOfMonth": 361,
           "readings": [
             { "id": 1, "book": "Rev", "chapter": 1 },
             { "id": 2, "book": "Rev", "chapter": 2 },
@@ -1640,7 +3243,7 @@
           ]
         },
         {
-          "dayOfMonth": 28,
+          "dayOfMonth": 362,
           "readings": [
             { "id": 1, "book": "Rev", "chapter": 5 },
             { "id": 2, "book": "Rev", "chapter": 6 },
@@ -1650,7 +3253,7 @@
           ]
         },
         {
-          "dayOfMonth": 29,
+          "dayOfMonth": 363,
           "readings": [
             { "id": 1, "book": "Rev", "chapter": 10 },
             { "id": 2, "book": "Rev", "chapter": 11 },
@@ -1660,7 +3263,7 @@
           ]
         },
         {
-          "dayOfMonth": 30,
+          "dayOfMonth": 364,
           "readings": [
             { "id": 1, "book": "Rev", "chapter": 15 },
             { "id": 2, "book": "Rev", "chapter": 16 },
@@ -1669,7 +3272,7 @@
           ]
         },
         {
-          "dayOfMonth": 31,
+          "dayOfMonth": 365,
           "readings": [
             { "id": 1, "book": "Rev", "chapter": 19 },
             { "id": 2, "book": "Rev", "chapter": 20 },

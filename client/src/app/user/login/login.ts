@@ -65,4 +65,8 @@ export class Login {
       })
     }
   }
+
+  onClick(page: string) {
+    this.router.navigate([`/${page}`]);
+  }
 }

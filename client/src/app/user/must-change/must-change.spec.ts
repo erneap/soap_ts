@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlanMenuDialog } from './plan-menu-dialog';
+import { MustChange } from './must-change';
 
-describe('PlanMenuDialog', () => {
-  let component: PlanMenuDialog;
-  let fixture: ComponentFixture<PlanMenuDialog>;
+describe('MustChange', () => {
+  let component: MustChange;
+  let fixture: ComponentFixture<MustChange>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlanMenuDialog]
+      imports: [MustChange]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PlanMenuDialog);
+    fixture = TestBed.createComponent(MustChange);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

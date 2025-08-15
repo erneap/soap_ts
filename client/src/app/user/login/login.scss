@@ -32,3 +32,11 @@ div.errormsg {
   font-size: 0.875rem;
   margin-top: 5px;
 }
+
+div.additional {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  justify-content: space-between;
+  align-items: center;
+}

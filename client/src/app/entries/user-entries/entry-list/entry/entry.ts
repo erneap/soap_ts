@@ -119,7 +119,7 @@ export class Entry implements OnInit, OnChanges {
     const plan = this.plan();
     if (plan && date) {
       switch (plan.type.toLowerCase()) {
-        case "journal":
+        case "bydate":
           const imonth = date.getMonth() + 1;
           const iday = date.getDate();
           const readings: Reading[] = [];
@@ -136,6 +136,24 @@ export class Entry implements OnInit, OnChanges {
             }
           });
           return readings;
+        case "circular":
+          const creadings: Reading[] = [];
+          const user = this.authService.user();
+          if (user) {
+            let start = user.startDate;
+            start = new Date(Date.UTC(start.getFullYear(), start.getMonth(), 
+              start.getDate()));
+            let now = new Date();
+            now = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            let iDays = Math.floor((now.getTime() - start.getTime()) 
+              / (24 * 3600000)) % this.plan().months[0].days.length;
+            const day = this.plan().months[0].days[iDays];
+            day.readings.forEach(r => {
+              readings.push(new Reading(r));
+            });
+            creadings.sort((a, b) => a.compareTo(b));
+          }
+          return creadings;
       }
     }
     return [];

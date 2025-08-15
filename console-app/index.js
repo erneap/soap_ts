@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const plans_1 = require("soap-models/dist/plans");
 const users_1 = require("soap-models/dist/users");
 const translations_json_1 = __importDefault(require("./translations.json"));
-const plan_json_1 = __importDefault(require("./plan.json"));
+const plan2_json_1 = __importDefault(require("./plan2.json"));
 const bible_json_1 = __importDefault(require("./bible.json"));
 const mongoconnect_1 = require("./config/mongoconnect");
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -55,7 +55,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     catch (error) {
         console.log(error);
     }
-    const iPlan = plan_json_1.default;
+    const iPlan = plan2_json_1.default;
     const plansCol = mongoconnect_1.collections.plans;
     try {
         const plan = new plans_1.Plan(iPlan);

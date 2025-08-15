@@ -5,7 +5,6 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { BibleBook, IReading, Reading } from 'soap-models/dist/plans';
 import { PlanDeleteDialog } from '../plan-delete-dialog/plan-delete-dialog';
-import { PlanMenuDialog } from '../plan-menu-dialog/plan-menu-dialog';
 
 @Component({
   selector: 'app-plan-reading-component',

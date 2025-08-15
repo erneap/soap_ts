@@ -1,7 +1,7 @@
 import { IPlan, ITranslation, ITranslationList, Plan, Translation, IBibleBook, BibleBook } from 'soap-models/dist/plans';
 import { IUser, User } from 'soap-models/dist/users';
 import all from './translations.json';
-import plans from './plan.json';
+import plans from './plan2.json';
 import books from './bible.json';
 import { connectToDB, collections } from './config/mongoconnect';
 import { Collection, ObjectId } from 'mongodb';

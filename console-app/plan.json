@@ -1,6 +1,6 @@
 {
-  "name": "Daily Journaling",
-  "type": "journal",
+  "name": "Devine Mentor Plan",
+  "type": "bydate",
   "months": [
     {
       "month": 1,
