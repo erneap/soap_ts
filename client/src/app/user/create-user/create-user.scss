@@ -5,7 +5,6 @@ mat-card {
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  height: calc(100% - 100px);
 }
 
 div.overall {
@@ -14,6 +13,7 @@ div.overall {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex: 1;
 }
 
 form.newuser {
@@ -22,4 +22,22 @@ form.newuser {
   justify-content: center;
   align-items: center;
   gap: 5px;
+}
+
+div.formRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+div.errormsg {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: var(--hot-red);
+  font-size: 0.875rem;
+  margin-top: 5px;
 }

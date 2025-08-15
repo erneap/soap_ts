@@ -28,10 +28,10 @@ app.use(cors({
 app.use(express.json());
 
 app.use("/api", userRoutes);
-app.use('/api', auth, bookRoutes);
-app.use("/api", auth, transRoutes);
-app.use('/api', auth, planRoutes);
+app.use("/api", transRoutes);
+app.use('/api', planRoutes);
 app.use('/api', auth, entriesRoutes);
+app.use('/api', auth, bookRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
