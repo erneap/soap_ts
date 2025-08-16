@@ -53,8 +53,16 @@ router.post('/user/new', async (req: Request, res: Response) => {
     user.firstName = newuser.firstName;
     user.middleName = newuser.middleName;
     user.lastName = newuser.lastName;
+    user.translationId = newuser.translation;
+    user.planId
     const tempPassword = user.createRandomPassword();
 
+    const query = { email: newuser.email };
+    const oldUser = await collections.users?.findOne<User>(query);
+
+    if (oldUser) {
+      return res.status(403).send('User already present');
+    }
     const result = await collections.users?.insertOne(user);
 
     if (result) {
@@ -63,6 +71,9 @@ router.post('/user/new', async (req: Request, res: Response) => {
         user: user,
         password: tempPassword,
       };
+
+      // TODO:  send an email with the new password
+      
       return res.status(201).json(newResponse);
     } else {
       return res.status(500).send("Failed to create new user");

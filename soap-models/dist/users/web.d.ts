@@ -4,6 +4,8 @@ export interface NewUserRequest {
     firstName: string;
     middleName: string;
     lastName: string;
+    translation: string;
+    plan: string;
 }
 export interface NewUserResponse {
     user: User;

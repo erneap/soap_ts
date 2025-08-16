@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Plan = void 0;
 const month_1 = require("./month");
+const bible_1 = require("./bible");
 class Plan {
     id;
     name;
@@ -29,6 +30,45 @@ class Plan {
             }
             return (this.name < other.name) ? -1 : 1;
         }
+    }
+    checkPlan(books) {
+        const bibleBooks = [];
+        books.forEach(bk => {
+            bibleBooks.push(new bible_1.BibleBook(bk));
+        });
+        bibleBooks.sort((a, b) => a.compareTo(b));
+        if (this.months.length > 0) {
+            this.months.forEach(month => {
+                month.days.forEach(day => {
+                    day.readings.forEach(read => {
+                        bibleBooks.forEach((bk, b) => {
+                            if (read.book.toLowerCase() === bk.abbrev.toLowerCase()) {
+                                bk.complete[read.chapter] = true;
+                            }
+                        });
+                    });
+                });
+            });
+        }
+        const answer = [];
+        bibleBooks.forEach(bk => {
+            let found = '';
+            bk.complete.forEach((ch, c) => {
+                if (!ch && c > 0) {
+                    if (found === '') {
+                        found = bk.title + ": ";
+                    }
+                    else {
+                        found += ', ';
+                    }
+                    found += `${c}`;
+                }
+            });
+            if (found !== '') {
+                answer.push(found);
+            }
+        });
+        return answer;
     }
 }
 exports.Plan = Plan;

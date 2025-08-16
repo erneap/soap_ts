@@ -1,5 +1,6 @@
 import { ObjectId } from "mongodb";
 import { IPlanMonth, PlanMonth } from "./month";
+import { IBibleBook } from "./bible";
 export interface IPlan {
     _id?: ObjectId;
     id?: string;
@@ -14,6 +15,7 @@ export declare class Plan implements IPlan {
     type: string;
     constructor(plan?: IPlan);
     compareTo(other?: Plan): number;
+    checkPlan(books: IBibleBook[]): string[];
 }
 export interface NewPlanRequest {
     name: string;
