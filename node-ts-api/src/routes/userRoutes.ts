@@ -6,6 +6,7 @@ import { collections } from '../config/mongoconnect';
 import { NewUserRequest, NewUserResponse } from 'soap-models/dist/users';
 import * as jwt from 'jsonwebtoken';
 import { auth } from '../middleware/authorization.middleware';
+import { sendMail } from '../config/emailer';
 
 const router = Router();
 
@@ -243,6 +244,10 @@ router.post('/refresh', auth, async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(400).send('Invalid refresh token.');
   }
+});
+
+router.patch('/user/forgot', async(req: Request, res: Response) => {
+
 });
 
 router.delete('/user/:id', auth, async (req: Request, res: Response) => {
