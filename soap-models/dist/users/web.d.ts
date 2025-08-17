@@ -28,3 +28,8 @@ export interface UpdateUserRequest {
     field: string;
     value: string;
 }
+export interface ForgotPasswordRequest {
+    id: string;
+    token: string;
+    password: string;
+}

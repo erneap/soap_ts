@@ -1,6 +1,6 @@
 {
   "name": "soap-models",
-  "version": "1.3.43",
+  "version": "1.3.44",
   "description": "Packaged Modules for working with SOAP",
   "main": "./dist/index.js",
   "files": [

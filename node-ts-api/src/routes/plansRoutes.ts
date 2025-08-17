@@ -53,6 +53,7 @@ router.post('/plan/newplan', async (req: Request, res: Response) => {
     // if not present, add new plan
       const plan = new Plan();
       plan.name = data.name;
+      plan.type = data.plantype;
       while (plan.months.length < data.months) {
         plan.months.push(new PlanMonth());
       }
@@ -304,7 +305,7 @@ router.delete('/plan/:id', async(req: Request, res: Response) => {
     const query = { _id: id };
     const result = await plansCol.deleteOne(query);
     if (result && result.deletedCount > 0) {
-      return res.status(200).send('Plan Deleted');
+      return res.status(200).json({message: 'Plan Deleted'});
     } else {
       return res.status(404).send('Plan not found');
     }

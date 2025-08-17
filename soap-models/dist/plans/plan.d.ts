@@ -19,6 +19,7 @@ export declare class Plan implements IPlan {
 }
 export interface NewPlanRequest {
     name: string;
+    plantype: string;
     months: number;
 }
 export interface NewPlanDayReadingRequest {
