@@ -92,10 +92,12 @@ export class Entry implements OnInit, OnChanges {
     const planid = this.user().planId;
     if (planid) {
       this.readings.set([]);
-      this.planService.getReadingPlan(planid).subscribe(res => {
-        this.plan.set(new Plan(res.body as IPlan));
-        this.readings.set(this.getPlanReadings(this.entry()?.entryDate));
-      });
+      if (this.entry()) {
+        this.planService.getReadingPlan(planid).subscribe(res => {
+          this.plan.set(new Plan(res.body as IPlan));
+          this.readings.set(this.getPlanReadings(this.entry()?.entryDate));
+        });
+      }
     }
     this.books = [];
     this.bookService.getBookList().subscribe(res => {

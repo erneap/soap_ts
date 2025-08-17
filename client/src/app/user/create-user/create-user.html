@@ -3,7 +3,7 @@
     <mat-card-title>Create New Account Form</mat-card-title>>
   </mat-card-header>
   <div class="overall">
-    <form [formGroup]="newUserForm">
+    <form [formGroup]="newUserForm" (ngSubmit)="createUser()">
       <div class="formRow">
         <mat-form-field [style.width.px]=350>
           <mat-label>Account ID/Email Address</mat-label>

@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { APP_SETTINGS } from '../app.settings';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IUser } from 'soap-models/dist/users';
+import { IUser, NewUserRequest, NewUserResponse, UpdateUserRequest } from 'soap-models/dist/users';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +20,29 @@ export class UserService {
     return this.http.get<IUser[]>(this.usersUrl, {
       observe: 'response'
     });
+  }
+
+  createUser(email: string, first: string, middle: string | null, last: string, 
+    plan: string, translation: string ): Observable<HttpResponse<NewUserResponse>> {
+    const newuser: NewUserRequest = {
+      email: email,
+      firstName: first,
+      middleName: (middle && middle !== null) ? middle : '',
+      lastName: last,
+      plan: plan,
+      translation: translation
+    };
+    const url = this.userUrl + '/new';
+    return this.http.post<NewUserResponse>(url, newuser, { 
+      observe: 'response'});
+  }
+
+  updateUser(id: string, field: string, value: string): Observable<HttpResponse<IUser>> {
+    const update: UpdateUserRequest = {
+      id: id,
+      field: field,
+      value: value
+    };
+    return this.http.put<IUser>(this.userUrl, update, { observe: 'response' });
   }
 }

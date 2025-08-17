@@ -1,6 +1,6 @@
 <mat-expansion-panel hideToggle>
   <mat-expansion-panel-header color="primary">
-    @if (plantype()!.toLowerCase() === 'journal') {
+    @if (plantype()!.toLowerCase() === 'bydate') {
       <mat-panel-title>
         {{months[month()!.month - 1]}}
         <span class="flex-spacer"></span>

@@ -2,7 +2,9 @@
   <h3>{{plan()!.name}}</h3>
   <mat-accordion style="width: 99%;">
     @for (month of plan()!.months; track month.month) {
-      <app-plan-month-component [plantype]="plan()!.type!" [month]="month" 
+      <app-plan-month-component 
+        [plantype]="(plan()!.months.length > 1) ? 'bydate' : 'circular'" 
+        [month]="month" 
         [books]="books" [key]="plan()!.id + '-' + month.month"
         (change)="onChange($event)">
       </app-plan-month-component>

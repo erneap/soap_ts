@@ -49,7 +49,11 @@ export class Login {
         next: (res) => {
           const IUser = res.body as IUser;
           if (IUser.lastName !== '') {
-            this.router.navigate(['//entries']);
+            if (IUser.badAttempts < 0) {
+              this.router.navigate(['/mustchange']);
+            } else {
+              this.router.navigate(['/entries']);
+            }
           } else {
             this.errorMsg.set('No Last Name');
           }
@@ -62,11 +66,35 @@ export class Login {
             }
           }
         }
-      })
+      });
     }
   }
 
   onClick(page: string) {
     this.router.navigate([`/${page}`]);
+  }
+
+  onForgot() {
+    const email = this.loginForm.controls.email;
+    if (email.hasError('required') || email.hasError('email')) {
+      this.errorMsg.set("You need to provide Your Account Email Address")
+    } else {
+      this.authService.forgotStart(email.value).subscribe({
+        next: (res) => {
+          const IUser = res.body as IUser;
+          if (IUser) {
+            this.router.navigate(['/forgot']);
+          }
+        }, error: (err) => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              this.errorMsg.set(`Unauthorized: ${err.error}`);
+            } else {
+              this.errorMsg.set(`${err.status}: ${err.error}`);
+            }
+          }
+        }
+      });
+    }
   }
 }

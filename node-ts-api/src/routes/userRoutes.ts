@@ -55,7 +55,7 @@ router.post('/user/new', async (req: Request, res: Response) => {
     user.middleName = newuser.middleName;
     user.lastName = newuser.lastName;
     user.translationId = newuser.translation;
-    user.planId
+    user.planId = newuser.plan;
     const tempPassword = user.createRandomPassword();
 
     const query = { email: newuser.email };
@@ -74,6 +74,36 @@ router.post('/user/new', async (req: Request, res: Response) => {
       };
 
       // TODO:  send an email with the new password
+      let message = '<!DOCTYPE html>\n<html>\n<head>\n<style>\n'
+        + 'body { background-color:lightblue;display:flex;flex-direction:column;'
+        + 'justify-content:center;align-items:center;padding:10px;}\n'
+        + 'div.main {display:flex;flex-direction:column;justify-content:center;'
+        + 'align-items: center;}\n'
+        + 'div.password {background-color:blue;color:white;display:flex;'
+        + 'flex-direction:column;justify-content:center;align-items:center;'
+        + 'padding: 10px;}\n'
+        + '</style>\n</head>\n<body>\n'
+        + '<h1>Soap Journal Web Application</h1>\n'
+        + '<h2>Thank you for creating an account at soapjournal.org</h2>\n'
+        + '<div class="main">\n'
+        + '<p>The account you created will allow you to create journal entries, '
+        + 'create and maintain a reading plan, and read the bible according to '
+        + 'your choosen plan.</p>\n'
+        + "<p>We are glad that you've choosen to enrich your life through faith!"
+        + '</p>\n<div class="password">\n'
+        + '<p>The following is your temporary password, use it to log into the '
+        + 'application:</p>\n'
+        + `<h2 style="color: yellow;">${tempPassword}</h2>\n`
+        + '<p style="color:lightpink;text-decoration: underline;">\n'
+        + 'You will be required to change your password after the first log in.\n'
+        + '</p>\n</div>\n<div style="margin-top: 25px;">Thanks again, the '
+        + 'webmaster.</div>\n</div>\n</body>\n</html>\n';
+
+      try {
+        await sendMail(user.email, 'New Account Creation', message);
+      } catch (error) {
+        console.log(error);
+      }
       
       return res.status(201).json(newResponse);
     } else {
@@ -124,6 +154,7 @@ router.post('/user/authenticate', async (req: Request, res: Response) => {
           bad = -1;
         }
         user.checkPassword(request.password);
+        user.badAttempts = bad;
         const nquery = { _id: user.id };
         await collections.users?.updateOne(query, { $set: user });
         if (user.id) {
@@ -143,7 +174,6 @@ router.post('/user/authenticate', async (req: Request, res: Response) => {
             res.setHeader('refreshToken', refreshToken);
           }
         }
-        user.badAttempts = bad;
         
         return res.status(200).json(user);
       } catch (error) {
@@ -200,12 +230,49 @@ router.put('/user', auth, async (req: Request, res: Response) => {
         case "lastname":
           user.lastName = data.value;
           break;
+        case "plan":
+          user.planId = data.value;
+          break;
+        case "translation":
+          user.translationId = data.value;
+          break;
+        case "email":
+          user.email = data.value;
+          break;
       }
 
       const result = await collections.users?.updateOne(query, { $set: user });
       res.status(200).json(user);
     }
 
+  } catch (error) {
+    if (typeof error === 'string') {
+      console.log(error);
+      return res.status(401).send(error);
+    } else if (error instanceof Error) {
+      console.log(error.message);
+      return res.status(401).send(error.message);
+    } else {
+      return res.status(500).send(error);
+    }
+  }
+});
+
+router.put('/user/mustchange', auth, async(req: Request, res: Response) => {
+  try {
+    const data = req.body as UpdateUserRequest;
+    const query = { email: data.id };
+    const iuser = await collections.users?.findOne<User>(query);
+
+    if (!iuser || iuser === null) {
+      throw new Error("User Not Found for Update");
+    } else {
+      const user = new User(iuser);
+      user.setPassword(data.value);
+
+      const result = await collections.users?.updateOne(query, { $set: user });
+      res.status(200).json(user);
+    }
   } catch (error) {
     if (typeof error === 'string') {
       console.log(error);
@@ -246,8 +313,106 @@ router.post('/refresh', auth, async (req: Request, res: Response) => {
   }
 });
 
-router.patch('/user/forgot', async(req: Request, res: Response) => {
+router.put('/user/forgot', async(req: Request, res: Response) => {
+  try {
+    const request = req.body as UpdateUserRequest;
+    const email = request.id;
 
+    const query = { email: email };
+    const iUser = await collections.users?.findOne<IUser>(query);
+    if (iUser) {
+      const user = new User(iUser)
+      const result = user.createResetToken();
+      const nquery = { _id: new ObjectId(user.id)};
+      await collections.users?.updateOne(nquery, { $set: user });
+
+      let message = '<!DOCTYPE html>\n<html>\n<head>\n<style>\n'
+        + 'body { background-color:lightblue;display:flex;flex-direction:column;'
+        + 'justify-content:center;align-items:center;padding:10px;}\n'
+        + 'div.main {display:flex;flex-direction:column;justify-content:center;'
+        + 'align-items: center;}\n'
+        + 'div.password {background-color:blue;color:white;display:flex;'
+        + 'flex-direction:column;justify-content:center;align-items:center;'
+        + 'padding: 10px;}\n'
+        + '</style>\n</head>\n<body>\n'
+        + '<h1>Soap Journal Web Application</h1>\n'
+        + '<h2>Forgot Your Password</h2>\n'
+        + '<div class="main">\n<p>\n'
+        + "You have notified the site that you've forgotten your password.  The "
+        + "process for re-establishing log in privileges is in effect.  Please "
+        + "copy the token string below and click the link to get you back to a "
+        + "web page to change your forgotten password.\n</p>\n"
+        + "<p>We are glad that you've choosen to enrich your life through faith!</p>\n"
+        + '<div class="password">\n'
+        + '<p>The following is your token string to verify you are the account '
+        + `holder:</p>\n<h2 style="color: yellow;">${result}</h2>\n`
+        + '<p style="color:lightpink;text-decoration: underline;">\n'
+        + '<a href="http://www.soapjournal.org/forgot">Link back to site</a>\n'
+        + '</p>\n</div>\n<div style="margin-top: 25px;">'
+        + 'Thanks again, the webmaster.</div>\n</div>\n</body>\n</html>';
+
+      try {
+        await sendMail(user.email, 'Forgot Password Token', message);
+      } catch (error) {
+        console.log(error);
+      }
+      return res.status(200).json(user);
+    } else {
+      throw new Error("User Not Found");
+    }
+  } catch (error) {
+    console.log(error);
+    if (typeof error === 'string') {
+      console.log(error);
+      return res.status(401).send(error);
+    } else if (error instanceof Error) {
+      console.log(error.message);
+      return res.status(401).send(error.message);
+    } else {
+      return res.status(500).send(error);
+    }
+  }
+});
+
+router.put('/user/forgot2', async (req: Request, res: Response) => {
+  try {
+    const request = req.body as UpdateUserRequest;
+    const email = request.id;
+
+    const query = { email: email };
+    const iUser = await collections.users?.findOne<IUser>(query);
+    if (iUser) {
+      const user = new User(iUser);
+      const now = new Date();
+      if (now.getTime() <= user.resetTokenExpires.getTime() 
+        && user.resetToken === request.field) {
+        user.setPassword(request.value);
+        user.resetToken = '';
+        user.resetTokenExpires = new Date(0);
+        await collections.users?.updateOne(query, { $set: user });
+        return res.status(200).json(user);
+      } else {
+        if (now.getTime() > user.resetTokenExpires.getTime()) {
+          throw new Error("Reset Token Expired.  They are only good for 1 hour");
+        } else {
+          throw new Error("Reset Token was not correct, try again");
+        }
+      }
+    } else {
+      throw new Error("User Not Found");
+    }
+  } catch (error) {
+    console.log(error);
+    if (typeof error === 'string') {
+      console.log(error);
+      return res.status(401).send(error);
+    } else if (error instanceof Error) {
+      console.log(error.message);
+      return res.status(401).send(error.message);
+    } else {
+      return res.status(500).send(error);
+    }
+  }
 });
 
 router.delete('/user/:id', auth, async (req: Request, res: Response) => {

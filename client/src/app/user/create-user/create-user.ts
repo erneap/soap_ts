@@ -11,6 +11,8 @@ import { MatCard, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatError, MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatSelect, MatOption } from '@angular/material/select';
 import { MatButton } from '@angular/material/button';
+import { UserService } from '../user-service';
+import { NewUserResponse } from 'soap-models/dist/users';
 
 @Component({
   selector: 'app-create-user',
@@ -67,6 +69,7 @@ export class CreateUserComponent implements OnInit {
     private plansService: PlanService,
     private authService: AuthService,
     private viewState: AppStateService,
+    private userService: UserService,
     private router: Router
   ) { }
 
@@ -113,5 +116,48 @@ export class CreateUserComponent implements OnInit {
         }
       }
     });
+  }
+
+  createUser() {
+    if (this.newUserForm.valid) {
+      this.userService.createUser(
+        this.newUserForm.controls.email.value,
+        this.newUserForm.controls.first.value,
+        this.newUserForm.controls.middle.value,
+        this.newUserForm.controls.last.value,
+        this.newUserForm.controls.plan.value,
+        this.newUserForm.controls.translation.value
+      ).subscribe({
+      next: (res) => {
+        const response = res.body as NewUserResponse;
+        if (response.user) {
+          this.router.navigate(['/login']);
+        }
+      }, error: (err) => {
+        if (err instanceof HttpErrorResponse) {
+          switch (err.status) {
+            case 401:
+              this.errorMsg.set(`Unauthorized: ${err.error}`);
+              break;
+            case 400:
+              this.errorMsg.set(`Bad Request: ${err.error}`);
+              break;
+            case 403:
+              this.errorMsg.set(`Forbidden: ${err.error}`);
+              break;
+            case 500:
+              this.errorMsg.set(`Server Error: ${err.error}`);
+              break;
+            default:
+              this.errorMsg.set(`${err.status}: ${err.error}`);
+          }
+        }
+      }
+    });
+    }
+  }
+
+  onCancel() {
+    this.router.navigate(['/login']);
   }
 }
