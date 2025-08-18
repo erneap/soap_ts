@@ -36,7 +36,7 @@ class PlanMonth {
             if (this.days[i].getDayOfMonth() === day) {
                 found = true;
                 readings.forEach((reading) => {
-                    this.days[i].setReading(reading.getId(), reading.getBook(), reading.getChapter(), reading.getStartVerse(), reading.getEndVerse());
+                    this.days[i].setReading(reading.id, reading.book, reading.chapter, reading.verseStart, reading.verseEnd);
                 });
             }
         }

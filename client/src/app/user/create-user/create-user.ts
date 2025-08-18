@@ -1,6 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslationsService } from '../../translations/translations-service';
+import { TranslationsService } from '../../bibles/translations/translations-service';
 import { IPlan, ITranslation, Plan, Translation } from 'soap-models/dist/plans';
 import { PlanService } from '../../plans/plan-service';
 import { HttpErrorResponse } from '@angular/common/http';

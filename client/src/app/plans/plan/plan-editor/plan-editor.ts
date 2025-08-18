@@ -1,13 +1,23 @@
 import { ChangeDetectionStrategy, Component, input, OnChanges, OnInit, output, signal, SimpleChanges } from '@angular/core';
 import { AppStateService } from '../../../services/app-state.service';
-import { BooksService } from '../../../books/books-service';
+import { BooksService } from '../../../bibles/books/books-service';
 import { BibleBook, IBibleBook, IPlan, Plan } from 'soap-models/dist/plans';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PlanMonthComponent } from './plan-month-component/plan-month-component';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatError, MatFormField, MatInput, MatLabel } from '@angular/material/input';
 
 @Component({
   selector: 'app-plan-editor',
-  imports: [MatExpansionModule, PlanMonthComponent],
+  imports: [
+    MatExpansionModule, 
+    PlanMonthComponent,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatError,
+    MatInput
+  ],
   templateUrl: './plan-editor.html',
   styleUrl: './plan-editor.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -17,6 +27,12 @@ export class PlanEditor implements OnInit, OnChanges {
   books: BibleBook[] = [];
   plan = input<Plan>();
   change = output<string>();
+  editorForm = new FormGroup({
+    name: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required]
+    })
+  });
 
   constructor(
     private appState: AppStateService,
@@ -54,11 +70,20 @@ export class PlanEditor implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const change = changes['plan'];
-    const newplan = change.currentValue as IPlan;
+    if (change) {
+      const newplan = change.currentValue as IPlan;
+      this.editorForm.controls.name.setValue(newplan.name);
+    }
   }
 
   onChange(action: string) {
-    console.log(`Editor -- ${action}`);
     this.change.emit(action);
+  }
+
+  onUpdate(field: string) {
+    let update = `${this.plan()!.id}-${field}`;
+    let value = `${this.editorForm.controls.name.value}`;
+    update += `-${value.replace('-', ' ')}`;
+    this.change.emit(update);
   }
 }

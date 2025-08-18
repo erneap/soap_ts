@@ -47,11 +47,11 @@ export class PlanMonth implements IPlanMonth {
                 found = true;
                 readings.forEach((reading: Reading) => {
                     this.days[i].setReading(
-                        reading.getId(),
-                        reading.getBook(),
-                        reading.getChapter(),
-                        reading.getStartVerse(),
-                        reading.getEndVerse()
+                        reading.id,
+                        reading.book,
+                        reading.chapter,
+                        reading.verseStart,
+                        reading.verseEnd
                     );
                 });
             }

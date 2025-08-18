@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { APP_SETTINGS } from '../app.settings';
+import { APP_SETTINGS } from '../../app.settings';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IBibleBook } from 'soap-models/dist/plans';

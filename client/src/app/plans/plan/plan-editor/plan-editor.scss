@@ -27,3 +27,12 @@ mat-tree-node {
 mat-button {
   padding: 1px;
 }
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-bottom: 12px;
+  gap: 3px;
+}

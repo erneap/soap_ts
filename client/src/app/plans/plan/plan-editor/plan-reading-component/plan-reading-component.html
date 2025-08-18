@@ -1,16 +1,19 @@
 <div class="overall">
   <form class="overall" [formGroup]="readingForm">
     <div class="id">{{reading()!.id}}.</div>
-    <select formControlName="book">
+    <select formControlName="book" (change)="onEdit('book')">
       @for (book of books()!; track book.abbrev) {
         <option [value]="book.abbrev">{{book.title}}</option>
       }
     </select>
-    <input formControlName="chapter" type="number" class="number">
+    <input formControlName="chapter" type="number" class="number"
+      (blur)="onEdit('chapter')">
     <div class="id">Optional Verses ( Start:</div>
-    <input formControlName="start" type="number" class="number">
+    <input formControlName="start" type="number" class="number"
+      (blur)="onEdit('start')">
     <div class="id"> - </div>
-    <input formControlName="end" type="number" class="number">
+    <input formControlName="end" type="number" class="number"
+      (blur)="onEdit('end')">
     <div class="id"> )</div>
   </form>
   <span class="flex-spacer" (click)="onMenuClear()"></span>
@@ -22,9 +25,6 @@
   }
   @if (this.showActions) {
     <div class="menu">
-      <div class="icon" (click)="onMenu()" matTooltip="close menu">
-        <mat-icon>arrow_right</mat-icon>
-      </div>
       <div class="icon" (click)="onDelete()"
         matTooltip="delete this item">
         <mat-icon>cancel</mat-icon>
@@ -41,6 +41,9 @@
           <mat-icon>arrow_downward</mat-icon>
         </div>
       }
+      <div class="icon" (click)="onMenu()" matTooltip="close menu">
+        <mat-icon>arrow_right</mat-icon>
+      </div>
     </div>
   }
 </div>

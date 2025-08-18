@@ -143,6 +143,7 @@ router.put('/plan', async (req: Request, res: Response) => {
                         switch (data.field.toLowerCase()) {
                           case "book":
                             day.readings[r].book = data.value;
+                            break;
                           case "chapter":
                             day.readings[r].chapter = Number(data.value);
                             break;
@@ -197,6 +198,16 @@ router.put('/plan', async (req: Request, res: Response) => {
                         }
                         month.days[d] = day;
                         break;
+                      case "add":
+                      case "addreading":
+                        let next = day.readings.length;
+                        const newRead = new Reading({
+                          id: next + 1,
+                          book: '',
+                          chapter: 0
+                        });
+                        day.readings.push(newRead);
+                        break;
                       case "deletereading":
                       case "delete":
                         const iReading = Number(data.value);
@@ -206,6 +217,10 @@ router.put('/plan', async (req: Request, res: Response) => {
                             day.readings.splice(r, 1);
                           }
                         }
+                        day.readings.forEach((read, d) => {
+                          read.id = d + 1;
+                          day.readings[d] = read;
+                        });
                         month.days[d] = day;
                         break;
                       case "move":
@@ -244,6 +259,17 @@ router.put('/plan', async (req: Request, res: Response) => {
                   }
                   plan.months[m] = month;
                   break;
+                case "add":
+                  const days = Number(data.value);
+                  let max = month.days.length;
+                  for (let i=0; i < days; i++) {
+                    const newday = new PlanDay({
+                      dayOfMonth: max + i + 1,
+                      readings: []
+                    });
+                    month.days.push(newday);
+                  }
+                  break;
                 case "move":
                   const old = plan.months[m].month;
                   if (data.value.toLowerCase() === 'up' && m > 0) {
@@ -254,6 +280,23 @@ router.put('/plan', async (req: Request, res: Response) => {
                     plan.months[m+1].month = old;
                   }
                   plan.months.sort((a,b) => a.compareTo(b));
+                  break;
+                case "deleteday":
+                  const dday = Number(data.value);
+                  let found = -1;
+                  month.days.forEach((day, d) => {
+                    if (day.dayOfMonth === dday) {
+                      found = d;
+                    }
+                  });
+                  if (found >= 0) {
+                    month.days.splice(found, 1);
+                    month.days.sort((a,b) => a.compareTo(b));
+                    month.days.forEach((day, d) => {
+                      day.dayOfMonth = d+1;
+                      month.days[d] = day;
+                    });
+                  }
                   break;
               }
             }

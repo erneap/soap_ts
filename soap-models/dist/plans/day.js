@@ -34,16 +34,16 @@ class PlanDay {
         let found = false;
         let last = 0;
         for (let i = 0; i < this.readings.length && !found; i++) {
-            if (this.readings[i].getId() === id) {
+            if (this.readings[i].id === id) {
                 found = true;
-                this.readings[i].setBook(book);
-                this.readings[i].setChapter(chapter);
-                this.readings[i].setStartVerse(start);
-                this.readings[i].setEndVerse(end);
+                this.readings[i].book = book;
+                this.readings[i].chapter = chapter;
+                this.readings[i].verseStart = start;
+                this.readings[i].verseEnd = end;
             }
             else {
-                if (last < this.readings[i].getId()) {
-                    last = this.readings[i].getId();
+                if (last < this.readings[i].id) {
+                    last = this.readings[i].id;
                 }
             }
         }
@@ -61,7 +61,7 @@ class PlanDay {
     getReading(id) {
         let result = undefined;
         for (let i = 0; i < this.readings.length && !result; i++) {
-            if (this.readings[i].getId() === id) {
+            if (this.readings[i].id === id) {
                 result = this.readings[i];
             }
         }

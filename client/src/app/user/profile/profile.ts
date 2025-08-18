@@ -8,7 +8,7 @@ import { AppStateService } from '../../services/app-state.service';
 import { AuthService } from '../../services/auth-service';
 import { UserService } from '../user-service';
 import { Router } from '@angular/router';
-import { TranslationsService } from '../../translations/translations-service';
+import { TranslationsService } from '../../bibles/translations/translations-service';
 import { PlanService } from '../../plans/plan-service';
 import { IPlan, ITranslation, Plan, Translation } from 'soap-models/dist/plans';
 import { HttpErrorResponse } from '@angular/common/http';

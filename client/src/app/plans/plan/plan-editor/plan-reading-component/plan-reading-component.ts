@@ -41,9 +41,11 @@ export class PlanReadingComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const change = changes['reading'];
-    const newIRead = change.currentValue as IReading;
-    const reading = new Reading(newIRead);
-    this.setReading(reading);
+    if (change && change.currentValue) {
+      const newIRead = change.currentValue as IReading;
+      const reading = new Reading(newIRead);
+      this.setReading(reading);
+    }
   }
 
   ngOnInit(): void {
@@ -63,20 +65,47 @@ export class PlanReadingComponent implements OnInit, OnChanges {
 
   onDelete(): void {
     const dialogRef = this.dialog.open(PlanDeleteDialog, {
-      data: { plantype: 'reading' },
+      data: { level: "Day's Reading" },
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result === 'yes') {
         console.log(this.key());
-        this.change.emit(`${this.key()}-delete`);
+        const parts = this.key()?.split('-');
+        if (parts) {
+          const action = `${parts[0]}-${parts[1]}-${parts[2]}-deletereading-${parts[3]}`;
+          this.change.emit(action);
+        }
       }
     });
     this.onMenu();
   }
 
+  onEdit(field: string) {
+    let value = 'none';
+    switch (field.toLowerCase()) {
+      case "book":
+        value = this.readingForm.controls.book.value;
+        break;
+      case "chapter":
+        value = `${this.readingForm.controls.chapter.value}`;
+        break;
+      case "start":
+        value = `${this.readingForm.controls.start.value}`;
+        break;
+      case "end":
+        value = `${this.readingForm.controls.end.value}`;
+        break;
+    }
+    if (value !== 'none' && value !== 'undefined') {
+      const event = `${this.key()!}-${field}-${value}`;
+      console.log(event);
+      this.change.emit(event);
+    }
+  }
+
   onMove(direction: string) {
-    console.log(direction);
+    this.change.emit(`${this.key()}-move-${direction}`);
     this.onMenu()
   }
 

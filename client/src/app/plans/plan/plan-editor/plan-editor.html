@@ -1,5 +1,17 @@
 <div class="form-full" [style]="formStyle()">
-  <h3>{{plan()!.name}}</h3>
+  @if (plan()?.name !== '') {
+    <form [formGroup]="editorForm">
+      <mat-form-field style="width: 250px;">
+        <mat-label>Reading Plan Name</mat-label>
+        <input matInput formControlName="name" (blur)="onUpdate('name')">
+        @if (editorForm.controls.name.hasError('required')) {
+          <mat-error>Plan name is required</mat-error>
+        }
+      </mat-form-field>
+    </form>
+  } @else {
+    <h3>No Plan selected</h3>
+  }
   <mat-accordion style="width: 99%;">
     @for (month of plan()!.months; track month.month) {
       <app-plan-month-component 

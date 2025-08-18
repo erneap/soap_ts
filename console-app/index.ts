@@ -51,6 +51,12 @@ const main = async () => {
   const plansCol: Collection | undefined = collections.plans;
   try {
     const plan = new Plan(iPlan);
+    if (plan.type.toLowerCase() === 'circular') {
+      plan.months[0].days.forEach((day, d) => {
+        day.dayOfMonth = d + 1;
+        plan.months[0].days[d] = day;
+      });
+    }
     const query = { name: plan.name };
     const result = (await plansCol?.findOne<IPlan>(query));
     if (!result) {

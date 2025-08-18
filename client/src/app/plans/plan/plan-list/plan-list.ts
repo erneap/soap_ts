@@ -1,7 +1,10 @@
-import { Component, input, OnInit, output, signal } from '@angular/core';
+import { Component, inject, input, OnInit, output, signal } from '@angular/core';
 import { AppStateService } from '../../../services/app-state.service';
 import { MatIcon } from '@angular/material/icon';
 import { IPlan, Plan } from 'soap-models/dist/plans';
+import { MatDialog } from '@angular/material/dialog';
+import { NewPlanDialog } from '../new-plan-dialog/new-plan-dialog';
+import { PlanDeleteDialog } from '../plan-editor/plan-delete-dialog/plan-delete-dialog';
 
 @Component({
   selector: 'app-plan-list',
@@ -20,6 +23,7 @@ export class PlanList implements OnInit {
   select = input<string>();
   plans = input<IPlan[]>();
   plan = output<string>()
+  readonly dialog = inject(MatDialog)
 
   constructor(
     private appState: AppStateService
@@ -53,5 +57,26 @@ export class PlanList implements OnInit {
 
   onSelect(id: string) {
     this.plan.emit(id);
+  }
+
+  onAdd() {
+    const dialogRef = this.dialog.open(NewPlanDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      const key = `new|${result.name}|${result.plantype}|${result.months}`;
+      this.plan.emit(key);
+    });
+  }
+
+  onDelete() {
+    const dialogRef = this.dialog.open(PlanDeleteDialog, {
+      data: { level: 'Reading Plan'},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result === 'yes') {
+        this.plan.emit(`delete|${this.select()}`);
+      }
+    })
   }
 }

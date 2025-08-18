@@ -25,6 +25,7 @@ div.icon {
 }
 mat-icon {
   font-size: 1rem;
+  cursor: pointer;
 }
 
 div.days {
@@ -64,4 +65,24 @@ div.editorHeader {
   background-color: var(--electric-violet);
   color: white;
   font-weight: bold;
+}
+
+input {
+  max-width: 35px;
+  min-width: 35px;
+}
+
+div.menudiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
 }

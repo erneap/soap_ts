@@ -3,10 +3,7 @@ import { MatButton } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 export interface PlanDialogData {
-  plantype?: string;
-  key?: string;
-  position?: number;
-  length?: number;
+  level: string;
 }
 
 @Component({

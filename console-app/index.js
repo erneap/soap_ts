@@ -59,6 +59,12 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     const plansCol = mongoconnect_1.collections.plans;
     try {
         const plan = new plans_1.Plan(iPlan);
+        if (plan.type.toLowerCase() === 'circular') {
+            plan.months[0].days.forEach((day, d) => {
+                day.dayOfMonth = d + 1;
+                plan.months[0].days[d] = day;
+            });
+        }
         const query = { name: plan.name };
         const result = (yield (plansCol === null || plansCol === void 0 ? void 0 : plansCol.findOne(query)));
         if (!result) {

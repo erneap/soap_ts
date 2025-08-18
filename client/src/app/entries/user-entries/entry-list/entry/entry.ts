@@ -7,7 +7,7 @@ import { AppStateService } from '../../../../services/app-state.service';
 import { ISoapEntry, SoapEntry } from 'soap-models/dist/entries';
 import { User } from 'soap-models/dist/users';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BooksService } from '../../../../books/books-service';
+import { BooksService } from '../../../../bibles/books/books-service';
 import { MatError, MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';

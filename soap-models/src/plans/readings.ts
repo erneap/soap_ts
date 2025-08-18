@@ -21,53 +21,10 @@ export class Reading implements IReading {
         this.verseEnd = (read && read.verseEnd) ? read.verseEnd : undefined;
     }
 
-    setId(id: number) {
-        this.id = id;
-    }
-
-    getId(): number {
-        return this.id;
-    }
-
     compareTo(other?: Reading) {
         if (other) {
-            if (this.book === other.getBook()) {
-                return (this.chapter < other.getChapter()) ? -1 : 1;
-            }
-            return (this.id < other.getId()) ? -1 : 1;
+            return (this.id < other.id) ? -1 : 1;
         }
         return -1;
-    }
-
-    setBook(book: string) {
-        this.book = book;
-    }
-
-    getBook(): string {
-        return this.book;
-    }
-
-    setChapter(chptr: number) {
-        this.chapter = chptr;
-    }
-
-    getChapter(): number {
-        return this.chapter;
-    }
-
-    setStartVerse(start: number) {
-        this.verseStart = start;
-    }
-
-    getStartVerse(): number | undefined {
-        return this.verseStart;
-    }
-
-    setEndVerse(end: number) {
-        this.verseEnd = end;
-    }
-
-    getEndVerse(): number | undefined {
-        return this.verseEnd;
     }
 }
