@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(cors({
-  origin: 'http://soapjournal.org:4200',
+  origin: 'https://soapjournal.org:',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   exposedHeaders: ['Content-Type', 'Authorization', 'refreshToken', 'X-Custom-Header']
 }));
