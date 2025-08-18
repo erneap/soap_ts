@@ -9,7 +9,7 @@ export interface AppSettings {
 export const appSettings: AppSettings = {
   title: 'SOAP Journal',
   version: '1.0',
-  apiUrl: 'http://localhost:4000/api'
+  apiUrl: 'https://www.soapjournal.org/api'
 };
 
 export const APP_SETTINGS = new InjectionToken<AppSettings>('app.settings');
