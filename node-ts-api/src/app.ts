@@ -23,6 +23,7 @@ app.use(helmet());
 app.use(cors({
   origin: 'https://www.soapjournal.org:',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
   exposedHeaders: ['Content-Type', 'Authorization', 'refreshToken', 'X-Custom-Header']
 }));
 app.use(express.json());
