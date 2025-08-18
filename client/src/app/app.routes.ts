@@ -7,6 +7,7 @@ import { CreateUserComponent } from './user/create-user/create-user';
 import { ForgotPasswordComponent } from './user/forgot-password/forgot-password';
 import { ProfileComponent } from './user/profile/profile';
 import { MustChangeComponent } from './user/must-change/must-change';
+import { BiblesComponent } from './bibles/bibles-component/bibles-component';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'users', component: UserList },
   { path: 'entries', component: UserEntries },
   { path: 'plans', component: PlanComponent },
+  { path: 'bibles', component: BiblesComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];

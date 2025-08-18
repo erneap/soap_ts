@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Translation } from 'soap-models/dist/plans';
-import { APP_SETTINGS } from '../app.settings';
+import { APP_SETTINGS } from '../../app.settings';
 
 @Injectable({
   providedIn: 'root'
