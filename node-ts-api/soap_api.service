@@ -1,13 +1,13 @@
 [Unit]
 Description=Soap API - backend API server for SOAP Journalling
 Documentation=https://www.soapjournal.org
-After=network.target
+#After=network.target
 
 [Service]
-EnvironmentFile=/usr/etc/soapApiEnv
+EnvironmentFile=/usr/local/etc/soapApiEnv
 Type=simple
-User=antonerne
-ExecStart=/usr/bin/node /usr/node/soapApi/index.js
+User=root
+ExecStart=/usr/bin/node /usr/local/bin/soapApi/index.js
 Restart=on-failure
 
 [Install]
