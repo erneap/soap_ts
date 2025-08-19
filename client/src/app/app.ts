@@ -3,8 +3,8 @@ import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { Router, RouterOutlet } from '@angular/router';
-import { APP_SETTINGS, appSettings } from './app.settings';
 import { AuthService } from './services/auth-service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -17,13 +17,12 @@ import { AuthService } from './services/auth-service';
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
-  providers: [
-    { provide: APP_SETTINGS, useValue: appSettings }
-  ]
+  providers: []
 })
 export class App implements OnInit {
-  protected readonly title = signal('client');
-  settings = inject(APP_SETTINGS);
+  protected readonly title = environment.title;
+  protected readonly version = environment.version;
+  
 
   constructor(
     public authService: AuthService,

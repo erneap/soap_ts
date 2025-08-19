@@ -2,13 +2,15 @@
   <mat-toolbar>
     <mat-toolbar-row>
       <span class="title">
-        {{settings.title}}
+        {{title}}
       </span>
       <span class="flex-spacer"></span>
       @if (authService.isLoggedIn()) {
         <button mat-button (click)="onMenuChoice('entries')">Entries</button>
         <button mat-button (click)="onMenuChoice('plans')">Plans</button>
-        <button mat-button (click)="onMenuChoice('bibles')">Bibles</button>
+        @if (authService.user().administrator) {
+          <button mat-button (click)="onMenuChoice('bibles')">Bibles</button>
+        }
         <button mat-button (click)="onMenuChoice('profile')">Profile</button>
         <button mat-icon-button class="toolbar-icon" (click)="logout()">
           <mat-icon>logout</mat-icon>
@@ -24,7 +26,7 @@
       <mat-toolbar-row>
         <span class="status">{{ authService.errorMsg() }}</span>
         <span class="flex-spacer"></span>
-        <span class="status">v{{ settings.version }}</span>
+        <span class="status">v{{ version }}</span>
       </mat-toolbar-row>
     </mat-toolbar>
   </footer>

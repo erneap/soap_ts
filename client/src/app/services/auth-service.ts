@@ -1,15 +1,14 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { APP_SETTINGS } from '../app.settings';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { IUser, UpdateUserRequest, User } from 'soap-models/dist/users'
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private settings = inject(APP_SETTINGS);
-  private authUrl = `${this.settings.apiUrl}/user`;
+  private authUrl = `${environment.apiUrl}/user`;
   public accessToken = signal('');
   public refreshToken = signal('');
   public errorMsg = signal('');

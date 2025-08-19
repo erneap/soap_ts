@@ -1,16 +1,15 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ISoapEntry, NewEntryRequest, UpdateEntryRequest } from 'soap-models/dist/entries';
 import { Message } from 'soap-models/dist/common';
-import { AuthService } from '../services/auth-service';
-import { APP_SETTINGS } from '../app.settings';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EntryService {
-  private apiUrl = inject(APP_SETTINGS).apiUrl;
+  private apiUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient
