@@ -14,8 +14,21 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { UpdateEntryRequest } from 'soap-models/dist/entries';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+
+export const CUSTOM_DATE_FORMAT = {
+  parse: {
+    dateInput: 'MM/DD/YYYY',
+  },
+  display: {
+    dateInput: 'MM/DD/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateAllyLabel: 'MM/DD/YYYY',
+    monthYearAllyLabel: 'MMMM YYYY',
+  }
+}
 
 @Component({
   selector: 'app-entry',
@@ -31,7 +44,12 @@ import { UpdateEntryRequest } from 'soap-models/dist/entries';
 ],
   templateUrl: './entry.html',
   styleUrl: './entry.scss',
-  providers: [provideNativeDateAdapter()],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+    { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMAT },
+    { provide: DateAdapter, useClass: MomentDateAdapter },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true }},
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Entry implements OnInit, OnChanges {
