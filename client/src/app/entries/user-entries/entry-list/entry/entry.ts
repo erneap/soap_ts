@@ -220,8 +220,10 @@ export class Entry implements OnInit, OnChanges {
     let value = 'empty';
     switch (field.toLowerCase()) {
       case "entrydate":
-        const newdate = this.editorForm.controls.entrydate.value;
+        let newdate = this.editorForm.controls.entrydate.value;
         if (newdate) {
+          newdate = new Date(Date.UTC(newdate.getFullYear(), newdate.getMonth(),
+            newdate.getDate()));
           value = new Date(newdate).toISOString();
         }
         break;
