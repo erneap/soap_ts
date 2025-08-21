@@ -1,20 +1,21 @@
 export interface IGraphic {
   id: number;
   caption: string;
-  filedata: Blob;
+  mimetype: string;
+  filedata: string;
 }
 
 export class Graphic implements IGraphic {
   public id: number;
   public caption: string;
-  public filedata: Blob;
+  public mimetype: string;
+  public filedata: string;
 
   constructor(image?: IGraphic) {
     this.id = (image) ? image.id : 0;
     this.caption = (image) ? image.caption : '';
-    this.filedata = (image) 
-      ? new Blob([image.filedata], { type: image.filedata.type }) 
-      : new Blob();
+    this.mimetype = (image) ? image.mimetype : 'text/plain';
+    this.filedata = (image) ? image.filedata : '';
   }
 
   compareTo(other?: Graphic): number {
