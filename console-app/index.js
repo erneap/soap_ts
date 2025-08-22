@@ -14,9 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const plans_1 = require("soap-models/dist/plans");
 const users_1 = require("soap-models/dist/users");
+const help_1 = require("soap-models/dist/help");
 const translations_json_1 = __importDefault(require("./translations.json"));
 const plan2_json_1 = __importDefault(require("./plan2.json"));
 const bible_json_1 = __importDefault(require("./bible.json"));
+const help_json_1 = __importDefault(require("./help.json"));
 const mongoconnect_1 = require("./config/mongoconnect");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
@@ -107,6 +109,36 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
                 dbBooks.push(new plans_1.BibleBook(b));
             }
         }));
+    }
+    catch (error) {
+        console.log(error);
+    }
+    const helpCol = mongoconnect_1.collections.help;
+    try {
+        if (helpCol) {
+            const dbPages = [];
+            const cursor = yield helpCol.find({});
+            let results = yield cursor.toArray();
+            if (results) {
+                results.forEach(pg => {
+                    dbPages.push(new help_1.Page(pg));
+                });
+            }
+            dbPages.sort((a, b) => a.compareTo(b));
+            const ihelp = help_json_1.default;
+            ihelp.forEach((ipage) => __awaiter(void 0, void 0, void 0, function* () {
+                const dPage = dbPages.find(x => x.page === ipage.page);
+                if (dPage) {
+                    const query = { page: dPage === null || dPage === void 0 ? void 0 : dPage.page };
+                    yield helpCol.replaceOne(query, ipage);
+                }
+                else {
+                    yield helpCol.insertOne(ipage);
+                    dbPages.push(new help_1.Page(ipage));
+                }
+            }));
+            console.log('Help pages loaded');
+        }
     }
     catch (error) {
         console.log(error);

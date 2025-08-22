@@ -1,8 +1,10 @@
 import { IPlan, ITranslation, ITranslationList, Plan, Translation, IBibleBook, BibleBook } from 'soap-models/dist/plans';
 import { IUser, User } from 'soap-models/dist/users';
+import { IPage, Page } from 'soap-models/dist/help';
 import all from './translations.json';
 import plans from './plan2.json';
 import books from './bible.json';
+import help from './help.json';
 import { connectToDB, collections } from './config/mongoconnect';
 import { Collection, ObjectId } from 'mongodb';
 import dotenv from 'dotenv';
@@ -97,6 +99,36 @@ const main = async () => {
         dbBooks.push(new BibleBook(b));
       }
     });
+  } catch (error) {
+    console.log(error);
+  }
+
+  const helpCol: Collection | undefined = collections.help;
+  try {
+    if (helpCol) {
+      const dbPages: Page[] = [];
+      const cursor = await helpCol.find<IPage>({});
+      let results = await cursor.toArray();
+      if (results) {
+        results.forEach(pg => {
+          dbPages.push(new Page(pg));
+        });
+      }
+      dbPages.sort((a,b) => a.compareTo(b));
+
+      const ihelp = (help as IPage[]);
+      ihelp.forEach(async(ipage) => {
+        const dPage = dbPages.find(x => x.page === ipage.page);
+        if (dPage) {
+          const query = { page: dPage?.page}
+          await helpCol.replaceOne(query, ipage);
+        } else {
+          await helpCol.insertOne(ipage);
+          dbPages.push(new Page(ipage));
+        }
+      });
+      console.log('Help pages loaded')
+    }
   } catch (error) {
     console.log(error);
   }

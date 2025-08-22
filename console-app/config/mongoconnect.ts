@@ -6,7 +6,8 @@ export const collections: {
   plans?: Collection,
   entries?: Collection,
   translations?: Collection,
-  books?: Collection
+  books?: Collection,
+  help?: Collection
 } = {}
 
 export async function connectToDB() {
@@ -44,6 +45,11 @@ export async function connectToDB() {
         books = await db.createCollection('biblebooks');
       }
       collections.books = books;
+      let help = await db.collection('help');
+      if (!help) {
+        help = await db.createCollection('help');
+      }
+      collections.help = help;
       console.log('Successfully connected to collections');
     } catch (error) {
       console.log(error);

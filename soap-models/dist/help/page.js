@@ -1,0 +1,30 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Page = void 0;
+const paragraph_1 = require("./paragraph");
+class Page {
+    page;
+    header;
+    subheader;
+    paragraphs;
+    constructor(page) {
+        this.page = (page) ? page.page : 0;
+        this.header = (page) ? page.header : '';
+        this.subheader = (page) ? page.subheader : '';
+        this.paragraphs = [];
+        if (page && page.paragraphs.length > 0) {
+            page.paragraphs.forEach(para => {
+                this.paragraphs.push(new paragraph_1.Paragraph(para));
+            });
+            this.paragraphs.sort((a, b) => a.compareTo(b));
+        }
+    }
+    compareTo(other) {
+        if (other) {
+            return (this.page < other.page) ? -1 : 1;
+        }
+        return -1;
+    }
+}
+exports.Page = Page;
+//# sourceMappingURL=page.js.map
