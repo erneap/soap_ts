@@ -3,10 +3,11 @@ import { collections } from "../config/mongoconnect";
 import { Collection, ObjectId } from "mongodb";
 import { ISoapEntryList, NewEntryRequest, SoapEntry, SoapEntryList, UpdateEntryRequest } from 'soap-models/dist/entries';
 import { IUser } from "soap-models/dist/users";
+import { auth } from "../middleware/authorization.middleware";
 
 const router = Router();
 
-router.get('/entries/year/:user/:year', async (req: Request, res: Response) => {
+router.get('/entries/year/:user/:year', auth, async (req: Request, res: Response) => {
   const entryCol: Collection | undefined = collections.entries;
   if (entryCol) {
     const list: SoapEntry[] = [];
@@ -27,7 +28,7 @@ router.get('/entries/year/:user/:year', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/entries/dates/:user/:start/:end', async (req: Request, res: Response) => {
+router.get('/entries/dates/:user/:start/:end', auth, async (req: Request, res: Response) => {
   const entryCol: Collection | undefined = collections.entries;
   if (entryCol) {
     const list: SoapEntry[] = [];
@@ -60,7 +61,7 @@ router.get('/entries/dates/:user/:start/:end', async (req: Request, res: Respons
   }
 });
 
-router.get('/entry/:user/:date', async (req: Request, res: Response) => {
+router.get('/entry/:user/:date', auth, async (req: Request, res: Response) => {
   const entryCol: Collection | undefined = collections.entries;
   if (entryCol) {
     const sUser = req.params.user;    
@@ -84,7 +85,7 @@ router.get('/entry/:user/:date', async (req: Request, res: Response) => {
   }
 });
 
-router.post('/entry', async (req: Request, res: Response) => {
+router.post('/entry', auth, async (req: Request, res: Response) => {
   const entryCol: Collection | undefined = collections.entries;
   const userCol: Collection | undefined = collections.users;
   if (entryCol) {
@@ -118,7 +119,7 @@ router.post('/entry', async (req: Request, res: Response) => {
   }
 });
 
-router.put('/entry', async (req: Request, res: Response) => {
+router.put('/entry', auth, async (req: Request, res: Response) => {
   const entryCol: Collection | undefined = collections.entries;
   if (entryCol) {
     try {
@@ -153,7 +154,7 @@ router.put('/entry', async (req: Request, res: Response) => {
   }
 });
 
-router.delete('/entry/:user/:date', async (req: Request, res: Response) => {
+router.delete('/entry/:user/:date', auth, async (req: Request, res: Response) => {
   const entryCol: Collection | undefined = collections.entries;
   if (entryCol) {
     const sDate = req.params.date;

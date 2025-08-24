@@ -1,6 +1,9 @@
+import { ObjectId } from "mongodb";
 import { IParagraph, Paragraph } from "./paragraph";
 
 export interface IPage {
+  _id?: ObjectId;
+  id?: string;
   page: number;
   header: string;
   subheader: string;
@@ -8,17 +11,22 @@ export interface IPage {
 }
 
 export class Page implements IPage {
+  public id: string;
   public page: number;
   public header: string;
   public subheader: string;
   public paragraphs: Paragraph[];
 
   constructor(page?: IPage) {
+    this.id = (page && page.id) ? page.id : '';
+    if (this.id === '' && page && page._id) {
+      this.id = page._id.toString();
+    }
     this.page = (page) ? page.page : 0;
     this.header = (page) ? page.header : '';
     this.subheader = (page) ? page.subheader : '';
     this.paragraphs = [];
-    if (page && page.paragraphs.length > 0) {
+    if (page && page.paragraphs && page.paragraphs.length > 0) {
       page.paragraphs.forEach(para => {
         this.paragraphs.push(new Paragraph(para));
       });

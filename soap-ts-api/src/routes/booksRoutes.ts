@@ -2,10 +2,11 @@ import { Router, Request, Response } from "express";
 import { collections } from "../config/mongoconnect";
 import { Collection, ObjectId } from "mongodb";
 import { BibleBook, IBibleBook, NewBibleBookRequest, UpdateBibleBookRequest } from "soap-models/dist/plans";
+import { auth } from "../middleware/authorization.middleware";
 
 const router = Router();
 
-router.get('/books', async (req: Request, res: Response) => {
+router.get('/books', auth, async (req: Request, res: Response) => {
   const booksCol: Collection | undefined = collections.books;
   if (booksCol) {
       const cursor = await booksCol.find<IBibleBook>({});
@@ -21,7 +22,7 @@ router.get('/books', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/book/:id', async (req: Request, res: Response) => {
+router.get('/book/:id', auth, async (req: Request, res: Response) => {
   const booksCol: Collection | undefined = collections.books;
   if (booksCol) {
     const id = req.params.id;
@@ -38,7 +39,7 @@ router.get('/book/:id', async (req: Request, res: Response) => {
   }
 });
 
-router.post('/book', async (req: Request, res: Response) => {
+router.post('/book', auth, async (req: Request, res: Response) => {
   const booksCol: Collection | undefined = collections.books;
   if (booksCol) {
     const data = req.body as NewBibleBookRequest;
@@ -73,7 +74,7 @@ router.post('/book', async (req: Request, res: Response) => {
   }
 });
 
-router.put('/book', async (req: Request, res: Response) => {
+router.put('/book', auth, async (req: Request, res: Response) => {
   const booksCol: Collection | undefined = collections.books;
   if (booksCol) {
     const data = req.body as UpdateBibleBookRequest;
@@ -134,7 +135,7 @@ router.put('/book', async (req: Request, res: Response) => {
   }
 });
 
-router.delete('/book/:id', async (req: Request, res: Response) => {
+router.delete('/book/:id', auth, async (req: Request, res: Response) => {
   const booksCol: Collection | undefined = collections.books;
   if (booksCol) {
     // with a deletion, first we delete the requested book,
