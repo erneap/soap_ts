@@ -12,9 +12,15 @@
       <div class="button" [style]="buttonStyle()">
         <mat-icon>add_circle</mat-icon>
       </div>
-      <div class="button" [style]="buttonStyle">
-        <mat-icon>create</mat-icon>
-      </div>
+      @if (!editPage()!) {
+        <div class="button" [style]="buttonStyle()" (click)="onCycleEdit()">
+          <mat-icon>create</mat-icon>
+        </div>
+      } @else {
+        <div class="button" [style]="buttonStyle()" (click)="onCycleEdit()">
+          <mat-icon>deselect</mat-icon>
+        </div>
+      }
     }
   </div>
   <div class="list" [style]="listStyle()">

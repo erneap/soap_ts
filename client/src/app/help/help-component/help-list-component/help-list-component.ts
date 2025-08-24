@@ -21,6 +21,8 @@ export class HelpListComponent {
   select = input<string>();
   pages = input<IPage[]>();
   page = output<string>();
+  editPage = signal<boolean>(false);
+  edit = output<boolean>();
 
   constructor(
     private appState: AppStateService,
@@ -55,5 +57,10 @@ export class HelpListComponent {
 
   onSelect(id: string) {
     this.page.emit(id);
+  }
+
+  onCycleEdit() {
+    this.editPage.set(!this.editPage());
+    this.edit.emit(this.editPage());
   }
 }

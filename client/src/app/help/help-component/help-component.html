@@ -7,9 +7,13 @@
   <mat-card-content>
     <div class="overall">
       <app-help-list-component [pages]="list()" [select]="page().id"
-        (page)="onSelect($event)">
+        (page)="onSelect($event)" (edit)="onChangeEdit($event)">
       </app-help-list-component>
-      <app-help-view-component [page]="page()"></app-help-view-component>
+      @if (!editPage()) {
+        <app-help-view-component [page]="page()"></app-help-view-component>
+      } @else {
+        <app-help-editor-component></app-help-editor-component>
+      }
     </div>
   </mat-card-content>
 </mat-card>

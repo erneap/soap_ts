@@ -12,6 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../services/auth-service';
 import { HelpListComponent } from "./help-list-component/help-list-component";
 import { HelpViewComponent } from "./help-view-component/help-view-component";
+import { HelpEditorComponent } from './help-editor-component/help-editor-component';
 
 @Component({
   selector: 'app-help-component',
@@ -21,7 +22,8 @@ import { HelpViewComponent } from "./help-view-component/help-view-component";
     MatCardTitle,
     MatCardContent,
     HelpListComponent,
-    HelpViewComponent
+    HelpViewComponent,
+    HelpEditorComponent
 ],
   templateUrl: './help-component.html',
   styleUrl: './help-component.scss'
@@ -30,6 +32,7 @@ export class HelpComponent implements OnInit {
   cardStyle = signal('');
   list = signal<Page[]>([]);
   page = signal<Page>(new Page());
+  editPage = signal<boolean>(false);
 
   constructor(
     private viewState: AppStateService,
@@ -83,5 +86,9 @@ export class HelpComponent implements OnInit {
         }
       })
     }
+  }
+
+  onChangeEdit(edit: boolean) {
+    this.editPage.set(edit);
   }
 }

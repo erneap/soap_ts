@@ -5,6 +5,7 @@ import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { Router, RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth-service';
 import { environment } from '../environments/environment';
+import { User } from 'soap-models/dist/users';
 
 @Component({
   selector: 'app-root',
@@ -38,6 +39,7 @@ export class App implements OnInit {
   logout() {
     this.authService.accessToken.set('');
     this.authService.refreshToken.set('');
+    this.authService.user.set(new User())
     this.router.navigate(['/login']);
   }
 
