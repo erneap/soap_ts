@@ -90,3 +90,13 @@
   .status {
     font-size: 0.875rem;
   }
+
+  .help-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .help-button mat-icon {
+    color: blue;
+  }

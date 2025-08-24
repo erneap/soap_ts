@@ -12,6 +12,12 @@
           <button mat-button (click)="onMenuChoice('bibles')">Bibles</button>
         }
         <button mat-button (click)="onMenuChoice('profile')">Profile</button>
+      }
+      <button mat-icon-button (click)="onMenuChoice('help')" 
+        class="help-button">
+        <mat-icon style="color: blue;">help</mat-icon>
+      </button>
+      @if (authService.isLoggedIn()) {
         <button mat-icon-button class="toolbar-icon" (click)="logout()">
           <mat-icon>logout</mat-icon>
         </button>

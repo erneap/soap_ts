@@ -14,6 +14,7 @@ export class AuthService {
   public errorMsg = signal('');
   public user = signal(new User);
   isLoggedIn = computed(() => this.user() && this.accessToken() !== '');
+  isAdmin = computed(() => this.user() && this.user().administrator);
 
   constructor(
     private http: HttpClient
