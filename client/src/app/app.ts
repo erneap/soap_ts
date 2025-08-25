@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
-import { Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth-service';
 import { environment } from '../environments/environment';
 import { User } from 'soap-models/dist/users';
@@ -27,12 +27,15 @@ export class App implements OnInit {
 
   constructor(
     public authService: AuthService,
+    private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/login']);
+    if (window.location.pathname !== '/help') {
+      if (!this.authService.isLoggedIn()) {
+        this.router.navigate(['/login']);
+      }
     }
   }
 
@@ -48,5 +51,10 @@ export class App implements OnInit {
       page = `/${page}`;
       this.router.navigate([page]);
     }
+  }
+
+  onHelpChoice() {
+    const url = '/help';
+    window.open(url, 'helpwin');
   }
 }

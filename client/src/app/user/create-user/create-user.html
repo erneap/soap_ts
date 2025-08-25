@@ -1,6 +1,6 @@
 <mat-card [style]="cardStyle()">
   <mat-card-header>
-    <mat-card-title>Create New Account Form</mat-card-title>>
+    <mat-card-title>Create New Account Form</mat-card-title>
   </mat-card-header>
   <div class="overall">
     <form [formGroup]="newUserForm" (ngSubmit)="createUser()">
@@ -64,7 +64,7 @@
         <div class="errormsg">{{errorMsg()}}</div>
       }
       <div class="formRow">
-        <button mat-raised-button>Cancel</button>
+        <button mat-raised-button (click)="onCancel()">Cancel</button>
         <button mat-raised-button type="reset">Clear</button>
         <button mat-raised-button type="submit" 
           [disabled]="!newUserForm.valid">Create</button>
