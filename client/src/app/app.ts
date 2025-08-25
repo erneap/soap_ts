@@ -55,6 +55,10 @@ export class App implements OnInit {
 
   onHelpChoice() {
     const url = '/help';
-    window.open(url, 'helpwin');
+    if (!this.authService.isLoggedIn()) {
+      window.open(url, 'helpwin');
+    } else {
+      this.router.navigate(['/help']);
+    }
   }
 }

@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth-service';
 import { HelpListComponent } from "./help-list-component/help-list-component";
 import { HelpViewComponent } from "./help-view-component/help-view-component";
 import { HelpEditorComponent } from './help-editor-component/help-editor-component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-help-component',
@@ -37,7 +38,8 @@ export class HelpComponent implements OnInit {
   constructor(
     private viewState: AppStateService,
     private helpService: HelpService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
