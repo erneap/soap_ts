@@ -1,1 +1,11 @@
-<p>help-editor-component works!</p>
+<form [formGroup]="pageForm" class="full-form">
+  <div>
+    Page: <input type="number" formControlName="page">
+  </div>
+  <div>
+    Page Header: <input formControlName="header">
+  </div>
+  <div>
+    Page Subheader: <input formControlName="subheader">
+  </div>
+</form>

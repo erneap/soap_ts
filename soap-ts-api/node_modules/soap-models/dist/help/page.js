@@ -5,6 +5,7 @@ const paragraph_1 = require("./paragraph");
 class Page {
     id;
     page;
+    permission;
     header;
     subheader;
     paragraphs;
@@ -14,6 +15,7 @@ class Page {
             this.id = page._id.toString();
         }
         this.page = (page) ? page.page : 0;
+        this.permission = (page && page.permission) ? page.permission : 0;
         this.header = (page) ? page.header : '';
         this.subheader = (page) ? page.subheader : '';
         this.paragraphs = [];
@@ -29,6 +31,9 @@ class Page {
             return (this.page < other.page) ? -1 : 1;
         }
         return -1;
+    }
+    hasPermission(level) {
+        return ((this.permission & level) === level);
     }
 }
 exports.Page = Page;

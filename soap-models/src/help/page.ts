@@ -5,6 +5,7 @@ export interface IPage {
   _id?: ObjectId;
   id?: string;
   page: number;
+  permission?: number;
   header: string;
   subheader: string;
   paragraphs: IParagraph[];
@@ -13,6 +14,7 @@ export interface IPage {
 export class Page implements IPage {
   public id: string;
   public page: number;
+  public permission: number;
   public header: string;
   public subheader: string;
   public paragraphs: Paragraph[];
@@ -23,6 +25,7 @@ export class Page implements IPage {
       this.id = page._id.toString();
     }
     this.page = (page) ? page.page : 0;
+    this.permission = (page && page.permission) ? page.permission : 0;
     this.header = (page) ? page.header : '';
     this.subheader = (page) ? page.subheader : '';
     this.paragraphs = [];
@@ -39,5 +42,9 @@ export class Page implements IPage {
       return (this.page < other.page) ? -1 : 1;
     }
     return -1;
+  }
+
+  hasPermission(level: number): boolean {
+    return ((this.permission & level) === level);
   }
 }
