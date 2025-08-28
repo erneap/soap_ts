@@ -5,7 +5,7 @@ import { ISoapEntry, SoapEntry, UpdateEntryRequest } from 'soap-models/dist/entr
 import { EntryService } from '../entry-service';
 import { AuthService } from '../../services/auth-service';
 import { EntryList } from "./entry-list/entry-list";
-import { Entry } from "./entry-list/entry/entry";
+import { Entry } from "./entry/entry";
 import { HttpErrorResponse } from '@angular/common/http';
 import { Message } from 'soap-models/dist/common';
 
