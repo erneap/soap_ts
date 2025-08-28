@@ -68,7 +68,7 @@ export class CreateUserComponent implements OnInit {
     private transService: TranslationsService,
     private plansService: PlanService,
     private authService: AuthService,
-    private viewState: AppStateService,
+    protected viewState: AppStateService,
     private userService: UserService,
     private router: Router
   ) { }

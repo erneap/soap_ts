@@ -7,9 +7,11 @@
       <span class="flex-spacer"></span>
       @if (authService.isLoggedIn()) {
         <button mat-button (click)="onMenuChoice('entries')">Entries</button>
-        <button mat-button (click)="onMenuChoice('plans')">Plans</button>
-        @if (authService.user().administrator) {
-          <button mat-button (click)="onMenuChoice('bibles')">Bibles</button>
+        @if (appState.isDesktop()) {
+          <button mat-button (click)="onMenuChoice('plans')">Plans</button>
+          @if (authService.user().administrator) {
+            <button mat-button (click)="onMenuChoice('bibles')">Bibles</button>
+          }
         }
         <button mat-button (click)="onMenuChoice('profile')">Profile</button>
       }

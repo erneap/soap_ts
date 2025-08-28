@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, OnChanges, OnInit, output, signal, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, OnChanges, OnInit, output, signal, SimpleChanges } from '@angular/core';
 import { BibleBook, IBibleBook, IPlan, IReading, Plan, Reading } from 'soap-models/dist/plans';
 import { AuthService } from '../../../services/auth-service';
 import { PlanService } from '../../../plans/plan-service';
@@ -17,6 +17,9 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { UpdateEntryRequest } from 'soap-models/dist/entries';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatDialog } from '@angular/material/dialog';
+import { EntryDeleteDialog } from '../entry-delete-dialog/entry-delete-dialog';
 
 export const CUSTOM_DATE_FORMAT = {
   parse: {
@@ -40,7 +43,8 @@ export const CUSTOM_DATE_FORMAT = {
     MatDatepickerModule,
     MatIconModule,
     MatError,
-    MatCheckbox
+    MatCheckbox,
+    MatTooltip
 ],
   templateUrl: './entry.html',
   styleUrl: './entry.scss',
@@ -60,6 +64,7 @@ export class Entry implements OnInit, OnChanges {
   formStyle = signal('');
   readings = signal<IReading[]>([]);
   changed = output<UpdateEntryRequest>();
+  readonly dialog = inject(MatDialog);
 
   editorForm = new FormGroup({
     entrydate: new FormControl(this.entry()?.entryDate, {
@@ -259,6 +264,20 @@ export class Entry implements OnInit, OnChanges {
         } else {
           value = 'false';
         }
+        break;
+      case "delete":
+        const dialogRef = this.dialog.open(EntryDeleteDialog, { });
+        dialogRef.afterClosed().subscribe(result => {
+          if (result === 'yes') {
+            const change: UpdateEntryRequest = {
+              user: '',
+              entrydate: this.entry()!.entryDate.toISOString(),
+              field: field,
+              value: 'true'
+            };
+            this.changed.emit(change);
+          }
+        });
         break;
     }
     if (value !== 'empty') {

@@ -73,8 +73,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private transService: TranslationsService,
-     private plansService: PlanService,
-    private viewState: AppStateService,
+    private plansService: PlanService,
+    protected viewState: AppStateService,
     private authService: AuthService,
     private userService: UserService,
     private router: Router

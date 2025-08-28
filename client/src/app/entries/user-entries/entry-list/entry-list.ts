@@ -1,11 +1,9 @@
 import { Component, inject, input, OnChanges, OnInit, output, signal, SimpleChanges } from '@angular/core';
 import { ISoapEntry, SoapEntry } from 'soap-models/dist/entries';
 import { AppStateService } from '../../../services/app-state.service';
-import { MatIcon } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog } from '@angular/material/dialog';
 import { EntryDeleteDialog } from '../entry-delete-dialog/entry-delete-dialog';
-import { ViewState } from 'soap-models/dist/state';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/input';
 import { MatOption, MatSelect } from '@angular/material/select';
@@ -13,7 +11,6 @@ import { MatOption, MatSelect } from '@angular/material/select';
 @Component({
   selector: 'app-entry-list',
   imports: [
-    MatIcon,
     MatTooltipModule,
     ReactiveFormsModule,
     MatFormField,
@@ -81,6 +78,13 @@ export class EntryList implements OnInit, OnChanges {
 
   chooseSoapEntry(id: string) {
     this.selected.emit(id);
+  }
+
+  onSelectEntry() {
+    const entry = this.mobileForm.controls.entryList.value;
+    if (entry !== '') {
+      this.selected.emit(entry);
+    }
   }
 
   onNew() {

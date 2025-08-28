@@ -6,7 +6,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   providedIn: 'root'
 })
 export class AppStateService {
-  public viewState: ViewState;
+  public viewState?: ViewState;
   public viewHeight: number;
   public viewWidth: number;
 
@@ -15,15 +15,6 @@ export class AppStateService {
   ) { 
     this.viewHeight = window.innerHeight - 82;
     this.viewWidth = window.innerWidth;
-    this.viewState = ViewState.Desktop;
-    this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
-      .subscribe(result => {
-        if (result.breakpoints[Breakpoints.Handset]) {
-          this.viewState = ViewState.Mobile;
-        } else if (result.breakpoints[Breakpoints.Tablet]) {
-          this.viewState = ViewState.Tablet;
-        }
-      });
   }
 
   isMobile(): boolean {

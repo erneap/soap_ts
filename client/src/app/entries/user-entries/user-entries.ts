@@ -27,7 +27,7 @@ export class UserEntries implements OnInit {
   entry = signal<SoapEntry>(new SoapEntry());
   
   constructor(
-    private viewState: AppStateService,
+    protected viewState: AppStateService,
     private entryService: EntryService,
     private authService: AuthService
   ) {}
@@ -102,23 +102,25 @@ export class UserEntries implements OnInit {
       id = id.substring(7);
       const date = new Date(Date.parse(id));
       this.entryService.deleteEntry(this.authService.user().id, date)
-        .subscribe(res => {
-          const msg = res.body as Message;
-          if (msg.message.toLowerCase() === 'deletion completed') {
-            this.entry.set(new SoapEntry());
-            let found = -1;
-            const entries = this.entries();
-            for (let e=0; e < entries.length && found < 0; e++) {
-              if (entries[e].useEntry(date)) {
-                found = e;
-              }
+      .subscribe(res => {
+        const msg = res.body as Message;
+        if (msg.message.toLowerCase() === 'deletion completed') {
+          this.entry.set(new SoapEntry());
+          let found = -1;
+          const entries = this.entries();
+          for (let e=0; e < entries.length && found < 0; e++) {
+            if (entries[e].useEntry(date)) {
+              found = e;
             }
-            if (found >= 0) {
-              entries.splice(found, 1);
-            }
-            this.entries.set(entries);
           }
-        });
+          if (found >= 0) {
+            entries.splice(found, 1);
+          }
+          this.entries.set(entries);
+        }
+      });
+    } else if (id === '') {
+      this.entry.set(new SoapEntry());
     } else {
       const entryDate = new Date(Date.parse(id));
       this.entries()!.forEach(entry => {
@@ -130,30 +132,53 @@ export class UserEntries implements OnInit {
   }
 
   onEntryChange(change: UpdateEntryRequest) {
-    change.user = this.authService.user()!.id;
-    const oldDate = new Date(Date.parse(change.entrydate));
-    this.authService.errorMsg.set('');
-    this.entryService.updateEntry(change.user, change.entrydate, change.field, change.value).subscribe({
-      next: (res) => {
-        const entry = new SoapEntry(res.body as ISoapEntry);
-        for (let e=0; e < this.entries()!.length; e++) {
-          if (this.entries()![e].useEntry(oldDate)) {
-            this.entries()![e] = entry;
+    if (change.field !== 'delete') {
+      change.user = this.authService.user()!.id;
+      const oldDate = new Date(Date.parse(change.entrydate));
+      this.authService.errorMsg.set('');
+      this.entryService.updateEntry(change.user, change.entrydate, change.field, change.value).subscribe({
+        next: (res) => {
+          const entry = new SoapEntry(res.body as ISoapEntry);
+          for (let e=0; e < this.entries()!.length; e++) {
+            if (this.entries()![e].useEntry(oldDate)) {
+              this.entries()![e] = entry;
+            }
+          }
+          this.entries()!.sort((a,b) => b.compareTo(a));
+          if (change.field.toLowerCase() === 'entrydate' || change.field.toLowerCase() === 'date') {
+            this.entry.set(entry);
+          }
+        }, error: (err) => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              this.authService.errorMsg.set(`Unauthorized: ${err.error}`);
+            } else {
+              this.authService.errorMsg.set(`${err.status}: ${err.error}`);
+            }
           }
         }
-        this.entries()!.sort((a,b) => b.compareTo(a));
-        if (change.field.toLowerCase() === 'entrydate' || change.field.toLowerCase() === 'date') {
-          this.entry.set(entry);
-        }
-      }, error: (err) => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status === 401) {
-            this.authService.errorMsg.set(`Unauthorized: ${err.error}`);
-          } else {
-            this.authService.errorMsg.set(`${err.status}: ${err.error}`);
+      });
+    } else {
+      const oldDate = new Date(Date.parse(change.entrydate));
+      console.log(oldDate);
+      this.entryService.deleteEntry(this.authService.user().id, oldDate)
+      .subscribe(res => {
+        const msg = res.body as Message;
+        if (msg.message.toLowerCase() === 'deletion completed') {
+          this.entry.set(new SoapEntry());
+          let found = -1;
+          const entries = this.entries();
+          for (let e=0; e < entries.length && found < 0; e++) {
+            if (entries[e].useEntry(oldDate)) {
+              found = e;
+            }
           }
+          if (found >= 0) {
+            entries.splice(found, 1);
+          }
+          this.entries.set(entries);
         }
-      }
-    });
+      });
+    }
   }
 }

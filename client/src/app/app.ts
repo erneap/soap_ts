@@ -6,6 +6,9 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth-service';
 import { environment } from '../environments/environment';
 import { User } from 'soap-models/dist/users';
+import { AppStateService } from './services/app-state.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { ViewState } from 'soap-models/dist/state';
 
 @Component({
   selector: 'app-root',
@@ -27,9 +30,28 @@ export class App implements OnInit {
 
   constructor(
     public authService: AuthService,
+    protected appState: AppStateService,
+    private responsive: BreakpointObserver,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) { 
+    this.appState.viewState = ViewState.Desktop;
+    this.responsive.observe([
+      Breakpoints.Handset,
+      Breakpoints.Tablet
+    ]).subscribe(result => {
+      const breakpoints = result.breakpoints;
+      if (breakpoints[Breakpoints.HandsetPortrait]
+        || breakpoints[Breakpoints.HandsetLandscape]
+      ) {
+        this.appState.viewState = ViewState.Mobile;
+      } else if (breakpoints[Breakpoints.TabletPortrait]
+        || breakpoints[Breakpoints.TabletLandscape]
+      ) {
+        this.appState.viewState = ViewState.Tablet;
+      }
+    });
+  }
 
   ngOnInit(): void {
     if (window.location.pathname !== '/help') {

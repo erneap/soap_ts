@@ -1,6 +1,8 @@
 @if (entry()!.entryDate.getTime() > 0){
-  <form class="form-full" [style]="formStyle()" [formGroup]="editorForm">
+  <form class="form-full" [formGroup]="editorForm">
     <div class="center full">
+      <div class="nobutton"></div>
+      <div class="flex-spacer"></div>
       <mat-form-field>
         <mat-label>Entry Date</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="entrydate" 
@@ -12,6 +14,11 @@
           <mat-error>Entry date is required</mat-error>
         }
       </mat-form-field>
+      <div class="flex-spacer"></div>
+      <div class="button" matTooltip="delete this entry" 
+        (click)="onEntryChange('delete')">
+        <mat-icon>delete</mat-icon>
+      </div>
     </div>
     <div class="center full">
       <div style="font-weight: bold;">Today's Readings:</div>
@@ -72,5 +79,5 @@
     </div>
   </form>
 } @else {
-  <h1 class="form-full" [style]="formStyle()">No SOAP Entry Selected</h1>
+  <h1 class="form-full">No SOAP Entry Selected</h1>
 }
