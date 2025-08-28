@@ -5,12 +5,21 @@ import { MatIcon } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog } from '@angular/material/dialog';
 import { EntryDeleteDialog } from '../entry-delete-dialog/entry-delete-dialog';
+import { ViewState } from 'soap-models/dist/state';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatFormField, MatLabel } from '@angular/material/input';
+import { MatOption, MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-entry-list',
   imports: [
     MatIcon,
-    MatTooltipModule
+    MatTooltipModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatSelect,
+    MatOption
   ],
   templateUrl: './entry-list.html',
   styleUrl: './entry-list.scss'
@@ -26,9 +35,12 @@ export class EntryList implements OnInit, OnChanges {
   labelStyle = signal('');
   listStyle = signal('');
   entryArray: SoapEntry[] = [];
+  mobileForm = new FormGroup({
+    entryList: new FormControl('', { nonNullable: true })
+  });
 
   constructor(
-    private appState: AppStateService
+    protected appState: AppStateService
   ) {  }
 
   ngOnInit(): void {

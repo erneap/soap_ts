@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, input, OnChanges, OnInit, output, signal, SimpleChanges } from '@angular/core';
 import { BibleBook, IBibleBook, IPlan, IReading, Plan, Reading } from 'soap-models/dist/plans';
-import { AuthService } from '../../../../services/auth-service';
-import { PlanService } from '../../../../plans/plan-service';
-import { EntryService } from '../../../entry-service';
-import { AppStateService } from '../../../../services/app-state.service';
+import { AuthService } from '../../../services/auth-service';
+import { PlanService } from '../../../plans/plan-service';
+import { EntryService } from '../../entry-service';
+import { AppStateService } from '../../../services/app-state.service';
 import { ISoapEntry, SoapEntry } from 'soap-models/dist/entries';
 import { User } from 'soap-models/dist/users';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BooksService } from '../../../../bibles/books/books-service';
+import { BooksService } from '../../../bibles/books/books-service';
 import { MatError, MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';

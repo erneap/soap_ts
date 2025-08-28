@@ -16,11 +16,24 @@ div.overall {
   justify-content: start;
 }
 
+div.overall-mobile {
+  margin: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
 div.entries {
   border: none;
 }
 
 div.editor {
   margin-left: 10px;
+  border: none;
+}
+
+div.editor-mobile {
+  margin: 10px;
   border: none;
 }

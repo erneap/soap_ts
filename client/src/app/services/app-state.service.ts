@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ViewState } from 'soap-models/dist/state';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +10,20 @@ export class AppStateService {
   public viewHeight: number;
   public viewWidth: number;
 
-  constructor() { 
+  constructor(
+    private breakpointObserver: BreakpointObserver
+  ) { 
     this.viewHeight = window.innerHeight - 82;
     this.viewWidth = window.innerWidth;
-    if (window.innerWidth < 450 || window.innerHeight < 450) {
-      this.viewState = ViewState.Mobile;
-    } else if (window.innerWidth < 1040) {
-      this.viewState = ViewState.Tablet;
-    } else {
-      this.viewState = ViewState.Desktop;
-    }
+    this.viewState = ViewState.Desktop;
+    this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet])
+      .subscribe(result => {
+        if (result.breakpoints[Breakpoints.Handset]) {
+          this.viewState = ViewState.Mobile;
+        } else if (result.breakpoints[Breakpoints.Tablet]) {
+          this.viewState = ViewState.Tablet;
+        }
+      });
   }
 
   isMobile(): boolean {
