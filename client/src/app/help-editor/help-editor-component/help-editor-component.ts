@@ -7,6 +7,7 @@ import { MatAccordion } from "@angular/material/expansion";
 import { HelpEditorParagraph } from './help-editor-paragraph/help-editor-paragraph';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-help-editor-component',
@@ -15,7 +16,8 @@ import { MatIcon } from '@angular/material/icon';
     MatAccordion,
     HelpEditorParagraph,
     MatButtonModule,
-    MatIcon
+    MatIcon,
+    MatTooltip
 ],
   templateUrl: './help-editor-component.html',
   styleUrl: './help-editor-component.scss'

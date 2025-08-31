@@ -6,9 +6,7 @@ import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-help-list-component',
-  imports: [
-    MatIcon
-  ],
+  imports: [],
   templateUrl: './help-list-component.html',
   styleUrl: './help-list-component.scss'
 })

@@ -8,7 +8,7 @@ export interface IPage {
   permission?: number;
   header: string;
   subheader: string;
-  paragraphs: IParagraph[];
+  paragraphs?: IParagraph[];
 }
 
 export class Page implements IPage {

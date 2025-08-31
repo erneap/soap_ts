@@ -71,12 +71,14 @@ cardStyle = signal('');
   }
     
   onSelect(pageid: string) {
-    if (pageid !== '') {
+    if (pageid !== '' && pageid !== 'new') {
       this.list()!.forEach(page => {
         if (page.id === pageid) {
           this.page.set(new Page(page));
         }
-      })
+      });
+    } else if (pageid === 'new') {
+      
     }
   }
 }
