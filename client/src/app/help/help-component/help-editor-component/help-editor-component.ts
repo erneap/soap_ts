@@ -1,20 +1,25 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
 import { Page } from 'soap-models/dist/help';
 import { HelpService } from '../../help-service';
 import { AppStateService } from '../../../services/app-state.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatAccordion } from "@angular/material/expansion";
+import { HelpEditorParagraph } from './help-editor-paragraph/help-editor-paragraph';
 
 @Component({
   selector: 'app-help-editor-component',
   imports: [
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    MatAccordion,
+    HelpEditorParagraph
+],
   templateUrl: './help-editor-component.html',
   styleUrl: './help-editor-component.scss'
 })
-export class HelpEditorComponent {
+export class HelpEditorComponent implements OnInit, OnChanges {
   page = input<Page>(new Page());
   formStyle = signal('');
+  accordionStyle = signal('');
   pageForm = new FormGroup({
     page: new FormControl(1, { 
       nonNullable: true,
@@ -43,5 +48,13 @@ export class HelpEditorComponent {
     let eWidth = width - (lWidth + 45);
     this.formStyle.set(`min-height: ${height}px; max-height: ${height}px;`
       + `width: ${eWidth}px;`);
+    this.accordionStyle.set(`width: ${eWidth}px;`);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const newpage = changes['page'];
+    this.pageForm.controls.page.setValue(this.page()!.page);
+    this.pageForm.controls.header.setValue(this.page()!.header);
+    this.pageForm.controls.subheader.setValue(this.page()!.subheader);
   }
 }

@@ -12,7 +12,7 @@
       @if (!editPage()) {
         <app-help-view-component [page]="page()"></app-help-view-component>
       } @else {
-        <app-help-editor-component></app-help-editor-component>
+        <app-help-editor-component [page]="page()"></app-help-editor-component>
       }
     </div>
   </mat-card-content>

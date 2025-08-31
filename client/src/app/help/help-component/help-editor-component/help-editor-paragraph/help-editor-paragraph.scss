@@ -1,15 +1,17 @@
-div.center {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
 .full-form {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  border: solid 1px red;
+  width: 99%;
+}
+
+mat-expansion-panel-header {
+  width: 99%;
+  height: 60px;
+}
+
+mat-icon {
+  font-size: 1.2rem;
 }

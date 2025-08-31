@@ -1,4 +1,4 @@
-<form [formGroup]="pageForm" class="full-form">
+<form [formGroup]="pageForm" class="full-form" [style]="formStyle()">
   <div>
     Page: <input type="number" formControlName="page">
   </div>
@@ -8,4 +8,10 @@
   <div>
     Page Subheader: <input formControlName="subheader">
   </div>
+  <mat-accordion [style]="accordionStyle()">
+    @for (paragraph of page()!.paragraphs; track paragraph.id) {
+      <app-help-editor-paragraph [paragraph]="paragraph">
+      </app-help-editor-paragraph>
+    }
+  </mat-accordion>
 </form>
