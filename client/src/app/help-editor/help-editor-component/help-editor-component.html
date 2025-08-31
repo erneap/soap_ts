@@ -1,0 +1,25 @@
+<div class="full-row">
+  <form [formGroup]="pageForm" class="full-form" [style]="formStyle()">
+    <div style="width: 85%;">
+      Page: <input type="number" formControlName="page" style="width: 70%;">
+    </div>
+    <div style="width: 85%;">
+      Page Header: <input formControlName="header" style="width: 70%;">
+    </div>
+    <div style="width: 85%;">
+      Page Subheader: <input formControlName="subheader" style="width: 70%;">
+    </div>
+  </form>
+  <div class="add-paragraph">
+    <button mat-icon-button >
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </div>
+</div>
+<mat-accordion [style]="accordionStyle()">
+  @for (paragraph of page()!.paragraphs; track paragraph.id) {
+    <app-help-editor-paragraph [paragraph]="paragraph" 
+      [key]="page().id + '|' + paragraph.id">
+    </app-help-editor-paragraph>
+  }
+</mat-accordion>

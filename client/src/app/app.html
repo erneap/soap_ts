@@ -11,6 +11,7 @@
           <button mat-button (click)="onMenuChoice('plans')">Plans</button>
           @if (authService.user().administrator) {
             <button mat-button (click)="onMenuChoice('bibles')">Bibles</button>
+            <button mat-button (click)="onMenuChoice('helpedit')">Edit Help</button>
           }
         }
         <button mat-button (click)="onMenuChoice('profile')">Profile</button>

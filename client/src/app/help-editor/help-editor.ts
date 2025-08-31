@@ -1,36 +1,26 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { 
-  MatCard, 
-  MatCardContent, 
-  MatCardHeader, 
-  MatCardTitle 
-} from '@angular/material/card';
-import { AppStateService } from '../../services/app-state.service';
-import { HelpService } from '../help-service';
+import { Component, signal } from '@angular/core';
 import { IPage, Page } from 'soap-models/dist/help';
-import { HttpErrorResponse } from '@angular/common/http';
-import { AuthService } from '../../services/auth-service';
-import { HelpListComponent } from "./help-list-component/help-list-component";
-import { HelpViewComponent } from "./help-view-component/help-view-component";
-import { HelpEditorComponent } from '../../help-editor/help-editor-component/help-editor-component';
+import { AppStateService } from '../services/app-state.service';
+import { HelpService } from '../help/help-service';
+import { AuthService } from '../services/auth-service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
+import { HelpEditorList } from './help-editor-list/help-editor-list';
+import { HelpEditorComponent } from './help-editor-component/help-editor-component';
 
 @Component({
-  selector: 'app-help-component',
+  selector: 'app-help-editor',
   imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardTitle,
-    MatCardContent,
-    HelpListComponent,
-    HelpViewComponent,
+    MatCardModule,
+    HelpEditorList,
     HelpEditorComponent
-],
-  templateUrl: './help-component.html',
-  styleUrl: './help-component.scss'
+  ],
+  templateUrl: './help-editor.html',
+  styleUrl: './help-editor.scss'
 })
-export class HelpComponent implements OnInit {
-  cardStyle = signal('');
+export class HelpEditor {
+cardStyle = signal('');
   list = signal<Page[]>([]);
   page = signal<Page>(new Page());
   editPage = signal<boolean>(false);
@@ -88,9 +78,5 @@ export class HelpComponent implements OnInit {
         }
       })
     }
-  }
-
-  onChangeEdit(edit: boolean) {
-    this.editPage.set(edit);
   }
 }

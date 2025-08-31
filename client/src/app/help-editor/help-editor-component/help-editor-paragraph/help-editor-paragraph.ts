@@ -27,6 +27,7 @@ import { HelpEditorParagraphGraphic } from './help-editor-paragraph-graphic/help
 })
 export class HelpEditorParagraph implements OnInit, OnChanges {
   paragraph = input<Paragraph>();
+  key = input<string>();
   paraForm = new FormGroup({
     title: new FormControl('', {
       nonNullable: true,

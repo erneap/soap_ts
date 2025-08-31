@@ -29,7 +29,8 @@
     @if (paragraph() && paragraph()!.bullets && paragraph()!.bullets!.length > 0) {
       <ol style="width: 90%">
         @for (bullet of paragraph()!.bullets; track bullet.id) {
-          <app-help-editor-paragraph-bullet [bullet]="bullet">
+          <app-help-editor-paragraph-bullet [bullet]="bullet"
+            [key]="key()! + '|' + bullet.id">
           </app-help-editor-paragraph-bullet>
         }
       </ol>

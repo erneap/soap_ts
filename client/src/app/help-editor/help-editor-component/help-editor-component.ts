@@ -1,17 +1,21 @@
 import { Component, input, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
 import { Page } from 'soap-models/dist/help';
-import { HelpService } from '../../help-service';
-import { AppStateService } from '../../../services/app-state.service';
+import { HelpService } from '../../help/help-service';
+import { AppStateService } from '../../services/app-state.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAccordion } from "@angular/material/expansion";
 import { HelpEditorParagraph } from './help-editor-paragraph/help-editor-paragraph';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-help-editor-component',
   imports: [
     ReactiveFormsModule,
     MatAccordion,
-    HelpEditorParagraph
+    HelpEditorParagraph,
+    MatButtonModule,
+    MatIcon
 ],
   templateUrl: './help-editor-component.html',
   styleUrl: './help-editor-component.scss'
@@ -45,9 +49,8 @@ export class HelpEditorComponent implements OnInit, OnChanges {
     const width = this.appState.viewWidth - 60;
     let lWidth = width * .3;
     if (lWidth > 300) { lWidth = 300; }
-    let eWidth = width - (lWidth + 45);
-    this.formStyle.set(`min-height: ${height}px; max-height: ${height}px;`
-      + `width: ${eWidth}px;`);
+    let eWidth = width - (lWidth + 80);
+    this.formStyle.set(`width: ${eWidth}px;`);
     this.accordionStyle.set(`width: ${eWidth}px;`);
   }
 
