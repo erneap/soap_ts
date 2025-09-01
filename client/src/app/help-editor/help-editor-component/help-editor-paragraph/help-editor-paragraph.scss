@@ -15,3 +15,16 @@ mat-expansion-panel-header {
 mat-icon {
   font-size: 1.2rem;
 }
+
+div.images {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 99%;
+  min-height: 300px;
+  max-height: 300px;
+  overflow-y: auto;
+}

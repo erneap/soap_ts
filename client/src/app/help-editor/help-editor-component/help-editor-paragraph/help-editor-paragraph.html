@@ -7,7 +7,7 @@
       <mat-panel-description>
         <span class="flex-spacer"></span>
         <mat-icon matTooltip="Add bullet Item">list</mat-icon>
-        <mat-icon matTooltip="Add Graphic">perm_media</mat-icon>
+        <mat-icon matTooltip="Add Graphic" (click)="addGraphic()">perm_media</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-form-field style="width: 90%;">
@@ -36,7 +36,12 @@
       </ol>
     }
     @if (paragraph() && paragraph()!.graphics && paragraph()!.graphics!.length > 0) {
-
+      <div class="images">
+        @for (graphic of paragraph()!.graphics; track graphic.id) {
+          <app-help-editor-paragraph-graphic [graphic]="graphic">
+          </app-help-editor-paragraph-graphic>
+        }
+      </div>
     }
   </mat-expansion-panel>
 </form>

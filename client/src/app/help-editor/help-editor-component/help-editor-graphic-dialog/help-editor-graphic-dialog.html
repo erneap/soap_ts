@@ -1,0 +1,11 @@
+<h2>Add Image/Graphic to Help Paragraph</h2>
+<mat-dialog-content>
+  Graphic/Image: <input type="file" (change)="onSelectFile($event)">
+  <form [formGroup]="graphForm">
+    Caption: <input formControlName="caption">
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onAdd()">Add</button>
+</mat-dialog-actions>

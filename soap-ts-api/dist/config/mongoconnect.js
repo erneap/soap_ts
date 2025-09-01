@@ -21,7 +21,6 @@ function connectToDB() {
     return __awaiter(this, void 0, void 0, function* () {
         dotenv_1.default.config();
         const uri = process.env.MONGO_URI;
-        console.log(uri);
         if (uri) {
             try {
                 const client = new mongodb_1.MongoClient(uri);
@@ -43,6 +42,21 @@ function connectToDB() {
                     entries = yield db.createCollection("entries");
                 }
                 exports.collections.entries = entries;
+                let translations = db.collection("translations");
+                if (!translations) {
+                    translations = yield db.createCollection("translations");
+                }
+                exports.collections.translations = translations;
+                let books = yield db.collection('biblebooks');
+                if (!books) {
+                    books = yield db.createCollection('biblebooks');
+                }
+                exports.collections.books = books;
+                let help = yield db.collection('help');
+                if (!help) {
+                    help = yield db.createCollection('help');
+                }
+                exports.collections.help = help;
                 console.log('Successfully connected to collections');
             }
             catch (error) {

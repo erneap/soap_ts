@@ -12,7 +12,6 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { notFound, errorHandler } from "./middleware/index.middleware";
 import { connectToDB } from './config/mongoconnect';
-import { auth } from './middleware/authorization.middleware';
 
 connectToDB();
 
@@ -27,7 +26,7 @@ app.use(cors({
   credentials: true,
   exposedHeaders: ['Content-Type', 'Authorization', 'refreshToken', 'X-Custom-Header']
 }));
-app.use(express.json());
+app.use(express.json({ limit: '10mb'}));
 
 app.use("/api", helpRoutes);
 app.use('/api', transRoutes);

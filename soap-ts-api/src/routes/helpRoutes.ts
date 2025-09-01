@@ -1,11 +1,37 @@
 import { Router, Request, Response } from "express";
 import { Collection, ObjectId } from "mongodb";
 import { collections } from "../config/mongoconnect";
-import { IBullet, Graphic, HelpPageUpdateRequest, IPage, Page, Bullet } from 'soap-models/dist/help';
+import { IBullet, Graphic, HelpPageUpdateRequest, IPage, Page, Bullet, Paragraph } from 'soap-models/dist/help';
 import { Permissions } from "soap-models";
 import { auth } from "../middleware/authorization.middleware";
 
 const router = Router();
+
+router.get('/help', async (req: Request, res: Response) => {
+  const helpCol: Collection | undefined = collections.help;
+  if (helpCol) {
+    let level = 0;
+    const cursor = await helpCol.find<IPage>({});
+    const pages = await cursor.toArray();
+    const list: Page[] = [];
+    pages.forEach(p => {
+      const page = new Page(p);
+      if ((level === 0 && !page.hasPermission(Permissions.site) 
+        && !page.hasPermission(Permissions.team) 
+        && !page.hasPermission(Permissions.admin))
+        || (level === 1 && !page.hasPermission(Permissions.team)
+        && !page.hasPermission(Permissions.admin))
+        || (level === 2 && !page.hasPermission(Permissions.admin))
+        || level === 4) {
+        list.push(page);
+      }
+    }); 
+    list.sort((a,b) => a.compareTo(b));
+    return res.status(200).json(list);
+  } else {
+    return res.status(404).send('No Help Collection');
+  }
+});
 
 router.get('/help/:level', async (req: Request, res: Response) => {
   const helpCol: Collection | undefined = collections.help;
@@ -37,7 +63,7 @@ router.get('/help/:level', async (req: Request, res: Response) => {
   }
 });
 
-router.post('/help/', auth, async (req: Request, res: Response) => {
+router.post('/help', auth, async (req: Request, res: Response) => {
   const helpCol: Collection | undefined = collections.help;
   if (helpCol) {
     const cursor = await helpCol.find<IPage>({});
@@ -202,6 +228,28 @@ router.put('/help', auth, async (req: Request, res: Response) => {
           case "subheader":
             ipage.subheader = update.value;
             break;
+          case "permission":
+          case "admin":
+            ipage.permission = Number(update.value);
+            break;
+          case "add":
+          case "addparagraph":
+            let max = 0;
+            if (ipage.paragraphs && ipage.paragraphs.length > 0) {
+              ipage.paragraphs!.forEach(para => {
+                if (para.id > max) {
+                  max = para.id;
+                }
+              });
+            } else if (!ipage.paragraphs) {
+              ipage.paragraphs = [];
+            }
+            ipage.paragraphs.push(new Paragraph({
+              id: max + 1,
+              title: '',
+              text: []
+            }));
+            break;
         }
       }
       page = new Page(ipage);
@@ -222,7 +270,7 @@ router.delete('/help/:id', auth, async (req: Request, res: Response) => {
 
     await helpCol.deleteOne(query);
 
-    return res.status(204);
+    return res.status(200).json('{"message": "Deleted"}');
   } else {
     return res.status(404).send('No Help Collection');
   }

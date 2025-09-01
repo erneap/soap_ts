@@ -14,8 +14,8 @@ export class HelpService {
     private http: HttpClient
   ) {}
 
-  getHelpPages(): Observable<HttpResponse<IPage[]>> {
-    const url = this.apiUrl + `/help`;
+  getHelpPages(lvl: number): Observable<HttpResponse<IPage[]>> {
+    const url = this.apiUrl + `/help/${lvl}`;
     return this.http.get<IPage[]>(url, {
       observe: 'response'
     });
@@ -56,5 +56,10 @@ export class HelpService {
       filedata: filedata
     };
     return this.http.post<IPage>(url, update, {observe: 'response'});
+  }
+
+  deleteHelpPage(id: string): Observable<HttpResponse<void>> {
+    const url = `${this.apiUrl}/help/${id}`;
+    return this.http.delete<void>(url, { observe: 'response'});
   }
 }

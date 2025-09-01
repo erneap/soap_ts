@@ -1,5 +1,5 @@
-import { Component, input, OnChanges, OnInit, signal, SimpleChanges } from '@angular/core';
-import { Page } from 'soap-models/dist/help';
+import { Component, input, OnChanges, OnInit, output, signal, SimpleChanges } from '@angular/core';
+import { IPage, Page } from 'soap-models/dist/help';
 import { HelpService } from '../../help/help-service';
 import { AppStateService } from '../../services/app-state.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -8,6 +8,9 @@ import { HelpEditorParagraph } from './help-editor-paragraph/help-editor-paragra
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-help-editor-component',
@@ -17,7 +20,8 @@ import { MatTooltip } from '@angular/material/tooltip';
     HelpEditorParagraph,
     MatButtonModule,
     MatIcon,
-    MatTooltip
+    MatTooltip,
+    MatCheckbox
 ],
   templateUrl: './help-editor-component.html',
   styleUrl: './help-editor-component.scss'
@@ -39,11 +43,14 @@ export class HelpEditorComponent implements OnInit, OnChanges {
       nonNullable: true
     }),
     admin: new FormControl(false, { nonNullable: true })
-  })
+  });
+  changed = output<IPage>();
+  update = output<string>();
 
   constructor(
     private helpService: HelpService,
-    private appState: AppStateService
+    private appState: AppStateService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -61,5 +68,63 @@ export class HelpEditorComponent implements OnInit, OnChanges {
     this.pageForm.controls.page.setValue(this.page()!.page);
     this.pageForm.controls.header.setValue(this.page()!.header);
     this.pageForm.controls.subheader.setValue(this.page()!.subheader);
+    this.pageForm.controls.admin.setValue(this.page()!.hasPermission(4));
+  }
+
+  onChange(newpage: IPage) {
+    this.changed.emit(newpage);
+  }
+
+  updateField(field: string) {
+    let value = '';
+    switch (field.toLowerCase()) {
+      case "page":
+        value = this.pageForm.controls.page.value.toString();
+        break;
+      case "header":
+        value = this.pageForm.controls.header.value;
+        break;
+      case "subheader":
+        value = this.pageForm.controls.subheader.value;
+        break;
+      case "admin":
+        value = (this.pageForm.controls.admin.value) ? 'true' : 'false';
+        break;
+      case "add":
+      case "addparagraph":
+        break
+    }
+    this.helpService.updateHelpPage(this.page()!.id, field, value).subscribe({
+      next: result => {
+        if (result) {
+          const ipage = result.body as IPage;
+          this.changed.emit(new Page(ipage));
+        }
+      },
+      error: err => {
+        if (err instanceof HttpErrorResponse) {
+          switch (err.status) {
+            case 401:
+              this.authService.errorMsg.set(`Unauthorized: ${err.error}`);
+              break;
+            case 400:
+              this.authService.errorMsg.set(`Bad Request: ${err.error}`);
+              break;
+            case 403:
+              this.authService.errorMsg.set(`Forbidden: ${err.error}`);
+              break;
+            case 500:
+              this.authService.errorMsg.set(`Server Error: ${err.error}`);
+              break;
+            default:
+              this.authService.errorMsg.set(`${err.status}: ${err.error}`);
+          }
+        }
+      }
+    })
+  }
+
+  onDelete() {
+    this.update.emit(`delete|${this.page()!.id}`);
   }
 }

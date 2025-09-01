@@ -14,7 +14,8 @@
     <div class="images">
       @for (graphic of paragraph()!.graphics; track graphic.id) {
         <div class="image">
-          <img class="image" [src]="getGraphic(graphic)" />
+          <img [src]="getGraphic(graphic)" matTooltip="Click to enlarge"
+            (click)="enlargeGraphic(graphic.id)"/>
           <div class="caption">{{graphic.caption}}</div>
         </div>
       }

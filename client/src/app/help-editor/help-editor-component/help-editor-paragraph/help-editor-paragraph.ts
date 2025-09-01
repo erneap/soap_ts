@@ -1,12 +1,14 @@
-import { Component, input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, inject, input, OnChanges, OnInit, output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIcon } from '@angular/material/icon';
 import { MatError, MatFormField, MatInputModule, MatLabel } from '@angular/material/input';
 import { MatTooltip } from '@angular/material/tooltip';
-import { Paragraph } from 'soap-models/dist/help';
+import { IPage, Page, Paragraph } from 'soap-models/dist/help';
 import { HelpEditorParagraphBullet } from './help-editor-paragraph-bullet/help-editor-paragraph-bullet';
 import { HelpEditorParagraphGraphic } from './help-editor-paragraph-graphic/help-editor-paragraph-graphic';
+import { MatDialog } from '@angular/material/dialog';
+import { HelpEditorGraphicDialog } from '../help-editor-graphic-dialog/help-editor-graphic-dialog';
 
 @Component({
   selector: 'app-help-editor-paragraph',
@@ -38,6 +40,8 @@ export class HelpEditorParagraph implements OnInit, OnChanges {
       validators: [Validators.required]
     })
   });
+  changed = output<IPage>();
+  readonly dialog = inject(MatDialog);
 
   ngOnInit(): void {
     if (this.paragraph()) {
@@ -58,5 +62,22 @@ export class HelpEditorParagraph implements OnInit, OnChanges {
     });
     this.paraForm.controls.title.setValue(this.paragraph()!.title);
     this.paraForm.controls.text.setValue(text)
+  }
+
+  addGraphic() {
+    const parts = this.key()!.split("|");
+    const dialogRef = this.dialog.open(HelpEditorGraphicDialog, {
+      data: { pageid: parts[0], paragraphid: this.paragraph()!.id }
+    });
+
+    dialogRef.afterClosed().subscribe((result: IPage) => {
+      const page = new Page(result);
+      page.paragraphs.forEach(para => {
+        if (para.id === this.paragraph()!.id) {
+          this.paragraph.bind(para);
+        }
+      });
+      this.changed.emit(page);
+    });
   }
 }

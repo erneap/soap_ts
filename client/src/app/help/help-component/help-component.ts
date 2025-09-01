@@ -46,7 +46,11 @@ export class HelpComponent implements OnInit {
     const width = this.viewState.viewWidth - 60;
     const height = this.viewState.viewHeight - 60;
     this.cardStyle.set(`height: ${height}px;width: ${width}px;`); 
-    this.helpService.getHelpPages().subscribe({
+    let level = 0;
+    if (this.authService.isAdmin()) {
+      level = 4;
+    }
+    this.helpService.getHelpPages(level).subscribe({
       next: (res) => {
         const ipages = res.body as IPage[];
         if (ipages && ipages.length > 0) {
