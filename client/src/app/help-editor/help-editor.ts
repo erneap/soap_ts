@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { IPage, Page } from 'soap-models/dist/help';
+import { HelpPageUpdateRequest, IPage, Page } from 'soap-models/dist/help';
 import { AppStateService } from '../services/app-state.service';
 import { HelpService } from '../help/help-service';
 import { AuthService } from '../services/auth-service';
@@ -109,50 +109,38 @@ export class HelpEditor {
           }
         }
       });
-    } else if (pageid.toLowerCase().startsWith('delete')) {
-      const parts = pageid.split('|');
-      if (parts.length > 1) {
-        this.helpService.deleteHelpPage(parts[1]).subscribe({
+    } else if (pageid !== '') {
+      this.list()!.forEach(page => {
+        if (page.id === pageid) {
+          this.page.set(new Page(page));
+        }
+      });
+    }
+  }
+
+  onChanged(update: HelpPageUpdateRequest) {
+    if (update.pageid !== '') {
+      if (!update.paragraphid && !update.bulletid && !update.graphicid
+        && update.field.toLowerCase() === 'delete') {
+        this.helpService.deleteHelpPage(update.pageid).subscribe({
           next: result => {
-            if (result) {
-              if (result.status === 200) {
-                this.helpService.getHelpPages(4).subscribe({
-                  next: result => {
-                    if (result) {
-                      const ipages = result.body as IPage[];
-                      if (ipages && ipages.length > 0) {
-                        const pages: Page[] = [];
-                        ipages.forEach(pg => {
-                          pages.push(new Page(pg));
-                        });
-                        pages.sort((a,b) => a.compareTo(b));
-                        this.list.set(pages);
-                      } 
-                      this.page.set(this.list()![0]);     
-                    }
-                  },
-                  error: err => {
-                    if (err instanceof HttpErrorResponse) {
-                      switch (err.status) {
-                        case 401:
-                          this.authService.errorMsg.set(`Unauthorized: ${err.error}`);
-                          break;
-                        case 400:
-                          this.authService.errorMsg.set(`Bad Request: ${err.error}`);
-                          break;
-                        case 403:
-                          this.authService.errorMsg.set(`Forbidden: ${err.error}`);
-                          break;
-                        case 500:
-                          this.authService.errorMsg.set(`Server Error: ${err.error}`);
-                          break;
-                        default:
-                          this.authService.errorMsg.set(`${err.status}: ${err.error}`);
-                      }
-                    }
-                  }
-                });
+            if (result.status === 200) {
+              // remove page from list
+              const list = this.list()!;
+              let found = -1;
+              list.forEach((page, p) => {
+                if (page.id === update.pageid) {
+                  found = p;
+                }
+              });
+              if (found >= 0) {
+                list.splice(found, 1);
               }
+              list.sort((a,b) => a.compareTo(b));
+              if (list.length > 0) {
+                this.page.set(new Page(list[0]));
+              }
+              this.list.set(list);
             }
           },
           error: err => {
@@ -175,28 +163,52 @@ export class HelpEditor {
               }
             }
           }
-        })
+        });
+      } else {
+        let type: string | undefined = undefined;
+        let subid: number | undefined = undefined;
+        if (update.bulletid) {
+          type = 'bullet';
+          subid = update.bulletid;
+        } else if (update.graphicid) {
+          type = 'graphic';
+          subid = update.graphicid;
+        }
+        this.helpService.updateHelpPage(update.pageid, update.field, 
+          update.value, update.paragraphid, subid, type).subscribe({
+          next: result => {
+            const ipage = result.body as IPage;
+            const list = this.list()!;
+            list.forEach((page, p) => {
+              if (page.id === update.pageid) {
+                list[p] = new Page(ipage);
+              }
+            });
+            this.list.set(list);
+            this.page.set(new Page(ipage));
+          },
+          error: err => {
+            if (err instanceof HttpErrorResponse) {
+              switch (err.status) {
+                case 401:
+                  this.authService.errorMsg.set(`Unauthorized: ${err.error}`);
+                  break;
+                case 400:
+                  this.authService.errorMsg.set(`Bad Request: ${err.error}`);
+                  break;
+                case 403:
+                  this.authService.errorMsg.set(`Forbidden: ${err.error}`);
+                  break;
+                case 500:
+                  this.authService.errorMsg.set(`Server Error: ${err.error}`);
+                  break;
+                default:
+                  this.authService.errorMsg.set(`${err.status}: ${err.error}`);
+              }
+            }
+          }
+        });
       }
-    } else if (pageid !== '') {
-      this.list()!.forEach(page => {
-        if (page.id === pageid) {
-          this.page.set(new Page(page));
-        }
-      });
     }
-  }
-
-  onChanged(ipage: IPage) {
-    const page = new Page(ipage);
-    if (this.list()) {
-      const list = this.list()!;
-      list.forEach((pg, p) => {
-        if (pg.id === page.id) {
-          list[p] = page;
-        }
-      });
-      this.list.set(list);
-    }
-    this.page.set(page);
   }
 }

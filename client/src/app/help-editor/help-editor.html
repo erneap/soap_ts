@@ -9,8 +9,7 @@
       <app-help-editor-list [pages]="list()" [select]="page().id"
         (page)="onSelect($event)">
       </app-help-editor-list>
-      <app-help-editor-component [page]="page()" (changed)="onChanged($event)"
-      (update)="onSelect($event)">
+      <app-help-editor-component [page]="page()" (changed)="onChanged($event)">
       </app-help-editor-component>
     </div>
   </mat-card-content>

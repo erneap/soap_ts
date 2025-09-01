@@ -6,13 +6,15 @@
       </mat-panel-title>
       <mat-panel-description>
         <span class="flex-spacer"></span>
-        <mat-icon matTooltip="Add bullet Item">list</mat-icon>
+        <mat-icon matTooltip="Add bullet Item" (click)="updateParagraph('addbullet')">
+          list
+        </mat-icon>
         <mat-icon matTooltip="Add Graphic" (click)="addGraphic()">perm_media</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-form-field style="width: 90%;">
       <mat-label>Title</mat-label>
-      <input matInput formControlName="title" >
+      <input matInput formControlName="title" (blur)="updateParagraph('title')">
       @if (paraForm.controls.title.hasError('required')) {
         <mat-error>Required</mat-error>
       }
@@ -20,7 +22,7 @@
     <mat-form-field style="width: 90%;">
       <mat-label>Paragraph Text</mat-label>
       <textarea matInput formControlName="text"
-        cdkTextareaAutosize>
+        cdkTextareaAutosize (blur)="updateParagraph('text')">
       </textarea>
       @if (paraForm.controls.text.hasError('required')) {
         <mat-error>Required</mat-error>

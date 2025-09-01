@@ -1,5 +1,5 @@
 import { Component, input, OnChanges, OnInit, output, signal, SimpleChanges } from '@angular/core';
-import { IPage, Page } from 'soap-models/dist/help';
+import { HelpPageUpdateRequest, IPage, Page } from 'soap-models/dist/help';
 import { HelpService } from '../../help/help-service';
 import { AppStateService } from '../../services/app-state.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -44,8 +44,7 @@ export class HelpEditorComponent implements OnInit, OnChanges {
     }),
     admin: new FormControl(false, { nonNullable: true })
   });
-  changed = output<IPage>();
-  update = output<string>();
+  changed = output<HelpPageUpdateRequest>();
 
   constructor(
     private helpService: HelpService,
@@ -71,7 +70,7 @@ export class HelpEditorComponent implements OnInit, OnChanges {
     this.pageForm.controls.admin.setValue(this.page()!.hasPermission(4));
   }
 
-  onChange(newpage: IPage) {
+  onChange(newpage: HelpPageUpdateRequest) {
     this.changed.emit(newpage);
   }
 
@@ -94,37 +93,20 @@ export class HelpEditorComponent implements OnInit, OnChanges {
       case "addparagraph":
         break
     }
-    this.helpService.updateHelpPage(this.page()!.id, field, value).subscribe({
-      next: result => {
-        if (result) {
-          const ipage = result.body as IPage;
-          this.changed.emit(new Page(ipage));
-        }
-      },
-      error: err => {
-        if (err instanceof HttpErrorResponse) {
-          switch (err.status) {
-            case 401:
-              this.authService.errorMsg.set(`Unauthorized: ${err.error}`);
-              break;
-            case 400:
-              this.authService.errorMsg.set(`Bad Request: ${err.error}`);
-              break;
-            case 403:
-              this.authService.errorMsg.set(`Forbidden: ${err.error}`);
-              break;
-            case 500:
-              this.authService.errorMsg.set(`Server Error: ${err.error}`);
-              break;
-            default:
-              this.authService.errorMsg.set(`${err.status}: ${err.error}`);
-          }
-        }
-      }
-    })
+    const update: HelpPageUpdateRequest = {
+      pageid: this.page().id,
+      field: field,
+      value: value
+    };
+    this.changed.emit(update);
   }
 
   onDelete() {
-    this.update.emit(`delete|${this.page()!.id}`);
+    const update: HelpPageUpdateRequest = {
+      pageid: this.page()!.id,
+      field: 'delete',
+      value: ''
+    }
+    this.changed.emit(update);
   }
 }
