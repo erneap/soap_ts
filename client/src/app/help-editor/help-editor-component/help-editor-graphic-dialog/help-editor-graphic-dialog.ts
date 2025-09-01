@@ -50,13 +50,11 @@ export class HelpEditorGraphicDialog {
   }
 
   onAdd() {
-    console.log(this.selectedFile)
     if (this.selectedFile) {
       const mimetype = this.selectedFile.type;
       const reader = new FileReader();
       reader.onloadend = () => {
         const result = reader.result;
-        console.log(result);
         if (result !== null) {
           const base64String = result.toString().replace('data:', '')
             .replace(/^.+,/, '');

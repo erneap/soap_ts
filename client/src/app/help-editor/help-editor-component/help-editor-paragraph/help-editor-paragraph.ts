@@ -107,4 +107,8 @@ export class HelpEditorParagraph implements OnInit, OnChanges {
     };
     this.changed.emit(update);
   }
+
+  onChange(update: HelpPageUpdateRequest) {
+    this.changed.emit(update);
+  }
 }

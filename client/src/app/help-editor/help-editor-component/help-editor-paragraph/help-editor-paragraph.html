@@ -32,7 +32,7 @@
       <ol style="width: 90%">
         @for (bullet of paragraph()!.bullets; track bullet.id) {
           <app-help-editor-paragraph-bullet [bullet]="bullet"
-            [key]="key()! + '|' + bullet.id">
+            [key]="key()! + '|' + bullet.id" (changed)="onChange($event)">
           </app-help-editor-paragraph-bullet>
         }
       </ol>
@@ -40,7 +40,8 @@
     @if (paragraph() && paragraph()!.graphics && paragraph()!.graphics!.length > 0) {
       <div class="images">
         @for (graphic of paragraph()!.graphics; track graphic.id) {
-          <app-help-editor-paragraph-graphic [graphic]="graphic">
+          <app-help-editor-paragraph-graphic [graphic]="graphic"
+            [key]="this.key()!" (changed)="onChange($event)">
           </app-help-editor-paragraph-graphic>
         }
       </div>
