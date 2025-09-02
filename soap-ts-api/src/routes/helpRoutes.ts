@@ -146,6 +146,7 @@ router.put('/help', auth, async (req: Request, res: Response) => {
 
     if (ipage) {
       if (update.paragraphid) {
+        let pfound = -1;
         ipage.paragraphs!.forEach((para, p) => {
           if (para.id === update.paragraphid) {
             if (update.bulletid) {
@@ -212,11 +213,18 @@ router.put('/help', auth, async (req: Request, res: Response) => {
                     text: update.value
                   }));
                   break;
+                case "delete":
+                  pfound = p;
               }
             }
             ipage.paragraphs![p] = para;
           }
         });
+        if (pfound >= 0) {
+          if (ipage.paragraphs && ipage.paragraphs.length > 0) {
+            ipage.paragraphs.splice(pfound, 1);
+          }
+        }
       } else {
         switch (update.field.toLowerCase()) {
           case "page":

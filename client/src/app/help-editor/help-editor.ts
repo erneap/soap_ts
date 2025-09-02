@@ -78,7 +78,6 @@ export class HelpEditor {
   }
     
   onSelect(pageid: string) {
-    console.log(pageid);
     if (pageid === 'new') {
       this.helpService.addHelpPage().subscribe({
         next: result => {

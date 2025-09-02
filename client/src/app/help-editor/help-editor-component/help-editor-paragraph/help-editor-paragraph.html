@@ -6,6 +6,8 @@
       </mat-panel-title>
       <mat-panel-description>
         <span class="flex-spacer"></span>
+        <mat-icon matTooltip="Delete this paragraph" 
+          (click)="updateParagraph('delete')">cancel</mat-icon>
         <mat-icon matTooltip="Add bullet Item" (click)="updateParagraph('addbullet')">
           list
         </mat-icon>
