@@ -16,6 +16,32 @@ const help_1 = require("soap-models/dist/help");
 const soap_models_1 = require("soap-models");
 const authorization_middleware_1 = require("../middleware/authorization.middleware");
 const router = (0, express_1.Router)();
+router.get('/help', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const helpCol = mongoconnect_1.collections.help;
+    if (helpCol) {
+        let level = 0;
+        const cursor = yield helpCol.find({});
+        const pages = yield cursor.toArray();
+        const list = [];
+        pages.forEach(p => {
+            const page = new help_1.Page(p);
+            if ((level === 0 && !page.hasPermission(soap_models_1.Permissions.site)
+                && !page.hasPermission(soap_models_1.Permissions.team)
+                && !page.hasPermission(soap_models_1.Permissions.admin))
+                || (level === 1 && !page.hasPermission(soap_models_1.Permissions.team)
+                    && !page.hasPermission(soap_models_1.Permissions.admin))
+                || (level === 2 && !page.hasPermission(soap_models_1.Permissions.admin))
+                || level === 4) {
+                list.push(page);
+            }
+        });
+        list.sort((a, b) => a.compareTo(b));
+        return res.status(200).json(list);
+    }
+    else {
+        return res.status(404).send('No Help Collection');
+    }
+}));
 router.get('/help/:level', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const helpCol = mongoconnect_1.collections.help;
     if (helpCol) {
@@ -120,6 +146,7 @@ router.put('/help', authorization_middleware_1.auth, (req, res) => __awaiter(voi
         let page = new help_1.Page();
         if (ipage) {
             if (update.paragraphid) {
+                let pfound = -1;
                 ipage.paragraphs.forEach((para, p) => {
                     if (para.id === update.paragraphid) {
                         if (update.bulletid) {
@@ -190,11 +217,18 @@ router.put('/help', authorization_middleware_1.auth, (req, res) => __awaiter(voi
                                         text: update.value
                                     }));
                                     break;
+                                case "delete":
+                                    pfound = p;
                             }
                         }
                         ipage.paragraphs[p] = para;
                     }
                 });
+                if (pfound >= 0) {
+                    if (ipage.paragraphs && ipage.paragraphs.length > 0) {
+                        ipage.paragraphs.splice(pfound, 1);
+                    }
+                }
             }
             else {
                 switch (update.field.toLowerCase()) {
@@ -206,6 +240,29 @@ router.put('/help', authorization_middleware_1.auth, (req, res) => __awaiter(voi
                         break;
                     case "subheader":
                         ipage.subheader = update.value;
+                        break;
+                    case "permission":
+                    case "admin":
+                        ipage.permission = Number(update.value);
+                        break;
+                    case "add":
+                    case "addparagraph":
+                        let max = 0;
+                        if (ipage.paragraphs && ipage.paragraphs.length > 0) {
+                            ipage.paragraphs.forEach(para => {
+                                if (para.id > max) {
+                                    max = para.id;
+                                }
+                            });
+                        }
+                        else if (!ipage.paragraphs) {
+                            ipage.paragraphs = [];
+                        }
+                        ipage.paragraphs.push(new help_1.Paragraph({
+                            id: max + 1,
+                            title: '',
+                            text: []
+                        }));
                         break;
                 }
             }
@@ -224,7 +281,7 @@ router.delete('/help/:id', authorization_middleware_1.auth, (req, res) => __awai
         const id = new mongodb_1.ObjectId(req.params.id);
         const query = { _id: id };
         yield helpCol.deleteOne(query);
-        return res.status(204);
+        return res.status(200).json('{"message": "Deleted"}');
     }
     else {
         return res.status(404).send('No Help Collection');

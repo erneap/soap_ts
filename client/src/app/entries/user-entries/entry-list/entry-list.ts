@@ -7,6 +7,7 @@ import { EntryDeleteDialog } from '../entry-delete-dialog/entry-delete-dialog';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/input';
 import { MatOption, MatSelect } from '@angular/material/select';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-entry-list',
@@ -16,7 +17,8 @@ import { MatOption, MatSelect } from '@angular/material/select';
     MatFormField,
     MatLabel,
     MatSelect,
-    MatOption
+    MatOption,
+    MatIcon
   ],
   templateUrl: './entry-list.html',
   styleUrl: './entry-list.scss'

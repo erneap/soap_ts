@@ -33,6 +33,7 @@ export class UserEntries implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.viewState.viewWidth);
     const width = this.viewState.viewWidth - 60;
     const height = this.viewState.viewHeight - 60;
     this.cardStyle.set(`height: ${height}px;width: ${width}px;`);

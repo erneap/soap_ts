@@ -27,7 +27,7 @@ app.use((0, cors_1.default)({
     credentials: true,
     exposedHeaders: ['Content-Type', 'Authorization', 'refreshToken', 'X-Custom-Header']
 }));
-app.use(express_1.default.json());
+app.use(express_1.default.json({ limit: '10mb' }));
 app.use("/api", helpRoutes_1.default);
 app.use('/api', translationRoutes_1.default);
 app.use('/api', plansRoutes_1.default);

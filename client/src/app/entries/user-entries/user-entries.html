@@ -1,5 +1,5 @@
 <mat-card [style]="cardStyle()">
-  <!--@if (viewState.isDesktop()) {
+  @if (!viewState.isMobile()) {
     <div class="overall">
       <div class="entries" [style]="listStyle()">
       <app-entry-list [entries]="{ entries: entries() }"
@@ -11,7 +11,7 @@
         </app-entry>
       </div>
     </div>
-  } @else {-->
+  } @else {
     <div class="overall-mobile">
       <app-entry-list [entries]="{ entries: entries() }"
         [select]="entry().entryDate.toISOString()"
@@ -21,5 +21,5 @@
         </app-entry>
       </div>
     </div>
-  <!--}-->
+  }
 </mat-card>
