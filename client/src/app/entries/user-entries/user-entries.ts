@@ -79,7 +79,7 @@ export class UserEntries implements OnInit {
         newdate.getDate()));
       let found = false;
       this.entries()!.forEach(entry => {
-        if (entry.useEntry(newdate)) {
+        if (entry.useEntryByDate(newdate)) {
           newdate = new Date(newdate.getTime() + (24 * 3600000));
         }
       })
@@ -99,33 +99,12 @@ export class UserEntries implements OnInit {
           }
         }
       });
-    } else if (id.toLowerCase().startsWith('delete-')) {
-      id = id.substring(7);
-      const date = new Date(Date.parse(id));
-      this.entryService.deleteEntry(this.authService.user().id, date)
-      .subscribe(res => {
-        const msg = res.body as Message;
-        if (msg.message.toLowerCase() === 'deletion completed') {
-          this.entry.set(new SoapEntry());
-          let found = -1;
-          const entries = this.entries();
-          for (let e=0; e < entries.length && found < 0; e++) {
-            if (entries[e].useEntry(date)) {
-              found = e;
-            }
-          }
-          if (found >= 0) {
-            entries.splice(found, 1);
-          }
-          this.entries.set(entries);
-        }
-      });
     } else if (id === '') {
       this.entry.set(new SoapEntry());
     } else {
       const entryDate = new Date(Date.parse(id));
       this.entries()!.forEach(entry => {
-        if (entry.useEntry(entryDate)) {
+        if (entry.useEntry(id)) {
           this.entry.set(entry);
         }
       });
@@ -135,13 +114,12 @@ export class UserEntries implements OnInit {
   onEntryChange(change: UpdateEntryRequest) {
     if (change.field !== 'delete') {
       change.user = this.authService.user()!.id;
-      const oldDate = new Date(Date.parse(change.entrydate));
       this.authService.errorMsg.set('');
-      this.entryService.updateEntry(change.user, change.entrydate, change.field, change.value).subscribe({
+      this.entryService.updateEntry(change.user, change.year, change.id, change.field, change.value).subscribe({
         next: (res) => {
           const entry = new SoapEntry(res.body as ISoapEntry);
           for (let e=0; e < this.entries()!.length; e++) {
-            if (this.entries()![e].useEntry(oldDate)) {
+            if (this.entries()![e].useEntry(change.id)) {
               this.entries()![e] = entry;
             }
           }
@@ -160,17 +138,15 @@ export class UserEntries implements OnInit {
         }
       });
     } else {
-      const oldDate = new Date(Date.parse(change.entrydate));
-      console.log(oldDate);
-      this.entryService.deleteEntry(this.authService.user().id, oldDate)
-      .subscribe(res => {
+      this.entryService.deleteEntry(this.authService.user().id, change.year, 
+      change.id).subscribe(res => {
         const msg = res.body as Message;
         if (msg.message.toLowerCase() === 'deletion completed') {
           this.entry.set(new SoapEntry());
           let found = -1;
           const entries = this.entries();
           for (let e=0; e < entries.length && found < 0; e++) {
-            if (entries[e].useEntry(oldDate)) {
+            if (entries[e].useEntry(change.id)) {
               found = e;
             }
           }

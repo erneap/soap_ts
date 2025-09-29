@@ -7,7 +7,7 @@
           <mat-option value=""></mat-option>
           <mat-option value="new">New Entry</mat-option>
           @for (entry of entries()?.entries; track entry.entryDate) {
-            <mat-option [value]="entry.entryDate.toISOString()">
+            <mat-option [value]="entry.id">
               {{ getLabel(entry) }}
             </mat-option>
           }
@@ -27,19 +27,13 @@
         matTooltip="Add new entry" (click)="onNew()">
         <mat-icon>add_circle</mat-icon>
       </div>
-      @if (this.select() !== '1970-01-01T00:00:00.000Z') {
-        <div class="button" [style]="buttonStyle()"
-          matTooltip="remove selected entry" (click)="onDelete()">
-          <mat-icon>cancel</mat-icon>
+      <div class="nobutton" [style]="buttonStyle()">
         </div>
-      } @else {
-        <div class="nobutton" [style]="buttonStyle()"></div>
-      }
     </div>
     <div class="list" [style]="listStyle()">
-      @for (entry of entries()?.entries; track entry.entryDate) {
+      @for (entry of entries()?.entries; track entry.id) {
         <div [class]="itemClasses(entry)"
-          (click)="chooseSoapEntry(entry.entryDate.toISOString())">
+          (click)="chooseSoapEntry((entry.id) ? entry.id : 'new')">
           {{ getLabel(entry)}}
         </div>
       }

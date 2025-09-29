@@ -1,6 +1,6 @@
 {
   "name": "soap-models",
-  "version": "1.5.11",
+  "version": "1.5.12",
   "description": "Packaged Modules for working with SOAP",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,6 @@
     "bcrypt": "^6.0.0",
     "bcrypt-ts": "^7.1.0",
     "express": "^5.1.0",
-    "mongodb": "^6.17.0",
     "typescript": "^5.8.3"
   }
 }

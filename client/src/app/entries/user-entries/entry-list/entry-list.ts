@@ -102,9 +102,9 @@ export class EntryList implements OnInit, OnChanges {
     });
   }
 
-  itemClasses(entry: ISoapEntry): string {
-    const eDate = new Date(entry.entryDate);
-    if (eDate.toISOString() === this.select()) {
+  itemClasses(ientry: ISoapEntry): string {
+    const entry = new SoapEntry(ientry);
+    if (entry.id === this.select()) {
       return 'item selected';
     } else {
       return 'item';

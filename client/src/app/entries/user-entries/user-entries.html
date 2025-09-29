@@ -3,7 +3,7 @@
     <div class="overall">
       <div class="entries" [style]="listStyle()">
       <app-entry-list [entries]="{ entries: entries() }"
-        [select]="entry().entryDate.toISOString()"
+        [select]="entry().id"
         (selected)="onSelect($event)"></app-entry-list>
       </div>
       <div class="editor" [style]="editorStyle()">
@@ -14,7 +14,7 @@
   } @else {
     <div class="overall-mobile">
       <app-entry-list [entries]="{ entries: entries() }"
-        [select]="entry().entryDate.toISOString()"
+        [select]="entry().id"
         (selected)="onSelect($event)" class="entries"></app-entry-list>
       <div class="editor-mobile">
         <app-entry [entry]="entry()" (changed)="onEntryChange($event)">

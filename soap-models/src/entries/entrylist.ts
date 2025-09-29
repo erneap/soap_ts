@@ -1,9 +1,9 @@
-import { ObjectId } from "mongodb";
 import { ISoapEntry, SoapEntry } from "./entry";
 
 
 export interface ISoapEntryList {
-    _id?: ObjectId;
+    _id?: string;
+    id?: string;
     userID?: string;
     lastName?: string;
     year: number;
@@ -18,7 +18,7 @@ export class SoapEntryList implements ISoapEntryList {
     public entries: SoapEntry[];
 
     constructor(list?: ISoapEntryList) {
-        this.id = (list) ? list._id.toString() : '';
+        this.id = (list && list.id) ? list.id : list._id.toString();
         this.userID = (list && list.userID) ? list.userID : undefined;
         this.lastName = (list && list.lastName) ? list.lastName : undefined;
         this.year = (list) ? list.year : 0;
@@ -26,18 +26,15 @@ export class SoapEntryList implements ISoapEntryList {
         if (list && list.entries.length > 0) {
             list.entries.forEach(entry => {
                 const sEntry = new SoapEntry(entry);
-                if (sEntry.id === '' || sEntry.id === 'new') {
-                    sEntry.id = (new ObjectId()).toHexString()
-                }
                 this.entries.push(sEntry);
             });
             this.entries.sort((a,b) => a.compareTo(b))
         }
     }
 
-    addEntry(date: Date): SoapEntry {
+    addEntry(id: string, date: Date): SoapEntry {
         const entry = new SoapEntry();
-        entry.id = (new ObjectId()).toHexString();
+        entry.id = id;
         entry.entryDate = new Date(date);
         this.entries.push(entry);
         this.entries.sort((a,b) => a.compareTo(b))
