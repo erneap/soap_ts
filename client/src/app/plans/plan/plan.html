@@ -1,0 +1,7 @@
+<mat-card [style]="cardStyle()">
+  <div class="overall">
+    <app-plan-list [plans]="plans()" [select]="plan().id"
+      (plan)="onSelect($event)"></app-plan-list>
+    <app-plan-editor [plan]="plan()" (change)="onChange($event)"></app-plan-editor>
+  </div>
+</mat-card>

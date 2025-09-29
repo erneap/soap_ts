@@ -1,0 +1,52 @@
+<form [formGroup]="paraForm" class="full-form">
+  <mat-expansion-panel hideToggle style="width: 99%;">
+    <mat-expansion-panel-header>
+      <mat-panel-title style="width: 70%;">
+        {{paragraph()!.title}}
+      </mat-panel-title>
+      <mat-panel-description>
+        <span class="flex-spacer"></span>
+        <mat-icon matTooltip="Delete this paragraph" 
+          (click)="updateParagraph('delete')">cancel</mat-icon>
+        <mat-icon matTooltip="Add bullet Item" (click)="updateParagraph('addbullet')">
+          list
+        </mat-icon>
+        <mat-icon matTooltip="Add Graphic" (click)="addGraphic()">perm_media</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field style="width: 90%;">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" (blur)="updateParagraph('title')">
+      @if (paraForm.controls.title.hasError('required')) {
+        <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field style="width: 90%;">
+      <mat-label>Paragraph Text</mat-label>
+      <textarea matInput formControlName="text"
+        cdkTextareaAutosize (blur)="updateParagraph('text')">
+      </textarea>
+      @if (paraForm.controls.text.hasError('required')) {
+        <mat-error>Required</mat-error>
+      }
+    </mat-form-field>
+    @if (paragraph() && paragraph()!.bullets && paragraph()!.bullets!.length > 0) {
+      <ol style="width: 90%">
+        @for (bullet of paragraph()!.bullets; track bullet.id) {
+          <app-help-editor-paragraph-bullet [bullet]="bullet"
+            [key]="key()! + '|' + bullet.id" (changed)="onChange($event)">
+          </app-help-editor-paragraph-bullet>
+        }
+      </ol>
+    }
+    @if (paragraph() && paragraph()!.graphics && paragraph()!.graphics!.length > 0) {
+      <div class="images">
+        @for (graphic of paragraph()!.graphics; track graphic.id) {
+          <app-help-editor-paragraph-graphic [graphic]="graphic"
+            [key]="this.key()!" (changed)="onChange($event)">
+          </app-help-editor-paragraph-graphic>
+        }
+      </div>
+    }
+  </mat-expansion-panel>
+</form>

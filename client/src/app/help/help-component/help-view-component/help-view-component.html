@@ -1,0 +1,13 @@
+<div class="full-form" [style]="formStyle()">
+  @if (page()?.page === 0) {
+    <h2>No Help Page Selected</h2>
+  } @else {
+    <h2>{{page()!.header}}</h2>
+    <h3>{{page()!.subheader}}</h3>
+    @if (page()!.paragraphs && page()!.paragraphs!.length > 0) {
+      @for (paragraph of page()!.paragraphs; track paragraph.id) {
+        <app-help-view-paragraph [paragraph]="paragraph"></app-help-view-paragraph>
+      }
+    }
+  }
+</div>

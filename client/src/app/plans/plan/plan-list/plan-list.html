@@ -1,0 +1,28 @@
+<div class="main" [style]="compStyle()">
+  <div class="labelmain" [style]="labelMainStyle()">
+    <div class="nobutton" [style]="buttonStyle()"></div>
+    <div class="nobutton" [style]="buttonStyle()"></div>
+    <div class="label" [style]="labelStyle()">
+      Available Plans
+    </div>
+    <div class="button" [style]="buttonStyle()"
+      matTooltip="Add new plan" (click)="onAdd()">
+      <mat-icon>add_circle</mat-icon>
+    </div>
+    @if (this.select() !== '') {
+      <div class="button" [style]="buttonStyle()"
+        matTooltip="remove selected plan" (click)="onDelete()">
+        <mat-icon>cancel</mat-icon>
+      </div>
+    } @else {
+      <div class="nobutton" [style]="buttonStyle()"></div>
+    }
+  </div>
+  <div class="list" [style]="listStyle()">
+    @for (plan of plans(); track plan.id) {
+      <div [class]="itemClasses(plan)" (click)="onSelect(plan.id!)">
+        {{ plan.name }}
+      </div>
+    }
+  </div>
+</div>

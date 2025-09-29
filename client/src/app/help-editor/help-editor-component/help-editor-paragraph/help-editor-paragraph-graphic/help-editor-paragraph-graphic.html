@@ -1,0 +1,7 @@
+<div class="image">
+  <div class="delete">
+    <mat-icon (click)="onDelete()">cancel</mat-icon>
+  </div>
+  <img class="image" [src]="getGraphic()" />
+  <div class="caption">( {{ graphic()!.caption }} )</div>
+</div>

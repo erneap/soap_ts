@@ -1,0 +1,48 @@
+@if (appState.isMobile()) {
+  <div class="main-mobile">
+    <form [formGroup]="mobileForm" >
+      <mat-form-field style="width: 90%;">
+        <mat-label>User's Entries</mat-label>
+        <mat-select formControlName="entryList" (selectionChange)="onSelectEntry()">
+          <mat-option value=""></mat-option>
+          <mat-option value="new">New Entry</mat-option>
+          @for (entry of entries()?.entries; track entry.entryDate) {
+            <mat-option [value]="entry.entryDate.toISOString()">
+              {{ getLabel(entry) }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+} @else {
+  <div class="main" [style]="compStyle()">
+    <div class="labelmain" [style]="labelMainStyle()">
+      <div class="nobutton" [style]="buttonStyle()"></div>
+      <div class="nobutton" [style]="buttonStyle()"></div>
+      <div class="label" [style]="labelStyle()">
+        User's Entries
+      </div>
+      <div class="button" [style]="buttonStyle()"
+        matTooltip="Add new entry" (click)="onNew()">
+        <mat-icon>add_circle</mat-icon>
+      </div>
+      @if (this.select() !== '1970-01-01T00:00:00.000Z') {
+        <div class="button" [style]="buttonStyle()"
+          matTooltip="remove selected entry" (click)="onDelete()">
+          <mat-icon>cancel</mat-icon>
+        </div>
+      } @else {
+        <div class="nobutton" [style]="buttonStyle()"></div>
+      }
+    </div>
+    <div class="list" [style]="listStyle()">
+      @for (entry of entries()?.entries; track entry.entryDate) {
+        <div [class]="itemClasses(entry)"
+          (click)="chooseSoapEntry(entry.entryDate.toISOString())">
+          {{ getLabel(entry)}}
+        </div>
+      }
+    </div>
+  </div>
+}

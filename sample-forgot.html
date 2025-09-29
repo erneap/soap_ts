@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: lightblue;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+      }
+
+      div.main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+      }
+
+      div.password {
+        background-color:blue;
+        color:white;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items: center;
+        padding: 10px;
+      }
+
+      a {
+        color: hotpink;
+        text-decoration: underline;
+      }
+
+      a:hover {
+        background-color: hotpink;
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Soap Journal Web Application</h1>
+    <h2>Forgot Your Password</h2>
+    <div class="main">
+      <p>
+        You have notified the site that you've forgotten your password.  The 
+        process for re-establishing log in privileges is in effect.  Please
+        copy the token string below and click the link to get you back to a 
+        web page to change your forgotten password.
+      </p>
+      <p>
+        We are glad that you've choosen to enrich your life through faith!
+      </p>
+      <div class="password">
+        <p>The following is your token string to verify you are the account holder:</p>
+        <h2 style="color: yellow;">{{password}}</h2>
+        <p style="color:lightpink;text-decoration: underline;">
+          <a href="http://www.soapjournal.org/changeforgot">Link back to site</a>
+        </p>
+      </div>
+      <div style="margin-top: 25px;">
+        Thanks again, the webmaster.
+      </div>
+    </div>
+  </body>
+</html>

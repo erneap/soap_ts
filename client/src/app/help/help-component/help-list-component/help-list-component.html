@@ -1,0 +1,14 @@
+<div class="main" [style]="compStyle()">
+  <div class="labelmain" [style]="labelMainStyle()">
+    <div class="label" [style]="labelStyle()">
+      Help Pages
+    </div>
+  </div>
+  <div class="list" [style]="listStyle()">
+    @for (page of pages(); track page.id) {
+      <div [class]="itemClasses(page)" (click)="onSelect(page.id!)">
+        {{page.page}}) {{ page.header }}
+      </div>
+    }
+  </div>
+</div>

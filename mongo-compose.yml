@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: soap
+      MONGO_INITDB_ROOT_PASSWORD: zse45RDXzse45RDX
+    volumes:
+      - mongodb_data:/data/db
+    restart: always
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo_express_container
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb_container
+      ME_CONFIG_MONGODB_ADMINUSERNAME: soap
+      ME_CONFIG_MONGODB_ADMINPASSWORD: zse45RDXzse45RDX
+      ME_CONFIG_BASICAUTH_USERNAME: antonerne
+      ME_CONFIG_BASICAUTH_PASSWORD: mko09IJNbhu8
+    depends_on:
+      - mongodb
+    restart: always
+
+  soap-ts-api:
+    image: erneap/node-ts-api:1.1.3
+    container_name: soap-ts-api
+    ports:
+      - 4000:4000
+    environment:
+      MONGO_URI: mongodb://soap:zse45RDXzse45RDX@mongodb_container:27017/
+      MONGO_DB_NAME: soap
+      PORT: 4000
+      JWT_SECRET: ca093ba01d8295ff7df1a54a49e5a969cc21d03cd172380aa9d2337f408e035f
+      JWT_EXPIRES: 1h
+      JWT_REFRESH_SECRET: f63a5ca4a2f6d5fb227fe1aabca3eabbd26b884eeff0606f3d6407beb60c4065
+      JWT_REFRESH_EXPIRES: 1d
+      SMTP_USER: soapjournalorg@gmail.com
+      SMTP_PASSWORD: gltmdifiaememzur
+      SMTP_HOST: smtp.gmail.com
+      SMTP_PORT: 465
+      SMTP_SECURE: true
+
+  soap-client:
+    image: erneap/soap-client:1.0.2
+    container_name: soap-client
+    ports:
+      - 80:80
+      - 443:443
+    volumes: 
+      - letsencrypt_data:/etc/letsencrypt
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - letsencrypt_data:/etc/letsencrypt
+    command: certonly --webroot --webroot-path=/var/www/certbot --email ernea5956@gmail.com --agree-tos --no-eff-email -d soapjournal.org -d www.soapjournal.org
+
+volumes:
+  mongodb_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /data/db
+  letsencrypt_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /data/letsencrypt
+  nginx_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /data/nginx
+      

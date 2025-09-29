@@ -1,0 +1,25 @@
+<div class="form-full" [style]="formStyle()">
+  @if (plan()?.name !== '') {
+    <form [formGroup]="editorForm">
+      <mat-form-field style="width: 250px;">
+        <mat-label>Reading Plan Name</mat-label>
+        <input matInput formControlName="name" (blur)="onUpdate('name')">
+        @if (editorForm.controls.name.hasError('required')) {
+          <mat-error>Plan name is required</mat-error>
+        }
+      </mat-form-field>
+    </form>
+  } @else {
+    <h3>No Plan selected</h3>
+  }
+  <mat-accordion style="width: 99%;">
+    @for (month of plan()!.months; track month.month) {
+      <app-plan-month-component 
+        [plantype]="(plan()!.months.length > 1) ? 'bydate' : 'circular'" 
+        [month]="month" 
+        [books]="books" [key]="plan()!.id + '-' + month.month"
+        (change)="onChange($event)">
+      </app-plan-month-component>
+    }
+  </mat-accordion>
+</div>

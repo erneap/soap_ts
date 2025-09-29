@@ -1,0 +1,44 @@
+mat-card {
+  background-color: #e6ccff;
+  color: black;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+div.overall {
+  margin: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+  width: 99%;
+  flex: 1 1;
+}
+
+div.overall-mobile {
+  margin: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 97%;
+  height: 97%;
+}
+
+.entries {
+  width: 90%;
+  border: none;
+}
+
+div.editor {
+  margin-left: 10px;
+  min-width: 70%;
+  max-width: 80%;
+  border: none;
+}
+
+div.editor-mobile {
+  width: 95%;
+  height: 85%;
+}

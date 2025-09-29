@@ -1,0 +1,83 @@
+@if (entry()!.entryDate.getTime() > 0){
+  <form class="form-full" [formGroup]="editorForm">
+    <div class="center full">
+      <div class="nobutton"></div>
+      <div class="flex-spacer"></div>
+      <mat-form-field>
+        <mat-label>Entry Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="entrydate" 
+          (dateChange)="onEntryChange('entrydate')"/>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        @if (editorForm.controls.entrydate.hasError('required')) {
+          <mat-error>Entry date is required</mat-error>
+        }
+      </mat-form-field>
+      <div class="flex-spacer"></div>
+      <div class="button" matTooltip="delete this entry" 
+        (click)="onEntryChange('delete')">
+        <mat-icon>delete</mat-icon>
+      </div>
+    </div>
+    <div class="center full">
+      <div style="font-weight: bold;">Today's Readings:</div>
+      <div class="flex-spacer"></div>
+      <div>
+        @for (reading of readings(); track reading.id) {
+          <button matButton 
+          (click)="showReading(reading.book, reading.chapter, reading.verseStart, reading.verseEnd)"
+          >{{ readingText(reading) }}</button>
+        }
+      </div>
+      <mat-checkbox (change)="onEntryChange('read')" formControlName="read">
+        Shared
+      </mat-checkbox>
+    </div>
+    <div class="center full">
+      <mat-form-field class="full">
+        <mat-label>Title</mat-label>
+        <input matInput class="full" (blur)="onEntryChange('title')"
+          formControlName="title">
+      </mat-form-field>
+    </div>
+    <div class="center full">
+      <mat-form-field class="full">
+        <mat-label>Scripture</mat-label>
+        <textarea matInput class="full" (blur)="onEntryChange('scripture')"
+          cdkTextareaAutosize
+          formControlName="scripture"
+          cdkAutosizeMinRows="2"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="center full">
+      <mat-form-field class="full">
+        <mat-label>Observations</mat-label>
+        <textarea matInput class="full" (blur)="onEntryChange('observations')"
+          cdkTextareaAutosize
+          formControlName="observations"
+          cdkAutosizeMinRows="2"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="center full">
+      <mat-form-field class="full">
+        <mat-label>Application</mat-label>
+        <textarea matInput class="full" (blur)="onEntryChange('application')"
+          cdkTextareaAutosize
+          formControlName="application"
+          cdkAutosizeMinRows="2"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="center full">
+      <mat-form-field class="full">
+        <mat-label>Prayer</mat-label>
+        <textarea matInput class="full" (blur)="onEntryChange('prayer')"
+          cdkTextareaAutosize
+          formControlName="prayer"
+          cdkAutosizeMinRows="2"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+} @else {
+  <h1 class="form-full">No SOAP Entry Selected</h1>
+}

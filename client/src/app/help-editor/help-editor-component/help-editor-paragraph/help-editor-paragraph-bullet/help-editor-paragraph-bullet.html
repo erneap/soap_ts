@@ -1,0 +1,8 @@
+<li class="form-full">
+  <form [formGroup]="bulletForm" class="full-form">
+    <input formControlName="text" style="width: 400px;"
+      (blur)="onUpdate('text')">
+    <mat-icon style="font-size: 1rem;" (click)="onUpdate('delete')">
+      cancel</mat-icon>
+  </form> 
+</li>

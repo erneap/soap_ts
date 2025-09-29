@@ -1,0 +1,25 @@
+{
+  "name": "console-app",
+  "version": "1.0.2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/axios": "^0.9.36",
+    "@types/cheerio": "^0.22.35",
+    "axios": "^1.10.0",
+    "cheerio": "^1.1.0",
+    "dotenv": "^17.2.1",
+    "mongodb": "^6.18.0",
+    "soap-models": "^1.5.6",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1"
+  }
+}

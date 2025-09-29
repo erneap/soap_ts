@@ -1,0 +1,14 @@
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    {{ day()!.dayOfMonth }}
+    <span class="flex-spacer"></span>
+    <div class="icon" matTooltip="actions for day">
+      <mat-icon>menu</mat-icon>
+    </div>
+  </mat-expansion-panel-header> 
+  @for (reading of day()!.readings; track `${key()!}-${reading.id}`) {
+    <app-plan-reading-component [reading]="reading" [books]="books()!"
+      [key]="key()! + '-' + reading.id">
+    </app-plan-reading-component>
+  }
+</mat-expansion-panel>

@@ -1,0 +1,134 @@
+<mat-card [style]="cardStyle()">
+  <mat-card-header>
+    <mat-card-title>Create New Account Form</mat-card-title>
+  </mat-card-header>
+  <div class="overall">
+    <form [formGroup]="newUserForm" (ngSubmit)="createUser()">
+      @if (viewState.isDesktop()) {
+        <div class="formRow">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Account ID/Email Address</mat-label>
+            <input matInput placeholder="account@company.com" formControlName="email">
+            @if (newUserForm.controls.email.hasError('required')) {
+              <mat-error>Account ID/Email is required</mat-error>
+            }
+            @if (newUserForm.controls.email.hasError('email')) {
+              <mat-error>Account ID/Email must be in email form</mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="formRow">
+          <mat-form-field>
+            <mat-label>First (Given) Name</mat-label>
+            <input matInput formControlName="first">
+            @if (newUserForm.controls.first.hasError('required')) {
+              <mat-error>First (Given) Name is required</mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Middle Name</mat-label>
+            <input matInput formControlName="middle">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last (Family) Name</mat-label>
+            <input matInput formControlName="last">
+            @if (newUserForm.controls.last.hasError('required')) {
+              <mat-error>First (Given) Name is required</mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="formRow">
+          <mat-form-field>
+            <mat-label>Choose Reading Plan</mat-label>
+            <mat-select formControlName="plan">
+              @for (plan of plans()!; track plan.id) {
+                <mat-option [value]="plan.id">{{plan.name}}</mat-option>
+              }
+            </mat-select>
+            @if (newUserForm.controls.plan.hasError('required')) {
+              <mat-error>A reading plan is required</mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Choose Bible Version/Translation</mat-label>
+            <mat-select formControlName="translation">
+              @for (trans of translations()!; track trans.short) {
+                <mat-option [value]="trans.short">{{trans.long}}</mat-option>
+              }
+            </mat-select>
+            @if (newUserForm.controls.translation.hasError('required')) {
+              <mat-error>A Bible version is required</mat-error>
+            }
+          </mat-form-field>
+        </div>
+        @if (errorMsg()! !== "") {
+          <div class="errormsg">{{errorMsg()}}</div>
+        }
+        <div class="formRow">
+          <button mat-raised-button (click)="onCancel()">Cancel</button>
+          <button mat-raised-button type="reset">Clear</button>
+          <button mat-raised-button type="submit" 
+            [disabled]="!newUserForm.valid">Create</button>
+        </div>
+    } @else {
+      <mat-form-field [style.width.px]=350>
+        <mat-label>Account ID/Email Address</mat-label>
+        <input matInput placeholder="account@company.com" formControlName="email">
+        @if (newUserForm.controls.email.hasError('required')) {
+          <mat-error>Account ID/Email is required</mat-error>
+        }
+        @if (newUserForm.controls.email.hasError('email')) {
+          <mat-error>Account ID/Email must be in email form</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>First (Given) Name</mat-label>
+        <input matInput formControlName="first">
+        @if (newUserForm.controls.first.hasError('required')) {
+          <mat-error>First (Given) Name is required</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Middle Name</mat-label>
+        <input matInput formControlName="middle">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last (Family) Name</mat-label>
+        <input matInput formControlName="last">
+        @if (newUserForm.controls.last.hasError('required')) {
+          <mat-error>First (Given) Name is required</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Choose Reading Plan</mat-label>
+        <mat-select formControlName="plan">
+          @for (plan of plans()!; track plan.id) {
+            <mat-option [value]="plan.id">{{plan.name}}</mat-option>
+          }
+        </mat-select>
+        @if (newUserForm.controls.plan.hasError('required')) {
+          <mat-error>A reading plan is required</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Choose Bible Version/Translation</mat-label>
+        <mat-select formControlName="translation">
+          @for (trans of translations()!; track trans.short) {
+            <mat-option [value]="trans.short">{{trans.long}}</mat-option>
+          }
+        </mat-select>
+        @if (newUserForm.controls.translation.hasError('required')) {
+          <mat-error>A Bible version is required</mat-error>
+        }
+      </mat-form-field>
+      @if (errorMsg()! !== "") {
+        <div class="errormsg">{{errorMsg()}}</div>
+      }
+      <button mat-raised-button (click)="onCancel()">Cancel</button>
+      <button mat-raised-button type="reset">Clear</button>
+      <button mat-raised-button type="submit" 
+        [disabled]="!newUserForm.valid">Create</button>
+    }
+    </form>
+  </div>
+</mat-card>

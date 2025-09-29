@@ -1,0 +1,49 @@
+<div class="overall">
+  <form class="overall" [formGroup]="readingForm">
+    <div class="id">{{reading()!.id}}.</div>
+    <select formControlName="book" (change)="onEdit('book')">
+      @for (book of books()!; track book.abbrev) {
+        <option [value]="book.abbrev">{{book.title}}</option>
+      }
+    </select>
+    <input formControlName="chapter" type="number" class="number"
+      (blur)="onEdit('chapter')">
+    <div class="id">Optional Verses ( Start:</div>
+    <input formControlName="start" type="number" class="number"
+      (blur)="onEdit('start')">
+    <div class="id"> - </div>
+    <input formControlName="end" type="number" class="number"
+      (blur)="onEdit('end')">
+    <div class="id"> )</div>
+  </form>
+  <span class="flex-spacer" (click)="onMenuClear()"></span>
+  @if (!this.showActions) {
+    <div class="icon" matTooltip="action for this reading" 
+      (click)="onMenu()">
+      <mat-icon>more_vert</mat-icon>
+    </div>
+  }
+  @if (this.showActions) {
+    <div class="menu">
+      <div class="icon" (click)="onDelete()"
+        matTooltip="delete this item">
+        <mat-icon>cancel</mat-icon>
+      </div>
+      @if (reading()!.id > 1) {
+        <div class="icon" (click)="onMove('up')"
+          matTooltip="move item up the list">
+          <mat-icon>arrow_upward</mat-icon>
+        </div>
+      }
+      @if (reading()!.id < readings()!) {
+        <div class="icon" (click)="onMove('down')"
+          matTooltip="move this item down the list">
+          <mat-icon>arrow_downward</mat-icon>
+        </div>
+      }
+      <div class="icon" (click)="onMenu()" matTooltip="close menu">
+        <mat-icon>arrow_right</mat-icon>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,88 @@
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header color="primary">
+    @if (plantype()!.toLowerCase() === 'bydate') {
+      <mat-panel-title>
+        {{months[month()!.month - 1]}}
+      </mat-panel-title>
+    } @else {
+      <mat-panel-title>
+        Full Plan List
+      </mat-panel-title>
+    }
+  </mat-expansion-panel-header>
+  <div class="menudiv">
+    <span class="flex-spacer"></span>
+    @if (!monthMenu) {
+      <div class="icon" matTooltip="Add new day" (click)="onAddDay(false)">
+        <mat-icon>add_circle</mat-icon>
+      </div>
+      <div class="icon" matTooltip="More actions" (click)="onMonthMenu()">
+        <mat-icon>more_vert</mat-icon>
+      </div>
+    } @else {
+      <form [formGroup]="dayForm">
+          <div>Add <input formControlName="days" type="number"> days</div>
+          <div class="icon" matTooltip="Add days to period" (click)="onAddDay(true)">
+            <mat-icon>add_circle</mat-icon>
+          </div>
+      </form>
+      <div class="icon" (click)="onMonthMenu()" matTooltip="close menu">
+        <mat-icon>arrow_right</mat-icon>
+      </div>
+    }
+  </div>
+  <div class="days">
+    @for (day of month()!.days; track day.dayOfMonth) {
+      <button mat-button (click)="onSelectDay(day.dayOfMonth)">
+        {{ day.dayOfMonth }}
+      </button>
+    }
+  </div>
+  @if (showEditor()) {
+    <div class="dayeditor">
+      <div class="editorHeader">
+        <div class="day">{{ day()!.dayOfMonth }}</div>
+        <span class="flex-spacer"></span>
+        @if (!dayEditorMenu) {
+          <div class="icon" matTooltip="Show day menu" (click)="onDayEditorMenu()">
+            <mat-icon>more_vert</mat-icon>
+          </div>
+        }
+        @if (dayEditorMenu) {
+          <div class="icon" matTooltip="Add one reading"
+            (click)="onAddReading()">
+            <mat-icon>add_circle</mat-icon>
+          </div>
+          <div class="icon" matTooltip="Delete this day" 
+            (click)="onDayDelete(day().dayOfMonth)">
+            <mat-icon>cancel</mat-icon>
+          </div>
+          @if (day().dayOfMonth < month()!.days!.length) {
+            <div class="icon" matTooltip="Move day down the list"
+              (click)="onDayMove('down')">
+              <mat-icon>arrow_downward</mat-icon>
+            </div>
+          }
+          @if (day().dayOfMonth > 1) {
+            <div class="icon" matTooltip="Move day up the list"
+              (click)="onDayMove('up')">
+              <mat-icon>arrow_upward</mat-icon>
+            </div>
+          }
+          <div class="icon" (click)="onDayEditorMenu()" matTooltip="close menu">
+            <mat-icon>arrow_right</mat-icon>
+          </div>
+        }
+      </div>
+      <div class="editor">
+        @for (reading of day()!.readings; track reading.id) {
+          <app-plan-reading-component [reading]="reading" [books]="books()!"
+            [key]="key()! + '-' + day().dayOfMonth + '-' + reading.id" 
+            [readings]="day().readings.length"
+            (change)="onChange($event)" style="width: 100%;">
+          </app-plan-reading-component>
+        }
+      </div>
+    </div>
+  }
+</mat-expansion-panel>

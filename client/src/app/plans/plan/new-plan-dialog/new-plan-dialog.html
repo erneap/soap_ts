@@ -1,0 +1,23 @@
+<h3 mat-dialog-title>Add a new Reading Plan</h3>
+<mat-dialog-content>
+  <form [formGroup]="dialogForm">
+    <mat-form-field>
+      <mat-label>New Plan Name</mat-label>
+      <input matInput formControlName="name" (blur)="changeName()">
+      @if (dialogForm.controls.name.hasError('required')) {
+        <mat-error>New name is required</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Plan Type</mat-label>
+      <mat-select formControlName="plantype" (selectionChange)="changeType()">
+        <mat-option value="circular">Single List</mat-option>
+        <mat-option value="bydate">12 Monthly Lists</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button matButton (click)="onCancelClick()">Cancel</button>
+  <button matButton [mat-dialog-close]="answer" cdkFocusInitial>Add</button>
+</mat-dialog-actions>

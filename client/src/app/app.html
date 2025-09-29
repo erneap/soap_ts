@@ -1,0 +1,42 @@
+<main class="main">
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span class="title">
+        {{title}}
+      </span>
+      <span class="flex-spacer"></span>
+      @if (authService.isLoggedIn()) {
+        <button mat-button (click)="onMenuChoice('entries')">Entries</button>
+        @if (appState.isDesktop()) {
+          <button mat-button (click)="onMenuChoice('plans')">Plans</button>
+          @if (authService.user().administrator) {
+            <button mat-button (click)="onMenuChoice('bibles')">Bibles</button>
+            <button mat-button (click)="onMenuChoice('helpedit')">Edit Help</button>
+          }
+        }
+        <button mat-button (click)="onMenuChoice('profile')">Profile</button>
+      }
+      <button mat-icon-button (click)="onHelpChoice()" 
+        class="help-button">
+        <mat-icon style="color: blue;">help</mat-icon>
+      </button>
+      @if (authService.isLoggedIn()) {
+        <button mat-icon-button class="toolbar-icon" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      }
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="content">
+    <router-outlet />
+  </div>
+  <footer>
+    <mat-toolbar class="footer-toolbar">
+      <mat-toolbar-row>
+        <span class="status">{{ authService.errorMsg() }}</span>
+        <span class="flex-spacer"></span>
+        <span class="status">v{{ version }}</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </footer>
+</main>

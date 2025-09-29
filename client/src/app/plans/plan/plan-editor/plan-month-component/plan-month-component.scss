@@ -1,0 +1,88 @@
+mat-panel-title {
+  font-weight: bolder;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+}
+
+mat-expansion-panel-header {
+  background-color: var(--mat-sys-primary-container);
+}
+
+mat-expansion-panel {
+  background-color: var(--mat-sys-tertiary-container);
+}
+
+div.icon {
+  display: flex;
+  flex-direction: column;
+  width: 1.2rem;
+  height: 1.2rem;
+  align-items: center;
+  justify-content: center;
+}
+mat-icon {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+div.days {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+div.dayeditor {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 1px;
+}
+  
+div.editor {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 1px;
+}
+
+div.editorHeader {
+  width: 100%;
+  padding: 3px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  background-color: var(--electric-violet);
+  color: white;
+  font-weight: bold;
+}
+
+input {
+  max-width: 35px;
+  min-width: 35px;
+}
+
+div.menudiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}

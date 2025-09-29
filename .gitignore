@@ -1,0 +1,10 @@
+/console-app/node_modules
+/console-app/.env
+/console-app/dist
+/soap-ts-api/node_modules
+/soap-ts-api/.env
+/soap-models/node_modules
+/soap-client/node_modules
+/.DS_Store
+/soap-models/dist
+/soap-ts-api/dist

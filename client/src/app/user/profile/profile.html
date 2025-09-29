@@ -1,0 +1,172 @@
+<mat-card [style]="cardStyle()">
+  <mat-card-header>
+    <mat-card-title>User Profile</mat-card-title>
+    <mat-card-subtitle>(make changes as necessary)</mat-card-subtitle>
+  </mat-card-header>
+  <div class="overall">
+    <form [formGroup]="newUserForm">
+      @if (viewState.isDesktop()) {
+        <div class="formRow">
+          <mat-form-field [style.width.px]=350>
+            <mat-label>Account ID/Email Address</mat-label>
+            <input matInput placeholder="account@company.com" 
+              formControlName="email" 
+              (blur)="onChange('email', newUserForm.controls.email)">
+            @if (newUserForm.controls.email.hasError('required')) {
+              <mat-error>Account ID/Email is required</mat-error>
+            }
+            @if (newUserForm.controls.email.hasError('email')) {
+              <mat-error>Account ID/Email must be in email form</mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="formRow">
+          <mat-form-field>
+            <mat-label>First (Given) Name</mat-label>
+            <input matInput formControlName="first" 
+              (blur)="onChange('first', newUserForm.controls.first)">
+            @if (newUserForm.controls.first.hasError('required')) {
+              <mat-error>First (Given) Name is required</mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Middle Name</mat-label>
+            <input matInput formControlName="middle" 
+              (blur)="onChange('middle', newUserForm.controls.middle)">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last (Family) Name</mat-label>
+            <input matInput formControlName="last" 
+              (blur)="onChange('last', newUserForm.controls.last)">
+            @if (newUserForm.controls.last.hasError('required')) {
+              <mat-error>Last (Family) Name is required</mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="formRow">
+          <mat-form-field>
+            <mat-label>Choose Reading Plan</mat-label>
+            <mat-select formControlName="plan"
+              (selectionChange)="onChange('plan', newUserForm.controls.plan)">
+              @for (plan of plans()!; track plan.id) {
+                <mat-option [value]="plan.id">{{plan.name}}</mat-option>
+              }
+            </mat-select>
+            @if (newUserForm.controls.plan.hasError('required')) {
+              <mat-error>A reading plan is required</mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Choose Bible Version/Translation</mat-label>
+            <mat-select formControlName="translation"
+              (selectionChange)="onChange('translation', newUserForm.controls.translation)">
+              @for (trans of translations()!; track trans.short) {
+                <mat-option [value]="trans.short">{{trans.long}}</mat-option>
+              }
+            </mat-select>
+            @if (newUserForm.controls.translation.hasError('required')) {
+              <mat-error>A Bible version is required</mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="formRow" style="align-items: flex-start;">
+          <mat-form-field style="margin-bottom: 25px;">
+            <mat-label>New Password</mat-label>
+            <input matInput type="password" formControlName="password">
+            @if (newUserForm.controls.password.hasError('password')) {
+              <mat-error>
+                The new password must have 2 each lower, upper case and numbers
+              </mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field style="margin-bottom: 25px">
+            <mat-label>Verify New Password</mat-label>
+            <input matInput type="password" formControlName="verify">
+            @if (newUserForm.controls.verify.hasError('match')) {
+              <mat-error>The passwords must match</mat-error>
+            }
+          </mat-form-field>
+          <button mat-raised-button (click)="changePassword()">Change Password</button>
+        </div>
+      } @else {
+        <mat-form-field [style.width.px]=350>
+          <mat-label>Account ID/Email Address</mat-label>
+          <input matInput placeholder="account@company.com" 
+            formControlName="email" 
+            (blur)="onChange('email', newUserForm.controls.email)">
+          @if (newUserForm.controls.email.hasError('required')) {
+            <mat-error>Account ID/Email is required</mat-error>
+          }
+          @if (newUserForm.controls.email.hasError('email')) {
+            <mat-error>Account ID/Email must be in email form</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>First (Given) Name</mat-label>
+          <input matInput formControlName="first" 
+            (blur)="onChange('first', newUserForm.controls.first)">
+          @if (newUserForm.controls.first.hasError('required')) {
+            <mat-error>First (Given) Name is required</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Middle Name</mat-label>
+          <input matInput formControlName="middle" 
+            (blur)="onChange('middle', newUserForm.controls.middle)">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Last (Family) Name</mat-label>
+          <input matInput formControlName="last" 
+            (blur)="onChange('last', newUserForm.controls.last)">
+          @if (newUserForm.controls.last.hasError('required')) {
+            <mat-error>Last (Family) Name is required</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Choose Reading Plan</mat-label>
+          <mat-select formControlName="plan"
+            (selectionChange)="onChange('plan', newUserForm.controls.plan)">
+            @for (plan of plans()!; track plan.id) {
+              <mat-option [value]="plan.id">{{plan.name}}</mat-option>
+            }
+          </mat-select>
+          @if (newUserForm.controls.plan.hasError('required')) {
+            <mat-error>A reading plan is required</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Choose Bible Version/Translation</mat-label>
+          <mat-select formControlName="translation"
+            (selectionChange)="onChange('translation', newUserForm.controls.translation)">
+            @for (trans of translations()!; track trans.short) {
+              <mat-option [value]="trans.short">{{trans.long}}</mat-option>
+            }
+          </mat-select>
+          @if (newUserForm.controls.translation.hasError('required')) {
+            <mat-error>A Bible version is required</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field style="margin-bottom: 25px;">
+          <mat-label>New Password</mat-label>
+          <input matInput type="password" formControlName="password">
+          @if (newUserForm.controls.password.hasError('password')) {
+            <mat-error>
+              The new password must have 2 each lower, upper case and numbers
+            </mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field style="margin-bottom: 25px">
+          <mat-label>Verify New Password</mat-label>
+          <input matInput type="password" formControlName="verify">
+          @if (newUserForm.controls.verify.hasError('match')) {
+            <mat-error>The passwords must match</mat-error>
+          }
+        </mat-form-field>
+        <button mat-raised-button (click)="changePassword()">Change Password</button>
+      }
+      @if (errorMsg()! !== "") {
+        <div class="errormsg">{{errorMsg()}}</div>
+      }
+    </form>
+  </div>
+</mat-card>

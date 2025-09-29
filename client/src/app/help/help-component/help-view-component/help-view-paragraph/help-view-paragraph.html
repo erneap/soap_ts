@@ -1,0 +1,24 @@
+<div class="paragraph">
+  <h4>{{paragraph()!.title}}</h4>
+  @for (line of paragraph()!.text; track line) {
+    {{line}}
+  }
+  @if (paragraph()!.bullets && paragraph()!.bullets!.length > 0) {
+    <ol>
+      @for (bullet of paragraph()!.bullets; track bullet.id) {
+        <li>{{bullet.text}}</li>
+      }
+    </ol>
+  }
+  @if (paragraph()!.graphics && paragraph()!.graphics!.length > 0) {
+    <div class="images">
+      @for (graphic of paragraph()!.graphics; track graphic.id) {
+        <div class="image">
+          <img [src]="getGraphic(graphic)" matTooltip="Click to enlarge"
+            (click)="enlargeGraphic(graphic.id)"/>
+          <div class="caption">{{graphic.caption}}</div>
+        </div>
+      }
+    </div>
+  }
+</div>

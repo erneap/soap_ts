@@ -1,0 +1,38 @@
+div.center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-full {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+mat-tree {
+  width: 99%;
+  background-color: transparent;
+  font-size: 1rem;
+}
+
+mat-tree-node {
+  font-size: .8rem;
+  min-height: 1rem !important;
+}
+
+mat-button {
+  padding: 1px;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-bottom: 12px;
+  gap: 3px;
+}

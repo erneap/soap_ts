@@ -1,0 +1,38 @@
+<div class="full-row">
+  <form [formGroup]="pageForm" class="full-form" [style]="formStyle()">
+    <div style="width: 85%;">
+      Page: <input type="number" formControlName="page" style="width: 70%;"
+      (blur)="updateField('page')">
+    </div>
+    <div style="width: 85%;">
+      Page Header: <input formControlName="header" style="width: 70%;"
+      (blur)="updateField('header')">
+    </div>
+    <div style="width: 85%;">
+      Page Subheader: <input formControlName="subheader" style="width: 70%;"
+      (blur)="updateField('subheader')">
+    </div>
+    <div style="width: 85%;">
+      <mat-checkbox formControlName="admin" (change)="updateField('admin')">
+        Admin Only Page</mat-checkbox>
+    </div>
+  </form>
+  @if (this.page()!.page > 0) {
+    <div class="add-paragraph">
+      <button mat-icon-button matTooltip="Delete Page" (click)="onDelete()">
+        <mat-icon>cancel</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Add Paragraph" 
+        (click)="updateField('addparagraph')">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </div>
+  }
+</div>
+<mat-accordion [style]="accordionStyle()">
+  @for (paragraph of page()!.paragraphs; track paragraph.id) {
+    <app-help-editor-paragraph [paragraph]="paragraph" 
+      [key]="page().id + '|' + paragraph.id" (changed)="onChange($event)">
+    </app-help-editor-paragraph>
+  }
+</mat-accordion>

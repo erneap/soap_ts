@@ -1,0 +1,19 @@
+<mat-card [style]="cardStyle()!">
+  <mat-card-header>
+    <mat-card-title>
+      What You Need to Know or HELP!
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="overall">
+      <app-help-list-component [pages]="list()" [select]="page().id"
+        (page)="onSelect($event)" (edit)="onChangeEdit($event)">
+      </app-help-list-component>
+      @if (!editPage()) {
+        <app-help-view-component [page]="page()"></app-help-view-component>
+      } @else {
+        <app-help-editor-component [page]="page()"></app-help-editor-component>
+      }
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,26 @@
+{
+  "name": "soap-models",
+  "version": "1.5.11",
+  "description": "Packaged Modules for working with SOAP",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "publish": "npm version patch && tsc && cd dist && npm version patch && npm publish && cd ..",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/mongodb": "^4.0.6",
+    "bcrypt": "^6.0.0",
+    "bcrypt-ts": "^7.1.0",
+    "express": "^5.1.0",
+    "mongodb": "^6.17.0",
+    "typescript": "^5.8.3"
+  }
+}

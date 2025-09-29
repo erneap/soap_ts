@@ -1,0 +1,179 @@
+{
+  "list": [
+    {
+      "id": 0,
+      "short": "KJV",
+      "long": "King James Version"
+    },
+    {
+      "id": 1,
+      "short": "NKJV",
+      "long": "New King James Version"
+    },
+    {
+      "id": 2,
+      "short": "NLT",
+      "long": "New Living Translation"
+    },
+    {
+      "id": 3,
+      "short": "NIV",
+      "long": "New International Version"
+    },
+    {
+      "id": 4,
+      "short": "ESV",
+      "long": "English Standard Version"
+    },
+    {
+      "id": 5,
+      "short": "CSB",
+      "long": "Christian Standard Bible"
+    },
+    {
+      "id": 6,
+      "short": "NASB20",
+      "long": "New American Standard Bible 2020"
+    },
+    {
+      "id": 7,
+      "short": "NASB95",
+      "long": "New American Standard Bible 1995"
+    },
+    {
+      "id": 8,
+      "short": "LSB",
+      "long": "Legacy Standard Bible"
+    },
+    {
+      "id": 9,
+      "short": "AMP",
+      "long": "Amplified Bible"
+    },
+    {
+      "id": 10,
+      "short": "NET",
+      "long": "New English Translation"
+    },
+    {
+      "id": 11,
+      "short": "RSV",
+      "long": "Revised Standard Version"
+    },
+    {
+      "id": 12,
+      "short": "ASV",
+      "long": "American Standard Versino"
+    },
+    {
+      "id": 13,
+      "short": "YLT",
+      "long": "Young's Literal Translation"
+    },
+    {
+      "id": 14,
+      "short": "DBY",
+      "long": "NDarby Translation"
+    },
+    {
+      "id": 15,
+      "short": "WEB",
+      "long": "Webster's Bible"
+    },
+    {
+      "id": 16,
+      "short": "HNV",
+      "long": "Hebrew Names Version"
+    },
+    {
+      "id": 17,
+      "short": "VUL",
+      "long": "Latin Vulgate"
+    },
+    {
+      "id": 18,
+      "short": "NAV",
+      "long": "Open New Arabic Version"
+    },
+    {
+      "id": 19,
+      "short": "WLC",
+      "long": "Westminster Leningrad Codex"
+    },
+    {
+      "id": 20,
+      "short": "LXX",
+      "long": "Septuagint"
+    },
+    {
+      "id": 21,
+      "short": "mGNT",
+      "long": "Morphological Greek New Testament"
+    },
+    {
+      "id": 22,
+      "short": "TR",
+      "long": "Textus Receptus"
+    },
+    {
+      "id": 23,
+      "short": "SVD",
+      "long": "Smith Van Dyck Arabic Bible"
+    },
+    {
+      "id": 24,
+      "short": "BES",
+      "long": "Brenton's English Septuagint"
+    },
+    {
+      "id": 25,
+      "short": "RVR09",
+      "long": "Reina Valera 1909"
+    },
+    {
+      "id": 26,
+      "short": "RVR60",
+      "long": "Reina-Valera 1960"
+    },
+    {
+      "id": 27,
+      "short": "BBE",
+      "long": "Bible in Basic English"
+    },
+    {
+      "id": 28,
+      "short": "CHT",
+      "long": "Chinese Traditional Union"
+    },
+    {
+      "id": 29,
+      "short": "EM",
+      "long": "Espanol Moderno"
+    },
+    {
+      "id": 30,
+      "short": "KOR",
+      "long": "Korean Holy Bible"
+    },
+    {
+      "id": 31,
+      "short": "LS",
+      "long": "Louis Segond"
+    },
+    {
+      "id": 32,
+      "short": "LUT",
+      "long": "German Luther"
+    },
+    {
+      "id": 33,
+      "short": "RST",
+      "long": "Russian Synodal Translation"
+    },
+    {
+      "id": 34,
+      "short": "SE",
+      "long": "Sagradas Escrituras"
+    }
+  ]
+}
