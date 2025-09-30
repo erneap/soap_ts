@@ -43,8 +43,8 @@ export class SoapEntry implements ISoapEntry {
     }
 
     useEntryByDate(date: Date): boolean {
-        return (date.getUTCFullYear() === date.getUTCFullYear()
-                && date.getUTCMonth() === date.getUTCMonth()
-                && date.getUTCDate() === date.getUTCDate())
+        return (this.entryDate.getUTCFullYear() === date.getUTCFullYear()
+                && this.entryDate.getUTCMonth() === date.getUTCMonth()
+                && this.entryDate.getUTCDate() === date.getUTCDate())
     }
 }

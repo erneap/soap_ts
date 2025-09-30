@@ -37,7 +37,7 @@
     "mongodb": "^6.18.0",
     "morgan": "^1.10.1",
     "nodemailer": "^7.0.5",
-    "soap-models": "^1.5.11"
+    "soap-models": "^1.5.18"
   },
   "engines": {
     "node": ">=22.0.0"

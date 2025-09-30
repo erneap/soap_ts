@@ -11,16 +11,13 @@ const main = async () => {
   const entryCol: Collection | undefined = collections.entries;
   if (entryCol) {
     try {
-      const query = { };
-      const cursor = await entryCol.find<ISoapEntryList>(query);
-      const lists = await cursor.toArray();
-
-      lists.forEach(iList => {
-        const list = new SoapEntryList(iList);
-        const nQuery = { _id: new ObjectId(list.id) };
-        entryCol.replaceOne(nQuery, list);
-      });
-      
+      const query = { userID: '688880632b30fd51bd570215', year: 2025 };
+      const iList = await entryCol.findOne<ISoapEntryList>(query);
+      let list = new SoapEntryList();
+      if (iList && iList !== null) {
+        list = new SoapEntryList(iList);
+      }
+      console.log(list.id);
     } catch (error) {
       console.log(error);
     }

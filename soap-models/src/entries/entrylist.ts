@@ -2,8 +2,8 @@ import { ISoapEntry, SoapEntry } from "./entry";
 
 
 export interface ISoapEntryList {
-    _id?: string;
-    id?: string;
+    _id?: any;
+    id: string;
     userID?: string;
     lastName?: string;
     year: number;
@@ -18,7 +18,10 @@ export class SoapEntryList implements ISoapEntryList {
     public entries: SoapEntry[];
 
     constructor(list?: ISoapEntryList) {
-        this.id = (list && list.id) ? list.id : list._id.toString();
+        this.id = (list && list.id) ? list.id : '';
+        if (this.id === '') {
+            this.id = (list && list._id) ? list._id.toString() : '';
+        }
         this.userID = (list && list.userID) ? list.userID : undefined;
         this.lastName = (list && list.lastName) ? list.lastName : undefined;
         this.year = (list) ? list.year : 0;

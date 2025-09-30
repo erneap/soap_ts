@@ -41,7 +41,6 @@ router.get('/entries/dates/:user/:start/:end', auth, async (req: Request, res: R
       endDate = new Date(Date.parse(sEndDate));
     }
     let year = startDate.getUTCFullYear();
-    console.log(year);
     while (year <= endDate.getUTCFullYear()) {
       const query = { userID: sUser, year: startDate.getUTCFullYear()};
       const iEntryList = await entryCol.findOne<ISoapEntryList>(query);
@@ -109,7 +108,7 @@ router.post('/entry', auth, async (req: Request, res: Response) => {
     }
     let entry = entryList.getEntryByDate(entrydate);
     if (!entry) {
-      entry = entryList.addEntry(entrydate);
+      entry = entryList.addEntry((new ObjectId()).toHexString(), entrydate);
       const lquery = { _id: new ObjectId(entryList.id) };
       await entryCol.replaceOne(lquery, entryList);
     }

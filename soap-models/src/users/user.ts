@@ -1,8 +1,7 @@
-import { ObjectId } from "mongodb";
 import { genSaltSync, hashSync, compareSync } from 'bcrypt-ts';
 
 export interface IUser {
-  _id?: ObjectId;
+  _id?: string;
   id?: string;
   email: string;
   password: string;

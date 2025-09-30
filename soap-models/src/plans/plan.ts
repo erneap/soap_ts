@@ -1,9 +1,8 @@
-import { ObjectId } from "mongodb";
 import { IPlanMonth, PlanMonth } from "./month";
 import { BibleBook, IBibleBook } from "./bible";
 
 export interface IPlan {
-	_id?: ObjectId;
+	_id?: any;
 	id?: string;
 	name: string;
 	months: IPlanMonth[];

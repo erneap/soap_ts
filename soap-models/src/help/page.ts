@@ -1,8 +1,7 @@
-import { ObjectId } from "mongodb";
 import { IParagraph, Paragraph } from "./paragraph";
 
 export interface IPage {
-  _id?: ObjectId;
+  _id?: any;
   id?: string;
   page: number;
   permission?: number;

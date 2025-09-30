@@ -4,7 +4,9 @@
 /soap-ts-api/node_modules
 /soap-ts-api/.env
 /soap-models/node_modules
-/soap-client/node_modules
+/client/node_modules
 /.DS_Store
 /soap-models/dist
 /soap-ts-api/dist
+/soap-client/node_modules
+/soap-client/dist
