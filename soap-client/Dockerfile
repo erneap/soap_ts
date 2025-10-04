@@ -7,7 +7,7 @@ COPY . .
 RUN npm run build --configuration=production
 
 #Stage 2: Serve the application with NGINX
-FROM nginx:alpine
+FROM nginx:1-alpine-slim
 COPY --from=build /app/dist/soap-client/browser /usr/share/nginx/html
 COPY soapjournal.org /etc/nginx/conf.d/default.conf
 EXPOSE 80
