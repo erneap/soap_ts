@@ -61,7 +61,8 @@ export class Entry implements OnInit, OnChanges {
   private user = signal(new User());
   private plan = signal(new Plan());
   private books: BibleBook[] = [];
-  entry = input<SoapEntry>()
+  entry = input<SoapEntry>();
+  fontsize= input<number>();
   formStyle = signal('');
   readings = signal<IReading[]>([]);
   changed = output<UpdateEntryRequest>();

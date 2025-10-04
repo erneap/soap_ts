@@ -167,6 +167,17 @@
       @if (errorMsg()! !== "") {
         <div class="errormsg">{{errorMsg()}}</div>
       }
+      <div class="formRow">
+        <mat-button-toggle-group formControlName="fontsize"
+          (change)="onChange('fontsize', newUserForm.controls.fontsize)">
+          <mat-button-toggle style="font-size:8pt;" value="8">A</mat-button-toggle>
+          <mat-button-toggle style="font-size:10pt;" value="10">A</mat-button-toggle>
+          <mat-button-toggle style="font-size:12pt;" value="12">A</mat-button-toggle>
+          <mat-button-toggle style="font-size:14pt;" value="14">A</mat-button-toggle>
+          <mat-button-toggle style="font-size:16pt;" value="16">A</mat-button-toggle>
+          <mat-button-toggle style="font-size:18pt;" value="18">A</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
     </form>
   </div>
 </mat-card>

@@ -239,6 +239,9 @@ router.put('/user', auth, async (req: Request, res: Response) => {
         case "email":
           user.email = data.value;
           break;
+        case "fontsize":
+          user.fontsize = Number(data.value);
+          break;
       }
 
       const result = await collections.users?.updateOne(query, { $set: user });

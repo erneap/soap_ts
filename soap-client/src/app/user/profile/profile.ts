@@ -14,6 +14,7 @@ import { IPlan, ITranslation, Plan, Translation } from 'soap-models/plans';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { IUser, User } from 'soap-models/users';
+import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'app-profile',
@@ -27,7 +28,9 @@ import { IUser, User } from 'soap-models/users';
     MatButton,
     MatLabel,
     MatSelect,
-    MatOption
+    MatOption,
+    MatButtonToggleGroup,
+    MatButtonToggle
 ],
   templateUrl: './profile.html',
   styleUrl: './profile.scss'
@@ -69,6 +72,9 @@ export class ProfileComponent implements OnInit {
     verify: new FormControl('', {
       nonNullable: true,
       validators: [mustMatchValidator]
+    }),
+    fontsize: new FormControl('10', {
+      nonNullable: true
     })
   });
 

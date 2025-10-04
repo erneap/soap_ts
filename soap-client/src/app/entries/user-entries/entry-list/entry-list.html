@@ -32,7 +32,7 @@
     </div>
     <div class="list" [style]="listStyle()">
       @for (entry of entries()?.entries; track entry.id) {
-        <div [class]="itemClasses(entry)"
+        <div [class]="itemClasses(entry)" [style]="`font-size: ${fontsize()}pt;`"
           (click)="chooseSoapEntry((entry.id) ? entry.id : 'new')">
           {{ getLabel(entry)}}
         </div>

@@ -28,6 +28,7 @@ export class EntryList implements OnInit, OnChanges {
   readonly dialog = inject(MatDialog);
   entries = input<{ entries: ISoapEntry[] }>();
   select = input<string>();
+  fontsize = input<number>();
   selected = output<string>();
   compStyle = signal('');
   labelMainStyle = signal('');

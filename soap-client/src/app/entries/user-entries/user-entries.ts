@@ -24,6 +24,7 @@ export class UserEntries implements OnInit {
   cardStyle = signal('');
   listStyle = signal('');
   editorStyle = signal('');
+  fontsize = signal(10);
   entries = signal<SoapEntry[]>([]);
   entry = signal<SoapEntry>(new SoapEntry());
   
@@ -44,6 +45,9 @@ export class UserEntries implements OnInit {
     this.listStyle.set(`height: ${lHeight}px; width: ${lWidth}px;`);
     this.editorStyle.set(`height: ${lHeight}px; width: ${eWidth};`);
     const userid = this.authService.user().id?.toString();
+    if (this.authService.user()!.fontsize) {
+      this.fontsize.set(this.authService.user().fontsize);
+    }
     const endDate = new Date(new Date().getTime() + (24 * 3600000));
     const startDate = new Date(endDate.getTime() - (35 * 24 * 3600000));
     this.authService.errorMsg.set('');

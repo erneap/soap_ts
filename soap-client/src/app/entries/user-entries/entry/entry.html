@@ -38,14 +38,14 @@
       <mat-form-field class="full">
         <mat-label>Title</mat-label>
         <input matInput class="full" (blur)="onEntryChange('title')"
-          formControlName="title">
+          formControlName="title" [style]="`font-size: ${fontsize()}pt;`">
       </mat-form-field>
     </div>
     <div class="center full">
       <mat-form-field class="full">
         <mat-label>Scripture</mat-label>
         <textarea matInput class="full" (blur)="onEntryChange('scripture')"
-          cdkTextareaAutosize
+          cdkTextareaAutosize [style]="`font-size: ${fontsize()}pt;`"
           formControlName="scripture"
           cdkAutosizeMinRows="2"></textarea>
       </mat-form-field>
@@ -54,7 +54,7 @@
       <mat-form-field class="full">
         <mat-label>Observations</mat-label>
         <textarea matInput class="full" (blur)="onEntryChange('observations')"
-          cdkTextareaAutosize
+          cdkTextareaAutosize [style]="`font-size: ${fontsize()}pt;`"
           formControlName="observations"
           cdkAutosizeMinRows="2"></textarea>
       </mat-form-field>
@@ -63,7 +63,7 @@
       <mat-form-field class="full">
         <mat-label>Application</mat-label>
         <textarea matInput class="full" (blur)="onEntryChange('application')"
-          cdkTextareaAutosize
+          cdkTextareaAutosize [style]="`font-size: ${fontsize()}pt;`"
           formControlName="application"
           cdkAutosizeMinRows="2"></textarea>
       </mat-form-field>
@@ -72,7 +72,7 @@
       <mat-form-field class="full">
         <mat-label>Prayer</mat-label>
         <textarea matInput class="full" (blur)="onEntryChange('prayer')"
-          cdkTextareaAutosize
+          cdkTextareaAutosize [style]="`font-size: ${fontsize()}pt;`"
           formControlName="prayer"
           cdkAutosizeMinRows="2"></textarea>
       </mat-form-field>

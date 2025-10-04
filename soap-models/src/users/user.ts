@@ -14,6 +14,7 @@ export interface IUser {
   administrator: boolean;
   planId?: string;
   translationId?: string;
+  fontsize?: number;
   startDate?: Date;
 }
 
@@ -30,6 +31,7 @@ export class User implements IUser{
   public administrator: boolean;
   public planId?: string;
   public translationId: string;
+  public fontsize: number;
   public startDate: Date;
 
   constructor(iuser?: IUser) {
@@ -50,6 +52,7 @@ export class User implements IUser{
       this.planId = (iuser && iuser.planId) ? iuser.planId : undefined;
       this.translationId = (iuser && iuser.translationId) 
         ? iuser.translationId : 'NKJV';
+      this.fontsize = (iuser && iuser.fontsize) ? iuser.fontsize : 10;
       this.startDate = (iuser && iuser.startDate) 
         ? new Date(iuser.startDate) : new Date(Date.UTC(2025, 0, 1));
     }

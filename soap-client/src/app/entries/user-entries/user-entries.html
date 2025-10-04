@@ -3,11 +3,12 @@
     <div class="overall">
       <div class="entries" [style]="listStyle()">
       <app-entry-list [entries]="{ entries: entries() }"
-        [select]="entry().id"
+        [select]="entry().id" [fontsize]="fontsize()!"
         (selected)="onSelect($event)"></app-entry-list>
       </div>
       <div class="editor" [style]="editorStyle()">
-        <app-entry [entry]="entry()" (changed)="onEntryChange($event)">
+        <app-entry [entry]="entry()" (changed)="onEntryChange($event)"
+          [fontsize]="fontsize()">
         </app-entry>
       </div>
     </div>
