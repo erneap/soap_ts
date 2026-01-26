@@ -147,8 +147,8 @@ export class Entry implements OnInit, OnChanges {
     if (plan && date) {
       switch (plan.type.toLowerCase()) {
         case "bydate":
-          const imonth = date.getMonth() + 1;
-          const iday = date.getDate();
+          const imonth = date.getUTCMonth() + 1;
+          const iday = date.getUTCDate();
           const readings: Reading[] = [];
           plan.months.forEach(month => {
             if (month.month === imonth) {
@@ -168,10 +168,10 @@ export class Entry implements OnInit, OnChanges {
           const user = this.authService.user();
           if (user) {
             let start = user.startDate;
-            start = new Date(Date.UTC(start.getFullYear(), start.getMonth(), 
-              start.getDate()));
+            start = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), 
+              start.getUTCDate()));
             let now = new Date();
-            now = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            now = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
             let iDays = Math.floor((now.getTime() - start.getTime()) 
               / (24 * 3600000)) % this.plan().months[0].days.length;
             const day = this.plan().months[0].days[iDays];
