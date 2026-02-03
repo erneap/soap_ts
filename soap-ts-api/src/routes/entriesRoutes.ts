@@ -42,7 +42,7 @@ router.get('/entries/dates/:user/:start/:end', auth, async (req: Request, res: R
     }
     let year = startDate.getUTCFullYear();
     while (year <= endDate.getUTCFullYear()) {
-      const query = { userID: sUser, year: startDate.getUTCFullYear()};
+      const query = { userID: sUser, year: year};
       const iEntryList = await entryCol.findOne<ISoapEntryList>(query);
       if (iEntryList && iEntryList !== null) {
         const entryList = new SoapEntryList(iEntryList);

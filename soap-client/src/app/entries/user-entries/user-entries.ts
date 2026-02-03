@@ -55,6 +55,7 @@ export class UserEntries implements OnInit {
       this.entryService.getUserEntries(userid, startDate, endDate).subscribe({
         next: (res) => {
           const elist: SoapEntry[] = []
+          console.log(res.body);
           const list = res.body as ISoapEntry[];
           if (list.length > 0) {
             list.forEach(iEntry => {

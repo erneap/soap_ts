@@ -1,0 +1,36 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    user: 1000:1000
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: soap
+      MONGO_INITDB_ROOT_PASSWORD: zse45RDXzse45RDX
+    volumes:
+      - mongodb_data:/data/db
+    restart: always
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo_express_container
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb_container
+      ME_CONFIG_MONGODB_ADMINUSERNAME: soap
+      ME_CONFIG_MONGODB_ADMINPASSWORD: zse45RDXzse45RDX
+      ME_CONFIG_BASICAUTH_USERNAME: antonerne
+      ME_CONFIG_BASICAUTH_PASSWORD: mko09IJNbhu8
+    depends_on:
+      - mongodb
+    restart: always
+
+volumes:
+  mongodb_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /data/database
