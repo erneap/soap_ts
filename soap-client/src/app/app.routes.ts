@@ -23,5 +23,6 @@ export const routes: Routes = [
   { path: 'bibles', component: BiblesComponent },
   { path: 'help', component: HelpComponent },
   { path: 'helpedit', component: HelpEditor },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/entries'}
 ];
