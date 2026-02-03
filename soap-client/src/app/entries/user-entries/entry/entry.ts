@@ -230,8 +230,8 @@ export class Entry implements OnInit, OnChanges {
         let newdate = this.editorForm.controls.entrydate.value;
         if (newdate) {
           newdate = new Date(newdate);
-          newdate = new Date(Date.UTC(newdate.getFullYear(), newdate.getMonth(),
-            newdate.getDate()));
+          newdate = new Date(Date.UTC(newdate.getUTCFullYear(), newdate.getUTCMonth(),
+            newdate.getUTCDate()));
           value = new Date(newdate).toISOString();
         }
         break;

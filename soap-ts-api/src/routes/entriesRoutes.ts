@@ -33,7 +33,7 @@ router.get('/entries/dates/:user/:start/:end', auth, async (req: Request, res: R
   if (entryCol) {
     const list: SoapEntry[] = [];
     const sUser = req.params.user;    
-    const sStartDate = req.params.start;
+    const sStartDate = req.params.start as string;
     const startDate = new Date(Date.parse(sStartDate));
     const sEndDate = req.params.end;
     let endDate = new Date();
@@ -64,7 +64,7 @@ router.get('/entry/:user/:year/:id', auth, async (req: Request, res: Response) =
   const entryCol: Collection | undefined = collections.entries;
   if (entryCol) {
     const sUser = req.params.user;    
-    const sid = req.params.id;
+    const sid = req.params.id as string;
     const year = Number(req.params.year);
     const query = { userID: sUser, year: year};
     const iEntryList = await entryCol.findOne<ISoapEntryList>(query);
@@ -155,7 +155,7 @@ router.put('/entry', auth, async (req: Request, res: Response) => {
 router.delete('/entry/:user/:year/:id', auth, async (req: Request, res: Response) => {
   const entryCol: Collection | undefined = collections.entries;
   if (entryCol) {
-    const id = req.params.id;
+    const id = req.params.id as string;
     const year = Number(req.params.year);
     const sUser = req.params.user;
     const query = { userID: sUser, year: year}

@@ -24,7 +24,7 @@ router.get("/translations", async (req: Request, res: Response) => {
 
 router.get("/translation/:id", async (req: Request, res: Response) => {
   const transCol: Collection | undefined = collections.translations;
-  const id = req.params.id;
+  const id = req.params.id as string;
   const numRE = new RegExp("^[0-9]+$");
   if (transCol) {
     const query = { short: id };
@@ -104,7 +104,7 @@ router.put("/translation", async (req: Request, res: Response) => {
 
 router.delete("/translation/:id", async (req: Request, res: Response) => {
   const transCol: Collection | undefined = collections.translations;
-  const id = req.params.id;
+  const id = req.params.id as string;
   const numRE = new RegExp("^[0-9]+$");
   if (transCol) {
     let num = 0

@@ -31,7 +31,7 @@ router.get('/users', auth, async (req: Request, res: Response) => {
 
 // ******** Retrieve a single user from database *******
 router.get('/user/:id', auth, async (req: Request, res: Response) => {
-  const id = req?.params?.id;
+  const id = req?.params?.id as string;
 
   try {
     const query = { _id: new ObjectId(id) };
@@ -419,7 +419,7 @@ router.put('/user/forgot2', async (req: Request, res: Response) => {
 });
 
 router.delete('/user/:id', auth, async (req: Request, res: Response) => {
-  const id = req?.params?.id;
+  const id = req?.params?.id as string;
 
   try {
     const query = { _id: new ObjectId(id) };

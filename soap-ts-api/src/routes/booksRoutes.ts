@@ -25,7 +25,7 @@ router.get('/books', auth, async (req: Request, res: Response) => {
 router.get('/book/:id', auth, async (req: Request, res: Response) => {
   const booksCol: Collection | undefined = collections.books;
   if (booksCol) {
-    const id = req.params.id;
+    const id = req.params.id as string;
     const query = { _id: new ObjectId(id) };
     const ibook = await booksCol.findOne<IBibleBook>(query);
     if (ibook && ibook !== null) {

@@ -25,7 +25,7 @@ router.get('/plans', async (req: Request, res: Response) => {
 router.get('/plan/:id', async (req: Request, res: Response) => {
   const plansCol: Collection | undefined = collections.plans;
   if (plansCol) {
-    const id = new ObjectId(req.params.id);
+    const id = new ObjectId(req.params.id as string);
     const query = { _id: id };
     const result = await plansCol.findOne<IPlan>(query);
     if (result && result !== null) {
@@ -344,7 +344,7 @@ router.put('/plan', async (req: Request, res: Response) => {
 router.delete('/plan/:id', async(req: Request, res: Response) => {
   const plansCol: Collection | undefined = collections.plans;
   if (plansCol) {
-    const id = new ObjectId(req.params.id);
+    const id = new ObjectId(req.params.id as string);
     const query = { _id: id };
     const result = await plansCol.deleteOne(query);
     if (result && result.deletedCount > 0) {

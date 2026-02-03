@@ -273,7 +273,7 @@ router.put('/help', auth, async (req: Request, res: Response) => {
 router.delete('/help/:id', auth, async (req: Request, res: Response) => {
   const helpCol: Collection | undefined = collections.help;
   if (helpCol) {
-    const id = new ObjectId(req.params.id);
+    const id = new ObjectId(req.params.id as string);
     const query = { _id: id };
 
     await helpCol.deleteOne(query);
